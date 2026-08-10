@@ -1,12 +1,14 @@
 {
   "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
     "zod": "^4.4.3"
   },
   "name": "proyecto2026_niura",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/malerossi/Proyecto2026_Niura/issues"
   },
-  "homepage": "https://github.com/malerossi/Proyecto2026_Niura#readme"
+  "homepage": "https://github.com/malerossi/Proyecto2026_Niura#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.14",
+    "prisma": "^6.19.3"
+  }
 }
