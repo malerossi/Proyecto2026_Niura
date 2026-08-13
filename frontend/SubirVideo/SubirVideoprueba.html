@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Cámara</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+        }
+
+        video {
+            width: 600px;
+            max-width: 100%;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 15px 25px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Grabar video</h1>
+
+    <video id="preview" autoplay  playsinline></video>
+
+    <br>
+
+    <button id="btnCamara">
+        Grabar
+    </button>
+    <script src="SubirVideo.js"></script>
+</body>
+</html>
