@@ -2,6 +2,7 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import IniciodeSesion from './frontend/InicioSesionPaciente/inicioPaciente'
 
+import { ListaRacha } from './racha'; // 👈 Importas la pieza
 function App() {
 
   return (
@@ -19,5 +20,7 @@ function App() {
     </>
   )
 }
+  
+
 
 export default App
