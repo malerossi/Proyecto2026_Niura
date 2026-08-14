@@ -25,6 +25,10 @@
   "homepage": "https://github.com/malerossi/Proyecto2026_Niura#readme",
   "devDependencies": {
     "@types/react": "^19.2.18",
+<<<<<<< HEAD
+=======
+    "@types/react-dom": "^19.2.4",
+>>>>>>> fa1997a8ee9bb0c827518076f941af9a6fffeafc
     "nodemon": "^3.1.14",
     "prisma": "^6.19.3"
   }
