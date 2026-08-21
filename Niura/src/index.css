@@ -29,6 +29,35 @@
     font-size: 16px;
   }
 }
+.contenedor-racha {
+  display: flex;
+  gap: 10px;          /* Espacio entre cuadrados */
+  flex-wrap: wrap;    /* Salta de línea si es necesario */
+  align-items: center;
+  padding: 20px;
+}
+
+/* Estilos compartidos para ambos cuadrados (tamaño, bordes) */
+.cuadrado-verde, .cuadrado-rojo {
+  width: 35px;
+  height: 35px;
+  border-radius: 6px;
+  transition: transform 0.2s; /* Un pequeño efecto visual al pasar el mouse */
+}
+
+.cuadrado-verde:hover, .cuadrado-rojo:hover {
+  transform: scale(1.1); /* Se agranda un poco al pasar el mouse */
+}
+
+/* Color específico para Verdadero */
+.cuadrado-verde {
+  background-color: #22c55e; /* Verde */
+}
+
+/* Color específico para Falso */
+.cuadrado-rojo {
+  background-color: #ef4444; /* Rojo intenso */
+}
 
 @media (prefers-color-scheme: dark) {
   :root {

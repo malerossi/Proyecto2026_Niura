@@ -13,10 +13,10 @@ function App() {
         <Route path="/" element={<IniciodeSesion />} />
         
         {/* Ruta destino: A donde te lleva el navigate('/inicioPaciente') */}
-        <Route path="/inicioPaciente" element={< />} />
+        <Route path="/racha" element={<ListaRacha />} />
       </Routes>
     </BrowserRouter>
-    <IniciodeSesion />
+
     </>
   )
 }
