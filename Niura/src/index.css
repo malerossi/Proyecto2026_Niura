@@ -50,14 +50,7 @@
 }
 
 /* Color específico para Verdadero */
-.cuadrado-verde {
-  background-color: #22c55e; /* Verde */
-}
 
-/* Color específico para Falso */
-.cuadrado-rojo {
-  background-color: #ef4444; /* Rojo intenso */
-}
 
 @media (prefers-color-scheme: dark) {
   :root {

@@ -14,7 +14,7 @@ const historialRacha: DiaRacha[] = [
 ];
 
 export const ListaRacha = () => {
-  // Mantengo tu lógica del ciclo for, aunque no se usa en el renderizado
+
   let rachaActual = 0;
   for (let i = 0; i < historialRacha.length; i++) {
     if (historialRacha[i].completado) {
@@ -24,15 +24,22 @@ export const ListaRacha = () => {
     }
   }
 
+
   return (
     <div className="contenedor-racha">
       {historialRacha.map((dia, index) => (
-        // Lógica visual: Si está completado usa clase verde, sino usa clase roja
-        <div 
+        <> 
+        <img 
           key={index} 
-          className={dia.completado ? "cuadrado-verde" : "cuadrado-rojo"} 
+          className={"cuadrado-verde"} 
+          src={`${dia.completado ? '/imagenes/Racha_prendida.png' : '/imagenes/Racha_apagada.png'}`}
           title={`${dia.fecha}: ${dia.completado ? 'Completado' : 'No completado'}`}
         />
+        <p>
+          
+          {dia.fecha}
+        </p>
+       </>
       ))}
     </div>
   );
