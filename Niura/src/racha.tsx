@@ -1,12 +1,9 @@
 import * as React from 'react';
-import { date } from 'zod';
 
 interface DiaRacha {
   fecha: Date;
   completado: boolean;
 }
-
-
 
 export const historialRacha: DiaRacha[] = [
   // Julio
@@ -27,6 +24,7 @@ export const historialRacha: DiaRacha[] = [
   { fecha: new Date("2026-07-29T00:00:00"), completado: true },
   { fecha: new Date("2026-07-30T00:00:00"), completado: true },
   { fecha: new Date("2026-07-31T00:00:00"), completado: true },
+
   // Agosto
   { fecha: new Date("2026-08-01T00:00:00"), completado: true },
   { fecha: new Date("2026-08-02T00:00:00"), completado: true },
@@ -36,7 +34,7 @@ export const historialRacha: DiaRacha[] = [
   { fecha: new Date("2026-08-06T00:00:00"), completado: true },
   { fecha: new Date("2026-08-07T00:00:00"), completado: true },
   { fecha: new Date("2026-08-08T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-09T00:00:00"), completado: true },
+  { fecha: new Date("2026-08-09T00:00:00"), completado: false },
   { fecha: new Date("2026-08-10T00:00:00"), completado: true },
   { fecha: new Date("2026-08-11T00:00:00"), completado: true },
   { fecha: new Date("2026-08-12T00:00:00"), completado: true },
@@ -54,37 +52,118 @@ export const historialRacha: DiaRacha[] = [
   { fecha: new Date("2026-08-24T00:00:00"), completado: true },
 ];
 
-
 export const ListaRacha = () => {
-
-  let rachaActual = 0;
+  const [rachaActual,setrachaactual]=React.useState(0)
+  let rachamaxima=0;
   for (let i = 0; i < historialRacha.length; i++) {
     if (historialRacha[i].completado) {
-      rachaActual++;
+      () => setrachaactual((c) => c + 1)
+      console.log(rachaActual)
+      if (rachaActual>rachamaxima){
+        rachamaxima=rachaActual
+      }
+  
     } else {
-      rachaActual = 0;
+      () => setrachaactual((c) => c = 0)
     }
   }
 
   const [mes, setMes] = React.useState(new Date().getMonth() + 1);
-   return (
-    <>
-  <button onClick={() => setMes((c) => c - 1)}>-1</button>
+
+  return (
+    <div className="relative min-h-screen">
+
+      {/* BOTÓN ATRÁS */}
+      <button
+        onClick={() => setMes((c) => c - 1)}
+        className="
+          fixed left-4 top-1/2 -translate-y-1/2
+          z-50
+          flex h-16 w-16 items-center justify-center
+          rounded-full
+          bg-black/10
+          text-4xl text-black/30
+          backdrop-blur-sm
+          transition-all duration-300
+          hover:bg-black/20
+          hover:text-black
+          hover:scale-110
+          cursor-pointer
+        "
+        aria-label="Mes anterior"
+      >
+        <svg
+  className="h-8 w-8"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="2"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+>
+  <path d="M19 12H5" />
+  <path d="M12 19l-7-7 7-7" />
+</svg>
+      </button>
+
+      {/* BOTÓN ADELANTE */}
+      <button
+        onClick={() => setMes((c) => c + 1)}
+        className="
+          fixed right-4 top-1/2 -translate-y-1/2
+          z-50
+          flex h-16 w-16 items-center justify-center
+          rounded-full
+          bg-black/10
+          text-4xl text-black/30
+          backdrop-blur-sm
+          transition-all duration-300
+          hover:bg-black/20
+          hover:text-black
+          hover:scale-110
+          cursor-pointer
+        "
+        aria-label="Mes siguiente"
+      >
+        <svg
+  className="h-8 w-8"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="2"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+>
+  <path d="M5 12h14" />
+  <path d="M12 5l7 7-7 7" />
+</svg>
+      </button>
+
+      {/* CONTENEDOR DE LA RACHA */}
       <div className="contenedor-racha">
         {historialRacha
           .filter((dia) => dia.fecha.getMonth() + 1 === mes)
           .map((dia, index) => (
             <React.Fragment key={index}>
-              <img
-                className="cuadrado-verde"
-                src={dia.completado ? '/imagenes/Racha_prendida.png' : '/imagenes/Racha_apagada.png'}
-                title={`${dia.fecha.getDate()}/${dia.fecha.getMonth() + 1}: ${
-                  dia.completado ? 'Completado' : 'No completado'
-                }`}
-              />
-              <p>mes {dia.fecha.getMonth() + 1}</p>
+              <div>
+                <img
+                  className="cuadrado-verde"
+                  src={
+                    dia.completado
+                      ? "/imagenes/Racha_prendida.png"
+                      : "/imagenes/Racha_apagada.png"
+                  }
+                  title={`${dia.fecha.getDate()}/${dia.fecha.getMonth() + 1}: ${
+                    dia.completado ? "Completado" : "No completado"
+                  }`}
+                />
+
+                <p>{dia.fecha.getDate()}</p>
+              </div>
             </React.Fragment>
           ))}
-      </div></>
-    );
+      </div>
+<p>{rachamaxima}</p>
+    </div>
+  );
 };
