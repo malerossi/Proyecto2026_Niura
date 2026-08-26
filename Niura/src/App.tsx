@@ -4,6 +4,10 @@ import IniciodeSesion from './frontend/InicioSesionPaciente/inicioPaciente';
 import { ListaRacha } from './racha';
 import { StreakIcon } from './StreakIcon';
 
+import SubirVideo from './frontend/SubirVideo/SubirVideo'
+
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<IniciodeSesion />} />
         <Route path="/racha" element={<ListaRacha />} />
+        <Route path="/subirvideo" element={<SubirVideo />} />
       </Routes>
     </BrowserRouter>
   );
