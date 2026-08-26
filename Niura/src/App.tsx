@@ -1,8 +1,9 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import IniciodeSesion from './frontend/InicioSesionPaciente/inicioPaciente';
+import InicioSesionMedico from './frontend/InicioSesionMedico/inicioMedico';
 import { ListaRacha } from './frontend/racha/racha';
-import { StreakIcon } from './StreakIcon';
+import { StreakIcon } from './frontend/racha/StreakIcon';
 
 import SubirVideo from './frontend/SubirVideo/SubirVideo'
 
@@ -20,9 +21,10 @@ function App() {
       </header>
 
       <Routes>
-        <Route path="/" element={<IniciodeSesion />} />
+        <Route path="/inicioPaciente" element={<IniciodeSesion />} />
         <Route path="/racha" element={<ListaRacha />} />
         <Route path="/subirvideo" element={<SubirVideo />} />
+        <Route path='/inicioMedico' element={<InicioSesionMedico />}></Route>
       </Routes>
     </BrowserRouter>
   );
