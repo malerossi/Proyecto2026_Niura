@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import { useState } from 'react';
 interface DiaRacha {
   fecha: Date;
   completado: boolean;
@@ -52,24 +52,48 @@ export const historialRacha: DiaRacha[] = [
   { fecha: new Date("2026-08-24T00:00:00"), completado: true },
 ];
 
-export const ListaRacha = () => {
-  const [rachaActual,setrachaactual]=React.useState(0)
+const calcularRacha= (rachas)=>{
   let rachamaxima=0;
-  for (let i = 0; i < historialRacha.length; i++) {
-    if (historialRacha[i].completado) {
-      () => setrachaactual((c) => c + 1)
-      console.log(rachaActual)
-      if (rachaActual>rachamaxima){
-        rachamaxima=rachaActual
+  let conteoRacha = 0;
+  for (let i = 0; i < rachas.length; i++) {
+    if (rachas[i].completado) {
+       conteoRacha++;
+      console.log(conteoRacha)
+      if (conteoRacha>rachamaxima){
+        rachamaxima=conteoRacha
       }
-  
     } else {
-      () => setrachaactual((c) => c = 0)
+      conteoRacha = 0;
     }
   }
 
-  const [mes, setMes] = React.useState(new Date().getMonth() + 1);
+  return [conteoRacha,rachamaxima];
+}
 
+export const ListaRacha = () => {
+  const resultado = calcularRacha(historialRacha);
+  const [rachacatualconst,setrachacatual]=useState(resultado[0]);
+  const [rachamaximaconst,setrachamaxima]=useState(resultado[1]);
+
+  
+  const [mes, setMes] = React.useState(new Date().getMonth() + 1);
+  React.useEffect(() => {
+    const detectarTecla = (evento: KeyboardEvent) => {
+      if (evento.key === "ArrowLeft") {
+        setMes((c) => c - 1);
+      }
+  
+      if (evento.key === "ArrowRight") {
+        setMes((c) => c + 1);
+      }
+    };
+  
+    window.addEventListener("keydown", detectarTecla);
+  
+    return () => {
+      window.removeEventListener("keydown", detectarTecla);
+    };
+  }, []);
   return (
     <div className="relative min-h-screen">
 
@@ -163,7 +187,8 @@ export const ListaRacha = () => {
             </React.Fragment>
           ))}
       </div>
-<p>{rachamaxima}</p>
+<p>la racha maxima es: {rachamaximaconst}</p>
+<p>la racha actual es: {rachacatualconst}</p>
     </div>
   );
 };

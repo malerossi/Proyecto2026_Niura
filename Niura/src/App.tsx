@@ -1,26 +1,26 @@
-import './App.css'
+import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import IniciodeSesion from './frontend/InicioSesionPaciente/inicioPaciente'
-
+import IniciodeSesion from './frontend/InicioSesionPaciente/inicioPaciente';
 import { ListaRacha } from './racha';
-function App() {
+import { StreakIcon } from './StreakIcon';
 
+function App() {
   return (
-    <>
     <BrowserRouter>
-      <Routes>
-        {/* Ruta principal: Muestra el formulario */}
-        <Route path="/" element={<IniciodeSesion />} />
+      {/* Encabezado con el icono integrado */}
+      <header className="flex items-center justify-between p-4 bg-slate-900">
+        <h1 className="text-lg font-bold text-white">Mi App</h1>
         
-        {/* Ruta destino: A donde te lleva el navigate('/inicioPaciente') */}
+        {/* Pasa el número como tipo 'number' */}
+        <StreakIcon count={27} />
+      </header>
+
+      <Routes>
+        <Route path="/" element={<IniciodeSesion />} />
         <Route path="/racha" element={<ListaRacha />} />
       </Routes>
     </BrowserRouter>
-    
-    </>
-  )
+  );
 }
-  
 
-
-export default App
+export default App;
