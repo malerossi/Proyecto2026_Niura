@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import IniciodeSesion from './frontend/InicioSesionPaciente/inicioPaciente';
-import { ListaRacha } from './racha';
+import { ListaRacha } from './frontend/racha/racha';
 import { StreakIcon } from './StreakIcon';
 
 import SubirVideo from './frontend/SubirVideo/SubirVideo'
@@ -16,7 +16,7 @@ function App() {
         <h1 className="text-lg font-bold text-white">Mi App</h1>
         
         {/* Pasa el número como tipo 'number' */}
-        <StreakIcon count={27} />
+        <StreakIcon count={Number(localStorage.getItem("rachaActual"))} />
       </header>
 
       <Routes>
