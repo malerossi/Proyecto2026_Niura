@@ -18,7 +18,7 @@ function App() {
         <h1 className="text-lg font-bold text-white">Mi App</h1>
         
         {/* Pasa el número como tipo 'number' */}
-        <StreakIcon count={27} />
+        <StreakIcon count={Number(localStorage.getItem("rachaActual"))} />
       </header>
 
       <Routes>

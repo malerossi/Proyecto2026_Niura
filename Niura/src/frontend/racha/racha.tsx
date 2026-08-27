@@ -45,7 +45,7 @@ export const historialRacha: DiaRacha[] = [
   { fecha: new Date("2026-08-17T00:00:00"), completado: true },
   { fecha: new Date("2026-08-18T00:00:00"), completado: true },
   { fecha: new Date("2026-08-19T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-20T00:00:00"), completado: true },
+  { fecha: new Date("2026-08-20T00:00:00"), completado: false },
   { fecha: new Date("2026-08-21T00:00:00"), completado: true },
   { fecha: new Date("2026-08-22T00:00:00"), completado: true },
   { fecha: new Date("2026-08-23T00:00:00"), completado: true },
@@ -72,7 +72,11 @@ const calcularRacha= (rachas)=>{
 
 export const ListaRacha = () => {
   const resultado = calcularRacha(historialRacha);
-  const [rachacatualconst,setrachacatual]=useState(resultado[0]);
+
+ const [rachacatualconst,setrachacatual]=useState(resultado[0]);
+ React.useEffect(() => {
+  localStorage.setItem("rachaActual", rachacatualconst.toString());
+}, [rachacatualconst]);
   const [rachamaximaconst,setrachamaxima]=useState(resultado[1]);
 
   
@@ -148,8 +152,7 @@ export const ListaRacha = () => {
           cursor-pointer
         "
         aria-label="Mes siguiente"
-      >
-        <svg
+      >      <svg
   className="h-8 w-8"
   viewBox="0 0 24 24"
   fill="none"

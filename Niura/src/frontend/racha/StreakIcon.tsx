@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+const racha =localStorage.getItem("rachaActual")
 interface StreakIconProps {
   count?: number;
 }
 
-export const StreakIcon: React.FC<StreakIconProps> = ({ count = 27 }) => {
+export const StreakIcon: React.FC<StreakIconProps> = ({ count = racha  }) => {
   return (
     <Link 
       to="/racha" 
