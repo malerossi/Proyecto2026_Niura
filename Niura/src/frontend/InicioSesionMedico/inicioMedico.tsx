@@ -43,7 +43,7 @@ export default function InicioSesionMedico() {
             <input type="text" required placeholder="DNI" id="dniMedico" className="dniMedico" value={dni} onChange={(e) => setDni(e.target.value)} />
             <input type="password" required placeholder="Contraseña" id="contraseñaMedico" className="contraseñaMedico" value={contraseña} onChange={(e) => setContraseña(e.target.value)} />
             <input type="file" required placeholder="Matricula" id="matriculaMedico" className="matriculaMedico" accept="image/*" onChange={handleImageChange} />
-
+            <button type='submit' id="Enviar" className="Enviar">Enviar</button>
         </form>
     )
 }
