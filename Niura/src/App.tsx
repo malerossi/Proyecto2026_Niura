@@ -1,10 +1,10 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import IniciodeSesion from './frontend/InicioSesionPaciente/inicioPaciente';
-import InicioSesionMedico from './frontend/InicioSesionMedico/inicioMedico';
+import RegistroPaciente from './frontend/registroPaciente/registroPaciente';
+import RegistroMedico from './frontend/registroMedico/registroMedico';
 import { ListaRacha } from './frontend/racha/racha';
 import { StreakIcon } from './frontend/racha/StreakIcon';
-import InicioCuidador from './frontend/inicioSesionCuidador/inicioCuidador';
+import RegistroCuidador from './frontend/registroCuidador/registroCuidador';
 
 import SubirVideo from './frontend/SubirVideo/SubirVideo'
 
@@ -22,11 +22,11 @@ function App() {
       </header>
 
       <Routes>
-        <Route path="/inicioPaciente" element={<IniciodeSesion />} />
+        <Route path="/registroPaciente" element={<RegistroPaciente />} />
         <Route path="/racha" element={<ListaRacha />} />
         <Route path="/subirvideo" element={<SubirVideo />} />
-        <Route path='/inicioMedico' element={<InicioSesionMedico />} />
-        <Route path='/inicioCuidador' element= {<InicioCuidador />} />
+        <Route path='/registroMedico' element={<RegistroMedico />} />
+        <Route path='/registroCuidador' element= {<RegistroCuidador />} />
       </Routes>
     </BrowserRouter>
   );
