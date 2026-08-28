@@ -16,7 +16,7 @@ export default function InicioCuidador () {
     const handleSubmit = (e: React.FormEvent) => {
             e.preventDefault()
             if (nombre !== "" && apellido !== "" && mail !== "" && dni !== "" && contraseña !== ""){
-                navigate ('/inicioCuidador');
+                navigate ('/registroCuidador');
             }
             else {
                 alert ('Porfavor, llenar sus datos.')

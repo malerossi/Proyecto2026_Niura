@@ -5,7 +5,9 @@ import RegistroMedico from './frontend/registroMedico/registroMedico';
 import { ListaRacha } from './frontend/racha/racha';
 import { StreakIcon } from './frontend/racha/StreakIcon';
 import RegistroCuidador from './frontend/registroCuidador/registroCuidador';
-
+import InicioSesionMedico from './frontend/inicioSesionMedico/inicioSesionMedico';
+import InicioSesionPaciente from './frontend/inicioSesionPaciente/inicioSesionPaciente';
+import InicioSesionCuidador from './frontend/inicioSesionCuidador/inicioSesionCuidador';
 import SubirVideo from './frontend/SubirVideo/SubirVideo'
 
 
@@ -27,6 +29,9 @@ function App() {
         <Route path="/subirvideo" element={<SubirVideo />} />
         <Route path='/registroMedico' element={<RegistroMedico />} />
         <Route path='/registroCuidador' element= {<RegistroCuidador />} />
+        <Route path='/inicioSesionCuidador' element= {<InicioSesionCuidador />} />
+        <Route path='/inicioSesionPaciente' element= {<InicioSesionPaciente />} />
+        <Route path='/inicioSesionMedico' element= {<InicioSesionMedico />} />
       </Routes>
     </BrowserRouter>
   );
