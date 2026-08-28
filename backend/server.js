@@ -3,7 +3,8 @@ const dotenv = require('dotenv').config()
 const teamsRouter = require('./routes/teams.routes')
 const playersRouter = require('./routes/players.routes')
 const matchesRouter = require('./routes/matches.routes')
-
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 const app = express()
 const PORT = process.env.PORT
 

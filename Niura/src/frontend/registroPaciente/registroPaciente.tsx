@@ -9,7 +9,7 @@ export default function IniciodeSesion (){
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
         if (nombre !== "" && apellido !== "" && mail !== "" && dni !== "" && contraseña !== ""){
-            navigate ('/inicioPaciente')
+            navigate ('/registroPaciente')
         }
         else {
             alert ('Porfavor, llenar sus datos.')
