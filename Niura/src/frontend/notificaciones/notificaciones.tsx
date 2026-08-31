@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 
 export type TipoNotificacion =
@@ -7,10 +6,7 @@ export type TipoNotificacion =
   | 'mensaje_chat'
   | 'alerta_racha';
 
-export type PrioridadNotificacion =
-  | 'alta'
-  | 'media'
-  | 'baja';
+export type PrioridadNotificacion = 'alta' | 'media' | 'baja';
 
 export interface Remitente {
   nombre: string;
@@ -35,41 +31,34 @@ export interface DatosBackNotificacion {
   redireccion?: Redireccion;
 }
 
-
-const Html = () => {
-
-  // Esta función simula una notificación
-  // que posteriormente vendría desde tu backend.
+const BotonNotificacion = () => {
   const notificacionRacha: DatosBackNotificacion = {
     id_notificacion: 1,
-
     tipo: 'alerta_racha',
-
     prioridad: 'media',
-
     titulo: '¡No pierdas tu racha! 🔥',
-
     mensaje: 'Hoy todavía no completaste tu actividad.',
-
     remitente: {
       nombre: 'Sistema',
       apellido: '',
-      avatar_url: '/logo.png'
+      avatar_url: '/logo.png',
     },
-
     fecha_envio: new Date().toISOString(),
-
     leida: false,
-
     redireccion: {
       ruta: '/racha',
-      id_referencia: 1
-    }
+      id_referencia: 1,
+    },
   };
 
-
   const mandarNotificacion = async () => {
+    // 1. Validar soporte de notificaciones
+    if (!('Notification' in window)) {
+      alert('Este navegador no soporta notificaciones');
+      return;
+    }
 
+    // 2. Pedir permisos
     const permiso = await Notification.requestPermission();
 
     if (permiso !== 'granted') {
@@ -77,38 +66,31 @@ const Html = () => {
       return;
     }
 
-
-    // Creamos la notificación usando
-    // los datos que tenemos en nuestro objeto.
-    const notificacion = new Notification(
-      notificacionRacha.titulo,
-      {
-        body: notificacionRacha.mensaje,
-
-        icon: notificacionRacha.remitente.avatar_url,
-
-        tag: 'alerta-racha',
-
-        data: notificacionRacha.redireccion
-      }
-    );
-
-
-    // Detectamos cuando el usuario toca
-    // la notificación.
-    notificacion.onclick = () => {
-
-      if (notificacionRacha.redireccion) {
-
-        window.location.href =
-          notificacionRacha.redireccion.ruta;
-
-      }
-
+    const opciones: NotificationOptions = {
+      body: notificacionRacha.mensaje,
+      icon: notificacionRacha.remitente.avatar_url,
+      tag: 'alerta-racha',
+      data: notificacionRacha.redireccion,
     };
 
-  };
+    // 3. Método para celulares (a través de Service Worker)
+    if ('serviceWorker' in navigator) {
+      const registro = await navigator.serviceWorker.ready;
+      if (registro && registro.showNotification) {
+        await registro.showNotification(notificacionRacha.titulo, opciones);
+        return;
+      }
+    }
 
+    // 4. Fallback para PC si no hay Service Worker activo
+    const notificacion = new Notification(notificacionRacha.titulo, opciones);
+
+    notificacion.onclick = () => {
+      if (notificacionRacha.redireccion) {
+        window.location.href = notificacionRacha.redireccion.ruta;
+      }
+    };
+  };
 
   return (
     <button onClick={mandarNotificacion}>
@@ -117,6 +99,4 @@ const Html = () => {
   );
 };
 
-
-export default Html;
-
+export default BotonNotificacion;
