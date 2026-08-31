@@ -7,8 +7,10 @@ export default function Pendientes () {
     return (
         <div className="Pendientes">
             <div className="PendientesMotriz">
-                <input type="checkbox" checked={tareaMotriz} onChange={(e) => setMotriz(e.target.checked)} />
-                
+                <input className="pendiente1MOTRIZ" type="checkbox" checked={tareaMotriz} onChange={(e) => setMotriz(e.target.checked)} />
+            </div>
+            <div className="PendientesCognitiva">
+                <input className="pendiente1COGNITIVO" type="checkbox" checked={tareaCognitiva} onChange={(e) => setCognitiva(e.target.checked)} />
             </div>
             <div className="PendientesCognitiva"></div>
         </div>

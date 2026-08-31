@@ -9,6 +9,7 @@ import InicioSesionMedico from './frontend/inicioSesionMedico/inicioSesionMedico
 import InicioSesionPaciente from './frontend/inicioSesionPaciente/inicioSesionPaciente';
 import InicioSesionCuidador from './frontend/inicioSesionCuidador/inicioSesionCuidador';
 import SubirVideo from './frontend/SubirVideo/SubirVideo'
+import Pendientes from './frontend/pendientes/pendientesMedico/pendientes'
 
 
 
@@ -32,6 +33,7 @@ function App() {
         <Route path='/inicioSesionCuidador' element= {<InicioSesionCuidador />} />
         <Route path='/inicioSesionPaciente' element= {<InicioSesionPaciente />} />
         <Route path='/inicioSesionMedico' element= {<InicioSesionMedico />} />
+        <Route path='/pendientesmedico' element= {<Pendientes/>} />
       </Routes>
     </BrowserRouter>
   );
