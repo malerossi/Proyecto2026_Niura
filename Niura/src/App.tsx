@@ -9,7 +9,7 @@ import InicioSesionMedico from './frontend/inicioSesionMedico/inicioSesionMedico
 import InicioSesionPaciente from './frontend/inicioSesionPaciente/inicioSesionPaciente';
 import InicioSesionCuidador from './frontend/inicioSesionCuidador/inicioSesionCuidador';
 import SubirVideo from './frontend/SubirVideo/SubirVideo'
-
+import Html from './frontend/notificaciones/notificaciones'
 
 
 function App() {
@@ -17,9 +17,6 @@ function App() {
     <BrowserRouter>
       {/* Encabezado con el icono integrado */}
       <header className="flex items-center justify-between p-4 bg-slate-900">
-        <h1 className="text-lg font-bold text-white">Mi App</h1>
-        
-        {/* Pasa el número como tipo 'number' */}
         <StreakIcon count={Number(localStorage.getItem("rachaActual"))} />
       </header>
 
@@ -32,6 +29,7 @@ function App() {
         <Route path='/inicioSesionCuidador' element= {<InicioSesionCuidador />} />
         <Route path='/inicioSesionPaciente' element= {<InicioSesionPaciente />} />
         <Route path='/inicioSesionMedico' element= {<InicioSesionMedico />} />
+        <Route path='/notificaciones' element= {<Html />} />
       </Routes>
     </BrowserRouter>
   );
