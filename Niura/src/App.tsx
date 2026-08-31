@@ -9,7 +9,8 @@ import InicioSesionMedico from './frontend/inicioSesionMedico/inicioSesionMedico
 import InicioSesionPaciente from './frontend/inicioSesionPaciente/inicioSesionPaciente';
 import InicioSesionCuidador from './frontend/inicioSesionCuidador/inicioSesionCuidador';
 import SubirVideo from './frontend/SubirVideo/SubirVideo'
-import Html from './frontend/notificaciones/notificaciones'
+import Html from './frontend/notificaciones/notificaciones'import Pendientes from './frontend/pendientes/pendientesMedico/pendientes'
+
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path='/inicioSesionPaciente' element= {<InicioSesionPaciente />} />
         <Route path='/inicioSesionMedico' element= {<InicioSesionMedico />} />
         <Route path='/notificaciones' element= {<Html />} />
+        <Route path='/pendientesmedico' element= {<Pendientes/>} />
       </Routes>
     </BrowserRouter>
   );
