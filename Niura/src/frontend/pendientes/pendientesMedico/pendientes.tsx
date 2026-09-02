@@ -1,18 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+type Tarea = {
+    id: string;
+    titulo: string;
+    tipo: "motriz" | "cognitiva";
+    completada: boolean;
+};
 
 export default function Pendientes () {
-    const [tareaMotriz, setMotriz] = useState <boolean>(false);
-    const [tareaCognitiva, setCognitiva] = useState <boolean>(false);
+
+    const [tareas, setTareas] = useState<Tarea[]>([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        fetch ("/api/mis-tareas martiiiiinn")
+        .then((res) => res.json())
+        .then((data: Tarea[]) => setTareas(data))
+        .catch((err) => console.error("Error cargando tareas:", err));
+    }, [])
+
+    const tareaMotriz = tareas.find((t) => t.tipo === "motriz");
+    const tareaCognitiva = tareas.find((t) => t.tipo === "cognitiva");
+
+    const todoCompletado = tareas.length > 0 && tareas.every((t) => t.completada);
+
+    const irAEjercicio = (tarea: Tarea) => {
+        navigate(`/ejercicio/${tarea.tipo}/${tarea.id}`);
+    };
 
     return (
         <div className="Pendientes">
-            <div className="PendientesMotriz">
-                <input className="pendiente1MOTRIZ" type="checkbox" checked={tareaMotriz} onChange={(e) => setMotriz(e.target.checked)} />
+          {/* Mensaje Motivador */}
+          <div className="banner-motivacional">
+            {todoCompletado ? (
+              <h2>🎉 ¡Felicitaciones! Completaste tus tareas de hoy.</h2>
+            ) : (
+              <h2>💪 ¡Hora de tu entrenamiento diario!</h2>
+            )}
+          </div>
+    
+          {/* Tarea Motriz: Solo se muestra si existe y NO está completada */}
+          {tareaMotriz && !tareaMotriz.completada && (
+            <div
+              className="PendientesMotriz"
+              onClick={() => irAEjercicio(tareaMotriz)}
+            >
+              <span>🖐️ Tarea Motriz Pendiente: {tareaMotriz.titulo}</span>
+              <p>Toca para hacer el ejercicio &rarr;</p>
             </div>
-            <div className="PendientesCognitiva">
-                <input className="pendiente1COGNITIVO" type="checkbox" checked={tareaCognitiva} onChange={(e) => setCognitiva(e.target.checked)} />
+          )}
+    
+          {/* Tarea Cognitiva: Solo se muestra si existe y NO está completada */}
+          {tareaCognitiva && !tareaCognitiva.completada && (
+            <div
+              className="PendientesCognitiva"
+              onClick={() => irAEjercicio(tareaCognitiva)}
+            >
+              <span>🧠 Tarea Cognitiva Pendiente: {tareaCognitiva.titulo}</span>
+              <p>Toca para hacer el ejercicio &rarr;</p>
             </div>
-            <div className="PendientesCognitiva"></div>
+          )}
         </div>
     )
 }
