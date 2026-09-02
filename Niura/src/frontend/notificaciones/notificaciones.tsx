@@ -32,6 +32,16 @@ export interface DatosBackNotificacion {
 }
 
 const BotonNotificacion = () => {
+  // 1. Registrar el Service Worker automáticamente al cargar el componente
+  React.useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then((reg) => console.log('SW registrado con éxito:', reg.scope))
+        .catch((err) => alert('Error registrando Service Worker: ' + err));
+    }
+  }, []);
+
   const notificacionRacha: DatosBackNotificacion = {
     id_notificacion: 1,
     tipo: 'alerta_racha',
@@ -52,44 +62,42 @@ const BotonNotificacion = () => {
   };
 
   const mandarNotificacion = async () => {
-    // 1. Validar soporte de notificaciones
-    if (!('Notification' in window)) {
-      alert('Este navegador no soporta notificaciones');
-      return;
-    }
-
-    // 2. Pedir permisos
-    const permiso = await Notification.requestPermission();
-
-    if (permiso !== 'granted') {
-      console.log('El usuario no permitió las notificaciones');
-      return;
-    }
-
-    const opciones: NotificationOptions = {
-      body: notificacionRacha.mensaje,
-      icon: notificacionRacha.remitente.avatar_url,
-      tag: 'alerta-racha',
-      data: notificacionRacha.redireccion,
-    };
-
-    // 3. Método para celulares (a través de Service Worker)
-    if ('serviceWorker' in navigator) {
-      const registro = await navigator.serviceWorker.ready;
-      if (registro && registro.showNotification) {
-        await registro.showNotification(notificacionRacha.titulo, opciones);
+    try {
+      // 2. Validar soporte en el dispositivo
+      if (!('Notification' in window) || !('serviceWorker' in navigator)) {
+        alert('Este navegador no soporta Notificaciones o Service Worker.');
         return;
       }
-    }
 
-    // 4. Fallback para PC si no hay Service Worker activo
-    const notificacion = new Notification(notificacionRacha.titulo, opciones);
-
-    notificacion.onclick = () => {
-      if (notificacionRacha.redireccion) {
-        window.location.href = notificacionRacha.redireccion.ruta;
+      // 3. Solicitar permiso de forma sincrónica con el tap del usuario
+      let permiso = Notification.permission;
+      if (permiso !== 'granted') {
+        permiso = await Notification.requestPermission();
       }
-    };
+
+      if (permiso !== 'granted') {
+        alert('Permiso denegado. Habilita las notificaciones en el navegador.');
+        return;
+      }
+
+      // 4. Garantizar que el Service Worker esté 100% LISTO y ACTIVO en Android
+      const registro = await navigator.serviceWorker.ready;
+
+      // 5. Configurar opciones nativas para Android / Samsung
+      const opciones: NotificationOptions & { vibrate?: number[] } = {
+        body: notificacionRacha.mensaje,
+        //icon: notificacionRacha.remitente.avatar_url,
+        //badge: notificacionRacha.remitente.avatar_url,
+        tag: 'alerta-racha',
+        vibrate: [200, 100, 200], // Patrón de vibración hápico
+        data: notificacionRacha.redireccion,
+      };
+
+      // 6. Lanzar la notificación desde el registro activo
+      await registro.showNotification(notificacionRacha.titulo, opciones);
+    } catch (error: any) {
+      alert('Error en Android al mostrar notificación: ' + (error?.message || error));
+    }
   };
 
   return (
