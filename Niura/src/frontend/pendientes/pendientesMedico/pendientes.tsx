@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 type Tarea = {
@@ -26,13 +26,16 @@ export default function Pendientes () {
     const todoCompletado = tareas.length > 0 && tareas.every((t) => t.completada);
 
     const irAEjercicio = (tarea: Tarea) => {
-        navigate(`/ejercicio/${tarea.tipo}/${tarea.id}`);
+      navigate(`/ejercicio/${tarea.tipo}/${tarea.id}`);
     };
+
+    const EjerciciosDiarios = () => {
+      navigate('/ejercicios')
+    }
 
     return (
         <div className="Pendientes">
-          {/* Mensaje Motivador */}
-          <div className="banner-motivacional">
+          <div className="banner-motivacional" onClick={() => EjerciciosDiarios()}>
             {todoCompletado ? (
               <h2>🎉 ¡Felicitaciones! Completaste tus tareas de hoy.</h2>
             ) : (
@@ -40,18 +43,16 @@ export default function Pendientes () {
             )}
           </div>
     
-          {/* Tarea Motriz: Solo se muestra si existe y NO está completada */}
           {tareaMotriz && !tareaMotriz.completada && (
             <div
               className="PendientesMotriz"
               onClick={() => irAEjercicio(tareaMotriz)}
             >
               <span>🖐️ Tarea Motriz Pendiente: {tareaMotriz.titulo}</span>
-              <p>Toca para hacer el ejercicio &rarr;</p>
+              <p>Toca para hacer el ejercicio</p>
             </div>
           )}
     
-          {/* Tarea Cognitiva: Solo se muestra si existe y NO está completada */}
           {tareaCognitiva && !tareaCognitiva.completada && (
             <div
               className="PendientesCognitiva"
