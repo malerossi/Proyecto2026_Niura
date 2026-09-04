@@ -21,12 +21,10 @@ interface ContextInicioPacienteType {
 export const ContextoInicioPaciente = createContext <ContextInicioPacienteType| null>(null);
 
 function App() {
-
   const [nombre, setNombre] = useState<string>('');
 
   return (
     <ContextoInicioPaciente.Provider value={{nombre, setNombre}}>
-      <BrowserRouter>
         <header className="flex items-center justify-between p-4 bg-slate-900">
           <StreakIcon count={Number(localStorage.getItem("rachaActual"))} />
         </header>
@@ -43,7 +41,6 @@ function App() {
           <Route path='/notificaciones' element= {<BotonNotificacion />} />
           <Route path='/pendientespaciente' element= {<Pendientes/>} />
         </Routes>
-      </BrowserRouter>
     </ContextoInicioPaciente.Provider>
   );
 }
