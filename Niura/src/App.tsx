@@ -11,8 +11,8 @@ import InicioSesionCuidador from './frontend/inicioSesionCuidador/inicioSesionCu
 import SubirVideo from './frontend/SubirVideo/SubirVideo'
 import BotonNotificacion from './frontend/notificaciones/notificaciones'
 import Pendientes from './frontend/pendientes/pendientesMedico/pendientes'
-
-
+import ChatSimplificado from './frontend/reddecontactos/reddecontactos'
+import ChatSimplificadomio from './frontend/reddecontactos/lomio/redcontactos'
 
 function App() {
   return (
@@ -33,6 +33,8 @@ function App() {
         <Route path='/inicioSesionMedico' element= {<InicioSesionMedico />} />
         <Route path='/notificaciones' element= {<BotonNotificacion />} />
         <Route path='/pendientesmedico' element= {<Pendientes/>} />
+        <Route path='/reddecontactos' element= {<ChatSimplificado/>} />
+        <Route path='/reddecontactosmio' element= {<ChatSimplificadomio/>} />
       </Routes>
     </BrowserRouter>
   );
