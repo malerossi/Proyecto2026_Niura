@@ -2,9 +2,9 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ContextoInicioPaciente } from '../../App';
 
-const contexto = useContext (ContextoInicioPaciente)
 
 export default function InicioSesionPaciente () {
+    const contexto = useContext (ContextoInicioPaciente)
     const [nombre, setNombre] = useState<string> ('');
     const [dni, setDni] = useState<string> ('');
     const [contraseña, setContraseña] = useState<string>('');
