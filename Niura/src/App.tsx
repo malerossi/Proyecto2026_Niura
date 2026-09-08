@@ -11,10 +11,12 @@ import InicioSesionCuidador from './frontend/inicioSesionCuidador/inicioSesionCu
 import SubirVideo from './frontend/SubirVideo/SubirVideo'
 import BotonNotificacion from './frontend/notificaciones/notificaciones'
 import Pendientes from './frontend/pendientes/pendientesMedico/pendientes'
-
+import ChatSimplificado from './frontend/reddecontactos/reddecontactos'
+import ChatSimplificadomio from './frontend/reddecontactos/lomio/redcontactos'
 //PROVIDERS
 import { InicioPacienteProvider } from './frontend/Contexts/contextInicioPaciente';
 import { InicioMedicoProvider } from './frontend/Contexts/contextoInicioMedico';
+
 
 
 function App() {
@@ -36,6 +38,8 @@ function App() {
           <Route path='/inicioSesionMedico' element= {<InicioSesionMedico />} />
           <Route path='/notificaciones' element= {<BotonNotificacion />} />
           <Route path='/pendientespaciente' element= {<Pendientes/>} />
+          <Route path='/reddecontactos' element= {<ChatSimplificado/>} />
+          <Route path='/reddecontactosmia' element= {<ChatSimplificadomio/>} />
         </Routes>
     </InicioPacienteProvider>
     </InicioMedicoProvider>

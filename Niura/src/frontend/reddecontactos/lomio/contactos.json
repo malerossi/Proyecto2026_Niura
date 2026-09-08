@@ -1,0 +1,162 @@
+[
+    {
+      "id_conversacion": "conv_1",
+      "id_contacto": 101,
+      "nombre_contacto": "Sofía Gómez",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Sofia",
+      "estado_presencia": "online",
+      "mensajes_no_leidos": 2
+    },
+    {
+      "id_conversacion": "conv_2",
+      "id_contacto": 102,
+      "nombre_contacto": "Franco Martínez",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Franco",
+      "estado_presencia": "offline",
+      "mensajes_no_leidos": 0
+    },
+    {
+      "id_conversacion": "conv_3",
+      "id_contacto": 103,
+      "nombre_contacto": "Lucía Fernández",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Lucia",
+      "estado_presencia": "online",
+      "mensajes_no_leidos": 5
+    },
+    {
+      "id_conversacion": "conv_4",
+      "id_contacto": 104,
+      "nombre_contacto": "Mateo Rossi",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Mateo",
+      "estado_presencia": "offline",
+      "mensajes_no_leidos": 0
+    },
+    {
+      "id_conversacion": "conv_5",
+      "id_contacto": 105,
+      "nombre_contacto": "Valentina Díaz",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Valentina",
+      "estado_presencia": "online",
+      "mensajes_no_leidos": 1
+    },
+    {
+      "id_conversacion": "conv_6",
+      "id_contacto": 106,
+      "nombre_contacto": "Joaquín Silva",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Joaquin",
+      "estado_presencia": "offline",
+      "mensajes_no_leidos": 0
+    },
+    {
+      "id_conversacion": "conv_7",
+      "id_contacto": 107,
+      "nombre_contacto": "Camila Romero",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Camila",
+      "estado_presencia": "online",
+      "mensajes_no_leidos": 0
+    },
+    {
+      "id_conversacion": "conv_8",
+      "id_contacto": 108,
+      "nombre_contacto": "Tomás Benítez",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Tomas",
+      "estado_presencia": "offline",
+      "mensajes_no_leidos": 3
+    },
+    {
+      "id_conversacion": "conv_9",
+      "id_contacto": 109,
+      "nombre_contacto": "Martina Acosta",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Martina",
+      "estado_presencia": "online",
+      "mensajes_no_leidos": 0
+    },
+    {
+      "id_conversacion": "conv_10",
+      "id_contacto": 110,
+      "nombre_contacto": "Santiago Medina",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Santiago",
+      "estado_presencia": "offline",
+      "mensajes_no_leidos": 0
+    },
+    {
+      "id_conversacion": "conv_11",
+      "id_contacto": 111,
+      "nombre_contacto": "Micaela Castro",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Micaela",
+      "estado_presencia": "online",
+      "mensajes_no_leidos": 4
+    },
+    {
+      "id_conversacion": "conv_12",
+      "id_contacto": 112,
+      "nombre_contacto": "Nicolás Herrera",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Nicolas",
+      "estado_presencia": "offline",
+      "mensajes_no_leidos": 0
+    },
+    {
+      "id_conversacion": "conv_13",
+      "id_contacto": 113,
+      "nombre_contacto": "Juliet Álvarez",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Julieta",
+      "estado_presencia": "online",
+      "mensajes_no_leidos": 0
+    },
+    {
+      "id_conversacion": "conv_14",
+      "id_contacto": 114,
+      "nombre_contacto": "Agustín Pereyra",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Agustin",
+      "estado_presencia": "offline",
+      "mensajes_no_leidos": 1
+    },
+    {
+      "id_conversacion": "conv_15",
+      "id_contacto": 115,
+      "nombre_contacto": "Delfina Juárez",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Delfina",
+      "estado_presencia": "online",
+      "mensajes_no_leidos": 0
+    },
+    {
+      "id_conversacion": "conv_16",
+      "id_contacto": 116,
+      "nombre_contacto": "Enzo Giménez",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Enzo",
+      "estado_presencia": "offline",
+      "mensajes_no_leidos": 0
+    },
+    {
+      "id_conversacion": "conv_17",
+      "id_contacto": 117,
+      "nombre_contacto": "Lola Rojas",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Lola",
+      "estado_presencia": "online",
+      "mensajes_no_leidos": 2
+    },
+    {
+      "id_conversacion": "conv_18",
+      "id_contacto": 118,
+      "nombre_contacto": "Bautista Molina",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Bautista",
+      "estado_presencia": "offline",
+      "mensajes_no_leidos": 0
+    },
+    {
+      "id_conversacion": "conv_19",
+      "id_contacto": 119,
+      "nombre_contacto": "Catalina Sucre",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Catalina",
+      "estado_presencia": "online",
+      "mensajes_no_leidos": 0
+    },
+    {
+      "id_conversacion": "conv_20",
+      "id_contacto": 120,
+      "nombre_contacto": "Ignacio Torres",
+      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Ignacio",
+      "estado_presencia": "offline",
+      "mensajes_no_leidos": 0
+    }
+  ]
