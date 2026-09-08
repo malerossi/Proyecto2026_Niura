@@ -1,6 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { createContext, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import RegistroPaciente from './frontend/registroPaciente/registroPaciente';
 import RegistroMedico from './frontend/registroMedico/registroMedico';
 import { ListaRacha } from './frontend/racha/racha';
@@ -13,18 +12,15 @@ import SubirVideo from './frontend/SubirVideo/SubirVideo'
 import BotonNotificacion from './frontend/notificaciones/notificaciones'
 import Pendientes from './frontend/pendientes/pendientesMedico/pendientes'
 
-interface ContextInicioPacienteType {
-  nombre: string;
-  setNombre: (nombre: string) => void;
-}
+//PROVIDERS
+import { InicioPacienteProvider } from './frontend/Contexts/contextInicioPaciente';
+import { InicioMedicoProvider } from './frontend/Contexts/contextoInicioMedico';
 
-export const ContextoInicioPaciente = createContext <ContextInicioPacienteType| null>(null);
 
 function App() {
-  const [nombre, setNombre] = useState<string>('');
-
   return (
-    <ContextoInicioPaciente.Provider value={{nombre, setNombre}}>
+    <InicioMedicoProvider>
+    <InicioPacienteProvider>
         <header className="flex items-center justify-between p-4 bg-slate-900">
           <StreakIcon count={Number(localStorage.getItem("rachaActual"))} />
         </header>
@@ -41,7 +37,8 @@ function App() {
           <Route path='/notificaciones' element= {<BotonNotificacion />} />
           <Route path='/pendientespaciente' element= {<Pendientes/>} />
         </Routes>
-    </ContextoInicioPaciente.Provider>
+    </InicioPacienteProvider>
+    </InicioMedicoProvider>
   );
 }
 

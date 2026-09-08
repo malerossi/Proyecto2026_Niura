@@ -1,4 +1,4 @@
-import { createContext, type ReactNode, useState } from 'react';
+import { createContext, type ReactNode, useContext, useState } from 'react';
 
 interface contextoIPType {
     nombre: string;
@@ -19,4 +19,12 @@ export const InicioPacienteProvider = ({ children }: ProviderProps) => {
           {children}
         </ContextoIP.Provider>
       );
+}
+
+export const useInicioPaciente = () => {
+  const contexto = useContext (ContextoIP);
+  if (!contexto) {
+    throw ('Error al cargar el contexto. Revisar su implementación.')
+  }
+  return contexto;
 }
