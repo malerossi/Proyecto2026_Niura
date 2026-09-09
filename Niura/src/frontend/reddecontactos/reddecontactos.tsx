@@ -4,6 +4,7 @@ import type { Conversacion, Mensaje } from '../interfaces/redcontactos';
 const USUARIO_ACTUAL_ID = 109;
 
 const CONVERSACIONES_MOCK: Conversacion[] = [
+
   {
     id_conversacion: 'conv_1',
     id_contacto: 1,
@@ -11,6 +12,7 @@ const CONVERSACIONES_MOCK: Conversacion[] = [
     avatar_contacto: 'https://api.dicebear.com/7.x/bottts/svg?seed=Sofi',
     estado_presencia: 'online',
     mensajes_no_leidos: 0,
+    mensajes :[]
   },
   {
     id_conversacion: 'conv_3',
@@ -19,6 +21,7 @@ const CONVERSACIONES_MOCK: Conversacion[] = [
     avatar_contacto: 'https://api.dicebear.com/7.x/bottts/svg?seed=Fran',
     estado_presencia: 'online',
     mensajes_no_leidos: 1,
+    mensajes :[]
   },
   {
     id_conversacion: 'conv_2',
@@ -27,6 +30,7 @@ const CONVERSACIONES_MOCK: Conversacion[] = [
     avatar_contacto: 'https://api.dicebear.com/7.x/bottts/svg?seed=Fran',
     estado_presencia: 'offline',
     mensajes_no_leidos: 3,
+    mensajes :[]
   },
 ];
 

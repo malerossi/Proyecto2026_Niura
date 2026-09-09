@@ -1,162 +1,592 @@
 [
-    {
-      "id_conversacion": "conv_1",
-      "id_contacto": 101,
-      "nombre_contacto": "Sofía Gómez",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Sofia",
-      "estado_presencia": "online",
-      "mensajes_no_leidos": 2
-    },
-    {
-      "id_conversacion": "conv_2",
-      "id_contacto": 102,
-      "nombre_contacto": "Franco Martínez",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Franco",
-      "estado_presencia": "offline",
-      "mensajes_no_leidos": 0
-    },
-    {
-      "id_conversacion": "conv_3",
-      "id_contacto": 103,
-      "nombre_contacto": "Lucía Fernández",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Lucia",
-      "estado_presencia": "online",
-      "mensajes_no_leidos": 5
-    },
-    {
-      "id_conversacion": "conv_4",
-      "id_contacto": 104,
-      "nombre_contacto": "Mateo Rossi",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Mateo",
-      "estado_presencia": "offline",
-      "mensajes_no_leidos": 0
-    },
-    {
-      "id_conversacion": "conv_5",
-      "id_contacto": 105,
-      "nombre_contacto": "Valentina Díaz",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Valentina",
-      "estado_presencia": "online",
-      "mensajes_no_leidos": 1
-    },
-    {
-      "id_conversacion": "conv_6",
-      "id_contacto": 106,
-      "nombre_contacto": "Joaquín Silva",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Joaquin",
-      "estado_presencia": "offline",
-      "mensajes_no_leidos": 0
-    },
-    {
-      "id_conversacion": "conv_7",
-      "id_contacto": 107,
-      "nombre_contacto": "Camila Romero",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Camila",
-      "estado_presencia": "online",
-      "mensajes_no_leidos": 0
-    },
-    {
-      "id_conversacion": "conv_8",
-      "id_contacto": 108,
-      "nombre_contacto": "Tomás Benítez",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Tomas",
-      "estado_presencia": "offline",
-      "mensajes_no_leidos": 3
-    },
-    {
-      "id_conversacion": "conv_9",
-      "id_contacto": 109,
-      "nombre_contacto": "Martina Acosta",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Martina",
-      "estado_presencia": "online",
-      "mensajes_no_leidos": 0
-    },
-    {
-      "id_conversacion": "conv_10",
-      "id_contacto": 110,
-      "nombre_contacto": "Santiago Medina",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Santiago",
-      "estado_presencia": "offline",
-      "mensajes_no_leidos": 0
-    },
-    {
-      "id_conversacion": "conv_11",
-      "id_contacto": 111,
-      "nombre_contacto": "Micaela Castro",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Micaela",
-      "estado_presencia": "online",
-      "mensajes_no_leidos": 4
-    },
-    {
-      "id_conversacion": "conv_12",
-      "id_contacto": 112,
-      "nombre_contacto": "Nicolás Herrera",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Nicolas",
-      "estado_presencia": "offline",
-      "mensajes_no_leidos": 0
-    },
-    {
-      "id_conversacion": "conv_13",
-      "id_contacto": 113,
-      "nombre_contacto": "Juliet Álvarez",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Julieta",
-      "estado_presencia": "online",
-      "mensajes_no_leidos": 0
-    },
-    {
-      "id_conversacion": "conv_14",
-      "id_contacto": 114,
-      "nombre_contacto": "Agustín Pereyra",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Agustin",
-      "estado_presencia": "offline",
-      "mensajes_no_leidos": 1
-    },
-    {
-      "id_conversacion": "conv_15",
-      "id_contacto": 115,
-      "nombre_contacto": "Delfina Juárez",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Delfina",
-      "estado_presencia": "online",
-      "mensajes_no_leidos": 0
-    },
-    {
-      "id_conversacion": "conv_16",
-      "id_contacto": 116,
-      "nombre_contacto": "Enzo Giménez",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Enzo",
-      "estado_presencia": "offline",
-      "mensajes_no_leidos": 0
-    },
-    {
-      "id_conversacion": "conv_17",
-      "id_contacto": 117,
-      "nombre_contacto": "Lola Rojas",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Lola",
-      "estado_presencia": "online",
-      "mensajes_no_leidos": 2
-    },
-    {
-      "id_conversacion": "conv_18",
-      "id_contacto": 118,
-      "nombre_contacto": "Bautista Molina",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Bautista",
-      "estado_presencia": "offline",
-      "mensajes_no_leidos": 0
-    },
-    {
-      "id_conversacion": "conv_19",
-      "id_contacto": 119,
-      "nombre_contacto": "Catalina Sucre",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Catalina",
-      "estado_presencia": "online",
-      "mensajes_no_leidos": 0
-    },
-    {
-      "id_conversacion": "conv_20",
-      "id_contacto": 120,
-      "nombre_contacto": "Ignacio Torres",
-      "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Ignacio",
-      "estado_presencia": "offline",
-      "mensajes_no_leidos": 0
-    }
-  ]
+  {
+    "id_conversacion": "conv_1",
+    "id_contacto": 101,
+    "nombre_contacto": "Sofía Gómez",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Sofia",
+    "estado_presencia": "online",
+    "mensajes_no_leidos": 2,
+    "mensajes": [
+      {
+        "id_mensaje": "m1_1",
+        "id_conversacion": "conv_1",
+        "id_emisor": 999,
+        "id_receptor": 101,
+        "tipo": "texto",
+        "contenido": "¡Hola Sofía! ¿Cómo estás?",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "10:15"
+      },
+      {
+        "id_mensaje": "m1_2",
+        "id_conversacion": "conv_1",
+        "id_emisor": 101,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "¡Hola! Todo bien, ¿y vos?",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "10:18"
+      },
+      {
+        "id_mensaje": "m1_3",
+        "id_conversacion": "conv_1",
+        "id_emisor": 101,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "¿A qué hora era la reunión de hoy?",
+        "estado_entrega": "entregado",
+        "eliminado": false,
+        "fecha_envio": "10:20"
+      }
+    ]
+  },
+  {
+    "id_conversacion": "conv_2",
+    "id_contacto": 102,
+    "nombre_contacto": "Franco Martínez",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Franco",
+    "estado_presencia": "offline",
+    "mensajes_no_leidos": 0,
+    "mensajes": [
+      {
+        "id_mensaje": "m2_1",
+        "id_conversacion": "conv_2",
+        "id_emisor": 102,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "Che, ¿viste el partido de anoche?",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "Ayer"
+      },
+      {
+        "id_mensaje": "m2_2",
+        "id_conversacion": "conv_2",
+        "id_emisor": 999,
+        "id_receptor": 102,
+        "tipo": "texto",
+        "contenido": "Sí, tremendo final.",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "Ayer"
+      }
+    ]
+  },
+  {
+    "id_conversacion": "conv_3",
+    "id_contacto": 103,
+    "nombre_contacto": "Lucía Fernández",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Lucia",
+    "estado_presencia": "online",
+    "mensajes_no_leidos": 5,
+    "mensajes": [
+      {
+        "id_mensaje": "m3_1",
+        "id_conversacion": "conv_3",
+        "id_emisor": 999,
+        "id_receptor": 103,
+        "tipo": "texto",
+        "contenido": "Lucía, te mandé el documento por mail.",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "08:30"
+      },
+      {
+        "id_mensaje": "m3_2",
+        "id_conversacion": "conv_3",
+        "id_emisor": 103,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "¡Genial! Ya lo recibí.",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "08:45"
+      },
+      {
+        "id_mensaje": "m3_3",
+        "id_conversacion": "conv_3",
+        "id_emisor": 103,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "Estoy revisando los cambios.",
+        "estado_entrega": "entregado",
+        "eliminado": false,
+        "fecha_envio": "08:50"
+      },
+      {
+        "id_mensaje": "m3_4",
+        "id_conversacion": "conv_3",
+        "id_emisor": 103,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "Tengo unas dudas en la página 3.",
+        "estado_entrega": "entregado",
+        "eliminado": false,
+        "fecha_envio": "09:05"
+      },
+      {
+        "id_mensaje": "m3_5",
+        "id_conversacion": "conv_3",
+        "id_emisor": 103,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "¿Tenés 5 minutos para una llamada?",
+        "estado_entrega": "entregado",
+        "eliminado": false,
+        "fecha_envio": "09:10"
+      },
+      {
+        "id_mensaje": "m3_6",
+        "id_conversacion": "conv_3",
+        "id_emisor": 103,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "Avisame cuando estés libre.",
+        "estado_entrega": "entregado",
+        "eliminado": false,
+        "fecha_envio": "09:15"
+      }
+    ]
+  },
+  {
+    "id_conversacion": "conv_4",
+    "id_contacto": 104,
+    "nombre_contacto": "Mateo Rossi",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Mateo",
+    "estado_presencia": "offline",
+    "mensajes_no_leidos": 0,
+    "mensajes": [
+      {
+        "id_mensaje": "m4_1",
+        "id_conversacion": "conv_4",
+        "id_emisor": 999,
+        "id_receptor": 104,
+        "tipo": "texto",
+        "contenido": "¡Feliz cumpleaños Mateo!",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "12 de Oct"
+      },
+      {
+        "id_mensaje": "m4_2",
+        "id_conversacion": "conv_4",
+        "id_emisor": 104,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "¡Muchas gracias! Abrazo grande.",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "12 de Oct"
+      }
+    ]
+  },
+  {
+    "id_conversacion": "conv_5",
+    "id_contacto": 105,
+    "nombre_contacto": "Valentina Díaz",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Valentina",
+    "estado_presencia": "online",
+    "mensajes_no_leidos": 1,
+    "mensajes": [
+      {
+        "id_mensaje": "m5_1",
+        "id_conversacion": "conv_5",
+        "id_emisor": 999,
+        "id_receptor": 105,
+        "tipo": "texto",
+        "contenido": "Valen, ¿ya salieron para la oficina?",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "11:00"
+      },
+      {
+        "id_mensaje": "m5_2",
+        "id_conversacion": "conv_5",
+        "id_emisor": 105,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "Estamos saliendo ahora mismo.",
+        "estado_entrega": "entregado",
+        "eliminado": false,
+        "fecha_envio": "11:12"
+      }
+    ]
+  },
+  {
+    "id_conversacion": "conv_6",
+    "id_contacto": 106,
+    "nombre_contacto": "Joaquín Silva",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Joaquin",
+    "estado_presencia": "offline",
+    "mensajes_no_leidos": 0,
+    "mensajes": []
+  },
+  {
+    "id_conversacion": "conv_7",
+    "id_contacto": 107,
+    "nombre_contacto": "Camila Romero",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Camila",
+    "estado_presencia": "online",
+    "mensajes_no_leidos": 0,
+    "mensajes": [
+      {
+        "id_mensaje": "m7_1",
+        "id_conversacion": "conv_7",
+        "id_emisor": 107,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "Te pasé los links de la presentación.",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "Ayer"
+      },
+      {
+        "id_mensaje": "m7_2",
+        "id_conversacion": "conv_7",
+        "id_emisor": 999,
+        "id_receptor": 107,
+        "tipo": "texto",
+        "contenido": "Perfecto, gracias Cami.",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "Ayer"
+      }
+    ]
+  },
+  {
+    "id_conversacion": "conv_8",
+    "id_contacto": 108,
+    "nombre_contacto": "Tomás Benítez",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Tomas",
+    "estado_presencia": "offline",
+    "mensajes_no_leidos": 3,
+    "mensajes": [
+      {
+        "id_mensaje": "m8_1",
+        "id_conversacion": "conv_8",
+        "id_emisor": 108,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "Hola, ¿cómo estás?",
+        "estado_entrega": "entregado",
+        "eliminado": false,
+        "fecha_envio": "07:30"
+      },
+      {
+        "id_mensaje": "m8_2",
+        "id_conversacion": "conv_8",
+        "id_emisor": 108,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "¿Vas a venir hoy?",
+        "estado_entrega": "entregado",
+        "eliminado": false,
+        "fecha_envio": "07:31"
+      },
+      {
+        "id_mensaje": "m8_3",
+        "id_conversacion": "conv_8",
+        "id_emisor": 108,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "Avisame para esperarte.",
+        "estado_entrega": "entregado",
+        "eliminado": false,
+        "fecha_envio": "07:35"
+      }
+    ]
+  },
+  {
+    "id_conversacion": "conv_9",
+    "id_contacto": 109,
+    "nombre_contacto": "Martina Acosta",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Martina",
+    "estado_presencia": "online",
+    "mensajes_no_leidos": 0,
+    "mensajes": []
+  },
+  {
+    "id_conversacion": "conv_10",
+    "id_contacto": 110,
+    "nombre_contacto": "Santiago Medina",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Santiago",
+    "estado_presencia": "offline",
+    "mensajes_no_leidos": 0,
+    "mensajes": [
+      {
+        "id_mensaje": "m10_1",
+        "id_conversacion": "conv_10",
+        "id_emisor": 999,
+        "id_receptor": 110,
+        "tipo": "texto",
+        "contenido": "Santi, ¿tenés el número de Nico?",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "Hace 2 días"
+      },
+      {
+        "id_mensaje": "m10_2",
+        "id_conversacion": "conv_10",
+        "id_emisor": 110,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "Sí, ahí te lo paso por privado.",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "Hace 2 días"
+      }
+    ]
+  },
+  {
+    "id_conversacion": "conv_11",
+    "id_contacto": 111,
+    "nombre_contacto": "Micaela Castro",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Micaela",
+    "estado_presencia": "online",
+    "mensajes_no_leidos": 4,
+    "mensajes": [
+      {
+        "id_mensaje": "m11_1",
+        "id_conversacion": "conv_11",
+        "id_emisor": 111,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "¡Hola!",
+        "estado_entrega": "entregado",
+        "eliminado": false,
+        "fecha_envio": "11:40"
+      },
+      {
+        "id_mensaje": "m11_2",
+        "id_conversacion": "conv_11",
+        "id_emisor": 111,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "¿Tenés la lista de precios nueva?",
+        "estado_entrega": "entregado",
+        "eliminado": false,
+        "fecha_envio": "11:41"
+      },
+      {
+        "id_mensaje": "m11_3",
+        "id_conversacion": "conv_11",
+        "id_emisor": 111,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "La necesito para enviarla a un cliente.",
+        "estado_entrega": "entregado",
+        "eliminado": false,
+        "fecha_envio": "11:42"
+      },
+      {
+        "id_mensaje": "m11_4",
+        "id_conversacion": "conv_11",
+        "id_emisor": 111,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "Si podés, pasámela en PDF.",
+        "estado_entrega": "entregado",
+        "eliminado": false,
+        "fecha_envio": "11:45"
+      }
+    ]
+  },
+  {
+    "id_conversacion": "conv_12",
+    "id_contacto": 112,
+    "nombre_contacto": "Nicolás Herrera",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Nicolas",
+    "estado_presencia": "offline",
+    "mensajes_no_leidos": 0,
+    "mensajes": []
+  },
+  {
+    "id_conversacion": "conv_13",
+    "id_contacto": 113,
+    "nombre_contacto": "Julieta Álvarez",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Julieta",
+    "estado_presencia": "online",
+    "mensajes_no_leidos": 0,
+    "mensajes": [
+      {
+        "id_mensaje": "m13_1",
+        "id_conversacion": "conv_13",
+        "id_emisor": 113,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "Nos vemos el fin de semana.",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "Ayer"
+      },
+      {
+        "id_mensaje": "m13_2",
+        "id_conversacion": "conv_13",
+        "id_emisor": 999,
+        "id_receptor": 113,
+        "tipo": "texto",
+        "contenido": "Dale, coordinamos por acá.",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "Ayer"
+      }
+    ]
+  },
+  {
+    "id_conversacion": "conv_14",
+    "id_contacto": 114,
+    "nombre_contacto": "Agustín Pereyra",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Agustin",
+    "estado_presencia": "offline",
+    "mensajes_no_leidos": 1,
+    "mensajes": [
+      {
+        "id_mensaje": "m14_1",
+        "id_conversacion": "conv_14",
+        "id_emisor": 999,
+        "id_receptor": 114,
+        "tipo": "texto",
+        "contenido": "Agus, ¿pudiste ver el código?",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "09:00"
+      },
+      {
+        "id_mensaje": "m14_2",
+        "id_conversacion": "conv_14",
+        "id_emisor": 114,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "Sí, te dejé unos comentarios en GitHub.",
+        "estado_entrega": "entregado",
+        "eliminado": false,
+        "fecha_envio": "09:30"
+      }
+    ]
+  },
+  {
+    "id_conversacion": "conv_15",
+    "id_contacto": 115,
+    "nombre_contacto": "Delfina Juárez",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Delfina",
+    "estado_presencia": "online",
+    "mensajes_no_leidos": 0,
+    "mensajes": []
+  },
+  {
+    "id_conversacion": "conv_16",
+    "id_contacto": 116,
+    "nombre_contacto": "Enzo Giménez",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Enzo",
+    "estado_presencia": "offline",
+    "mensajes_no_leidos": 0,
+    "mensajes": [
+      {
+        "id_mensaje": "m16_1",
+        "id_conversacion": "conv_16",
+        "id_emisor": 999,
+        "id_receptor": 116,
+        "tipo": "texto",
+        "contenido": "¿A qué hora arrancamos hoy?",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "08:00"
+      },
+      {
+        "id_mensaje": "m16_2",
+        "id_conversacion": "conv_16",
+        "id_emisor": 116,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "A las 9:30 en el punto de encuentro.",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "08:05"
+      }
+    ]
+  },
+  {
+    "id_conversacion": "conv_17",
+    "id_contacto": 117,
+    "nombre_contacto": "Lola Rojas",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Lola",
+    "estado_presencia": "online",
+    "mensajes_no_leidos": 2,
+    "mensajes": [
+      {
+        "id_mensaje": "m17_1",
+        "id_conversacion": "conv_17",
+        "id_emisor": 117,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "¡Hola! ¿Tenés el contacto del diseñador?",
+        "estado_entrega": "entregado",
+        "eliminado": false,
+        "fecha_envio": "12:00"
+      },
+      {
+        "id_mensaje": "m17_2",
+        "id_conversacion": "conv_17",
+        "id_emisor": 117,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "Necesito pedirle unos retoques.",
+        "estado_entrega": "entregado",
+        "eliminado": false,
+        "fecha_envio": "12:02"
+      }
+    ]
+  },
+  {
+    "id_conversacion": "conv_18",
+    "id_contacto": 118,
+    "nombre_contacto": "Bautista Molina",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Bautista",
+    "estado_presencia": "offline",
+    "mensajes_no_leidos": 0,
+    "mensajes": []
+  },
+  {
+    "id_conversacion": "conv_19",
+    "id_contacto": 119,
+    "nombre_contacto": "Catalina Sucre",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Catalina",
+    "estado_presencia": "online",
+    "mensajes_no_leidos": 0,
+    "mensajes": [
+      {
+        "id_mensaje": "m19_1",
+        "id_conversacion": "conv_19",
+        "id_emisor": 119,
+        "id_receptor": 999,
+        "tipo": "texto",
+        "contenido": "Gracias por la ayuda de hoy.",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "Ayer"
+      },
+      {
+        "id_mensaje": "m19_2",
+        "id_conversacion": "conv_19",
+        "id_emisor": 999,
+        "id_receptor": 119,
+        "tipo": "texto",
+        "contenido": "¡De nada Cata! Cuando necesites.",
+        "estado_entrega": "leido",
+        "eliminado": false,
+        "fecha_envio": "Ayer"
+      }
+    ]
+  },
+  {
+    "id_conversacion": "conv_20",
+    "id_contacto": 120,
+    "nombre_contacto": "Ignacio Torres",
+    "avatar_contacto": "https://api.dicebear.com/7.x/bottts/svg?seed=Ignacio",
+    "estado_presencia": "offline",
+    "mensajes_no_leidos": 0,
+    "mensajes": []
+  }
+]
