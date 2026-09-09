@@ -26,4 +26,5 @@ export interface Conversacion {
   avatar_contacto: string;
   estado_presencia: 'online' | 'offline';
   mensajes_no_leidos: number;
+  mensajes: Mensaje[]
 }
