@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCuidador } from '../Contexts/contextoCuidador';
 
-export default function InicioCuidador () {
+export default function RegistroCuidador () {
 
     const navigate = useNavigate()
 
-    const [nombre, setNombre] = useState<string>('');
+    const {nombre, setNombre} = useCuidador();
     const [apellido, setApellido] = useState<string>('');
     const [mail, setMail] = useState<string>('');
     const [contraseña, setContraseña] = useState<string>('');

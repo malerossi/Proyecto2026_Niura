@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useMedico } from "../Contexts/contextoMedico";
 
 export default function InicioSesionMedico() {
     const navigate = useNavigate()
@@ -14,7 +15,7 @@ export default function InicioSesionMedico() {
         }
     }
 
-    const [nombre, setNombre] = useState<string>("");
+    const {nombre, setNombre} = useMedico();
     const [apellido, setApellido] = useState<string>("");
     const [mail, setMail] = useState<string>("");
     const [dni, setDni] = useState<string>("");

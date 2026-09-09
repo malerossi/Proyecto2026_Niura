@@ -14,8 +14,8 @@ import Pendientes from './frontend/pendientes/pendientesMedico/pendientes'
 import ChatSimplificado from './frontend/reddecontactos/reddecontactos'
 import ChatSimplificadomio from './frontend/reddecontactos/lomio/redcontactos'
 //PROVIDERS
-import { InicioPacienteProvider } from './frontend/Contexts/contextInicioPaciente';
-import { InicioMedicoProvider } from './frontend/Contexts/contextoInicioMedico';
+import { InicioPacienteProvider } from './frontend/Contexts/contextPaciente';
+import { InicioMedicoProvider } from './frontend/Contexts/contextoMedico';
 
 
 

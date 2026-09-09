@@ -1,5 +1,6 @@
 import React, { useState, type ReactHTMLElement } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { usePaciente } from '../Contexts/contextPaciente';
 
 
 export default function IniciodeSesion (){
@@ -16,7 +17,7 @@ export default function IniciodeSesion (){
         }
     }
 
-    const [nombre, setNombre] = useState<string>("");
+    const {nombre, setNombre} = usePaciente();
     const [apellido, setApellido] = useState<string>("");
     const [mail, setMail] = useState<string>("");
     const [dni, setDni] = useState<string>("");

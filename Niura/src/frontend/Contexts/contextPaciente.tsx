@@ -11,7 +11,7 @@ interface ProviderProps {
     children: ReactNode;
 }
 
-export const InicioPacienteProvider = ({ children }: ProviderProps) => {
+export const PacienteProvider = ({ children }: ProviderProps) => {
     const [nombre, setNombre] = useState<string>('');
 
     return (
@@ -21,7 +21,7 @@ export const InicioPacienteProvider = ({ children }: ProviderProps) => {
       );
 }
 
-export const useInicioPaciente = () => {
+export const usePaciente = () => {
   const contexto = useContext (ContextoIP);
   if (!contexto) {
     throw ('Error al cargar el contexto. Revisar su implementación.')

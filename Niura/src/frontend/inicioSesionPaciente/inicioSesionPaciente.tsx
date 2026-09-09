@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useInicioPaciente } from '../Contexts/contextInicioPaciente';
 import './inicioSesionPaciente.css';
 
 
 export default function InicioSesionPaciente () {
-    const { nombre, setNombre } = useInicioPaciente();
     const [ dni, setDni ] = useState<string> ('');
     const [ contraseña, setContraseña ] = useState<string>('');
 
@@ -23,7 +21,6 @@ export default function InicioSesionPaciente () {
 
     return (
         <form className='DatosInicioPaciente' onSubmit={handleSubmit}>
-            <input type="text" className='nombre' value={nombre} onChange={(e) => setNombre(e.target.value)} required placeholder='Nombre'/>
             <input type="text" className='dni' id='dni' value={dni} onChange={(e) => setDni(e.target.value)} required placeholder='DNI'/>
             <input type="password" className='contraseña' id='contraseña' value={contraseña} onChange={(e) => setContraseña(e.target.value)} required placeholder='Contraseña'/>
             <button className='enviar' id='enviar'>Enviar</button>
