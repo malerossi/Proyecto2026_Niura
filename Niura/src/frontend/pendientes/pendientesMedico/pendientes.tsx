@@ -10,23 +10,21 @@ type Tarea = {
 
 export default function Pendientes () {
 
-  type filter = 'all' | 'motriz' | 'cognitiva';
-
   const [tareas, setTareas] = useState<Tarea[]>([]);
+  const [loading, setLoading] = useState <boolean> ();
   const navigate = useNavigate();
 
   useEffect(() => {
+    setLoading(true)
     fetch ("/api/mis-tareas martiiiiinn")
     .then((res) => res.json())
     .then((data: Tarea[]) => setTareas(data))
     .catch(() => console.error("Sucedió un error con la conexión de la API. Verificar conexión."));
+    setLoading(false);
   }, [])
 
   const tareaMotriz = tareas.find((t) => t.tipo === "motriz");
   const tareaCognitiva = tareas.find((t) => t.tipo === "cognitiva");
-
-  const renderMotriz = tareas.filter((t) => t.tipo === 'motriz');
-  const renderCognitiva = tareas.filter((t) => t.tipo === 'cognitiva')
 
   const todoCompletado = tareas.length > 0 && tareas.every((t) => t.completada === true);
 
@@ -36,6 +34,10 @@ export default function Pendientes () {
 
   const EjerciciosDiarios = () => {
     navigate('/ejercicios')
+  }
+
+  if (loading) {
+    return <div className="Loading">Cargando tareas...</div>
   }
 
   return (
@@ -64,7 +66,7 @@ export default function Pendientes () {
           onClick={() => irAEjercicio(tareaCognitiva)}
         >
           <span>🧠 Tarea Cognitiva Pendiente: {tareaCognitiva.titulo}</span>
-          <p>Toca para hacer el ejercicio &rarr;</p>
+          <p>Toca para hacer el ejercicio</p>
         </div>
       )}
     </div>
