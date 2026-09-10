@@ -33,15 +33,16 @@ export default function RegistroCuidador () {
     }
 
     const dominiosGmail = ['@gmail.com', "yahoo.com.ar", "hotmail.com", "outlook.com"];
-    const gmailUser = mail.includes('@')? mail.split('@')[0] : mail;
+    const personal = mail.includes("@")? mail.split("@")[0] : mail;
+    const usuarioMail = personal.replace(/\s+/g, '');
 
     return (
         <form onSubmit={handleSubmit} className='FormCuidador'>
             <input type="text" required placeholder='Nombre' id='nombreCuidador' className='nombreCuidador' value={nombre} onChange={(e) => setNombre(e.target.value)} />
             <input type="text" required placeholder='Apellido' id='apellidoCuidador' className='apellidoCuidador' value={apellido} onChange={(e) => setApellido(e.target.value)} />
             <input type="text" list='opcionesGmail' required placeholder='Gmail' id='gmailCuidador' className='gmailCuidador' value={mail} onChange={(e) => setMail(e.target.value)} />
-            <datalist id='opcionesGmail'>{gmailUser && dominiosGmail.map((dominio) => (
-                <option key={dominio} value={`${gmailUser}@${dominio}`}></option>
+            <datalist id='opcionesGmail'>{usuarioMail && dominiosGmail.map((dominio) => (
+                <option key={dominio} value={`${usuarioMail}@${dominio}`}></option>
             ))}</datalist>
             <input type="text" required placeholder='Dni' id='dniCuidador' className='dniCuidador' value={dni} onChange={(e) => setDni(e.target.value)} />
             <input type="password" required placeholder='Contraseña' id='contraseñaCuidador' className='contraseñaCuidador' value={contraseña} onChange={(e) => setContraseña(e.target.value)} />

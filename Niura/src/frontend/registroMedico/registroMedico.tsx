@@ -31,7 +31,8 @@ export default function InicioSesionMedico() {
 
     const dominiosGmail = ["gmail.com", "yahoo.com.ar", "hotmail.com", "outlook.com"]
 
-    const usuarioMail = mail.includes("@")? mail.split("@")[0] : mail;
+    const personal = mail.includes("@")? mail.split("@")[0] : mail;
+    const usuarioMail = personal.replace(/\s+/g, '');
 
     return (
         <form className="Datos" onSubmit={handleSubmit}>

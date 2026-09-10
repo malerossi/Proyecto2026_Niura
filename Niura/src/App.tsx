@@ -14,15 +14,15 @@ import Pendientes from './frontend/pendientes/pendientesMedico/pendientes'
 import ChatSimplificado from './frontend/reddecontactos/reddecontactos'
 import ChatSimplificadomio from './frontend/reddecontactos/lomio/redcontactos'
 //PROVIDERS
-import { InicioPacienteProvider } from './frontend/Contexts/contextPaciente';
-import { InicioMedicoProvider } from './frontend/Contexts/contextoMedico';
+import { PacienteProvider } from './frontend/Contexts/contextPaciente';
+import { MedicoProvider } from './frontend/Contexts/contextoMedico';
 
 
 
 function App() {
   return (
-    <InicioMedicoProvider>
-    <InicioPacienteProvider>
+    <MedicoProvider>
+    <PacienteProvider>
         <header className="flex items-center justify-between p-4 bg-slate-900">
           <StreakIcon count={Number(localStorage.getItem("rachaActual"))} />
         </header>
@@ -41,8 +41,8 @@ function App() {
           <Route path='/reddecontactos' element= {<ChatSimplificado/>} />
           <Route path='/reddecontactosmia' element= {<ChatSimplificadomio/>} />
         </Routes>
-    </InicioPacienteProvider>
-    </InicioMedicoProvider>
+    </PacienteProvider>
+    </MedicoProvider>
   );
 }
 
