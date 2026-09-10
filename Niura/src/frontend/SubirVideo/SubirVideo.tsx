@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function SubirVideo() {
     const [grabando, setGrabando] = useState<boolean>(false);
-    const [videoSubido, setVideoSubido] = useState <File | null> (null);
+    const [videoPrevisualizado, setVideoPrevisualizado] = useState <string> ('');
 
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const streamRef = useRef<MediaStream | null>(null);
@@ -15,6 +15,9 @@ export default function SubirVideo() {
 
         if (!grabando) {
             try {
+                if (videoPrevisualizado) {
+                    URL.revokeObjectURL(videoPrevisualizado);
+                }
                 const stream = await navigator.mediaDevices.getUserMedia({
                     video: true,
                     audio: true
@@ -45,9 +48,7 @@ export default function SubirVideo() {
                     const a = document.createElement("a");
                     a.href = url;
                     a.download = "mi-video.webm";
-                    a.click();
-
-                    URL.revokeObjectURL(url);
+                    setVideoPrevisualizado (url)
                 };
 
                 recorder.start();
