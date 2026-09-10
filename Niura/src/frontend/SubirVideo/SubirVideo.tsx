@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, use } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
 export default function SubirVideo() {
     const [grabando, setGrabando] = useState<boolean>(false);
+    const [videoSubido, setVideoSubido] = useState <File | null> (null);
 
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const streamRef = useRef<MediaStream | null>(null);
