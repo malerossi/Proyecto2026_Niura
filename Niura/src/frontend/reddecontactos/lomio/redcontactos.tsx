@@ -3,58 +3,71 @@ import type { Conversacion, Mensaje } from '../../interfaces/redcontactos';
 import contactosMock from '../lomio/contactos.json';
 import ContactoCard from './contactocard';
 
+// Extendemos el tipo localmente para incluir la propiedad de ordenamiento
+interface ConversacionConFecha extends Conversacion {
+  updatedAt: number;
+}
+
 export default function ChatSimplificadomio() {
-  const [contactos, setContactos] = useState<Conversacion[]>(contactosMock as Conversacion[]);
-  const [contactoActivo, setContactoActivo] = useState<Conversacion>(contactos[0]);
+  // Inicializamos las conversaciones asignándoles un timestamp base según su orden en el JSON
+  const [contactos, setContactos] = useState<ConversacionConFecha[]>(() => {
+    const tiempoBase = Date.now();
+    return (contactosMock as Conversacion[]).map((c, index) => ({
+      ...c,
+      // Restamos minutos según la posición inicial para mantener el orden base del JSON
+      updatedAt: tiempoBase - index * 60000,
+    }));
+  });
+
+  const [idActivo, setIdActivo] = useState<string>(
+    (contactosMock as Conversacion[])[0]?.id_conversacion || ''
+  );
   const [texto, setTexto] = useState('');
   const [busqueda, setBusqueda] = useState('');
-  const [mensajes, setMensajes] = useState<Mensaje[]>([]);
 
-  // 1. Crear la referencia para el scroll
   const mensajesEndRef = useRef<HTMLDivElement>(null);
 
-  const contactosFiltrados = contactos.filter((c) =>
-    c.nombre_contacto.toLowerCase().includes(busqueda.toLowerCase())
-  );
+  // Derivamos la conversación activa y los mensajes directamente del estado
+  const contactoActivo =
+    contactos.find((c) => c.id_conversacion === idActivo) || contactos[0];
+  const mensajes = contactoActivo?.mensajes || [];
 
-  useEffect(() => {
-    setMensajes([]);
-    setMensajes(contactoActivo.mensajes || []);
-  }, [contactoActivo.id_conversacion]);
+  // Ordenamiento infalible: de mayor a menor por el campo updatedAt
+  const contactosFiltradosYOrdenados = [...contactos]
+    .filter((c) => c.nombre_contacto.toLowerCase().includes(busqueda.toLowerCase()))
+    .sort((a, b) => b.updatedAt - a.updatedAt);
 
-  // 2. Hacer scroll automáticamente cada vez que cambien los mensajes
+  // Scroll automático al final del chat al cambiar mensajes o conversación activa
   useEffect(() => {
     mensajesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [mensajes]);
+  }, [mensajes.length, idActivo]);
 
   const enviarMensaje = () => {
-    if (!texto.trim()) return;
+    if (!texto.trim() || !contactoActivo) return;
 
+    const ahora = Date.now();
     const nuevoMensaje: Mensaje = {
-      id_mensaje: `${contactoActivo.id_conversacion}_m${(mensajes || []).length + 1}`,
+      id_mensaje: `msg_${ahora}`,
       id_conversacion: contactoActivo.id_conversacion,
       id_emisor: 999,
       id_receptor: contactoActivo.id_contacto,
       tipo: 'texto',
       contenido: texto,
-      estado_entrega: 'enviado',
+      estado_entrega: 'enviando',
       eliminado: false,
       fecha_envio: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
 
-    const nuevosMensajes = [...mensajes, nuevoMensaje];
-
-    setMensajes(nuevosMensajes);
-
-    const contactoActualizado = {
-      ...contactoActivo,
-      mensajes: nuevosMensajes,
-    };
-
-    setContactoActivo(contactoActualizado);
+    // Actualizamos los mensajes Y actualizamos el updatedAt a Date.now()
     setContactos((prev) =>
       prev.map((c) =>
-        c.id_conversacion === contactoActivo.id_conversacion ? contactoActualizado : c
+        c.id_conversacion === contactoActivo.id_conversacion
+          ? {
+              ...c,
+              mensajes: [...(c.mensajes || []), nuevoMensaje],
+              updatedAt: ahora, // <-- Esto garantiza que pase al primer lugar de inmediato
+            }
+          : c
       )
     );
 
@@ -76,17 +89,18 @@ export default function ChatSimplificadomio() {
             onChange={(e) => setBusqueda(e.target.value)}
             className="w-full p-1.5 text-xs border rounded bg-white outline-none focus:border-indigo-500 mb-2"
           />
-          {contactosFiltrados.map((contacto) => (
+          {contactosFiltradosYOrdenados.map((contacto) => (
             <ContactoCard
               key={contacto.id_conversacion}
               contacto={contacto}
-              esActivo={contactoActivo.id_conversacion === contacto.id_conversacion}
+              esActivo={contacto.id_conversacion === idActivo}
               onClick={() => {
-                const contactoActualizado = { ...contacto, mensajes_no_leidos: 0 };
-                setContactoActivo(contactoActualizado);
+                setIdActivo(contacto.id_conversacion);
                 setContactos((prev) =>
                   prev.map((c) =>
-                    c.id_conversacion === contacto.id_conversacion ? contactoActualizado : c
+                    c.id_conversacion === contacto.id_conversacion
+                      ? { ...c, mensajes_no_leidos: 0 }
+                      : c
                   )
                 );
               }}
@@ -101,11 +115,11 @@ export default function ChatSimplificadomio() {
         {/* Cabecera del contacto actual */}
         <div className="border-b pb-2 flex justify-between items-center">
           <div>
-            <h3 className="font-bold text-gray-800">{contactoActivo.nombre_contacto}</h3>
-            <p className="text-xs text-gray-400">Estado: {contactoActivo.estado_presencia}</p>
+            <h3 className="font-bold text-gray-800">{contactoActivo?.nombre_contacto}</h3>
+            <p className="text-xs text-gray-400">Estado: {contactoActivo?.estado_presencia}</p>
           </div>
           <button
-            onClick={() => alert(`Nombre de contacto: ${contactoActivo.nombre_contacto}`)}
+            onClick={() => alert(`Nombre de contacto: ${contactoActivo?.nombre_contacto}`)}
             className="text-xs bg-gray-200 hover:bg-gray-300 px-2 py-1 rounded"
           >
             Ver Info
@@ -140,11 +154,10 @@ export default function ChatSimplificadomio() {
             })
           ) : (
             <div className="m-auto text-center text-xs text-gray-400 italic">
-              No hay mensajes en esta conversación con {contactoActivo.nombre_contacto}.
+              No hay mensajes en esta conversación con {contactoActivo?.nombre_contacto}.
             </div>
           )}
           
-          {/* 3. Elemento ancla para el auto-scroll */}
           <div ref={mensajesEndRef} />
         </div>
 
