@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 export default function SubirVideo() {
     const [grabando, setGrabando] = useState<boolean>(false);
@@ -9,6 +9,12 @@ export default function SubirVideo() {
     const streamRef = useRef<MediaStream | null>(null);
     const recorderRef = useRef<MediaRecorder | null>(null);
     const partesRef = useRef<Blob[]>([]);
+
+    useEffect(() => {
+        if (grabando && videoRef.current && streamRef.current) {
+            videoRef.current.srcObject = streamRef.current;
+        }
+    }, [grabando]);
 
     const handleSeleccionarArchivo = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
