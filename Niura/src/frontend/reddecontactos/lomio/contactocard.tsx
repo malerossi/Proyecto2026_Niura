@@ -1,5 +1,5 @@
 import type { Conversacion } from '../../interfaces/redcontactos';
-
+import {formatearFecha} from '../../utils/funcionparalafecha';
 interface ContactoCardProps {
   contacto: Conversacion;
   esActivo: boolean;
@@ -24,7 +24,7 @@ export default function ContactoCard({ contacto, esActivo, onClick }: ContactoCa
         <span className="truncate">{contacto.nombre_contacto}</span>
         {ultimoMensaje && (
           <span className="text-[10px] font-normal opacity-70 shrink-0 ml-1">
-            {ultimoMensaje.fecha_envio}
+            {formatearFecha(ultimoMensaje.fecha_envio) }
           </span>
         )}
       </div>

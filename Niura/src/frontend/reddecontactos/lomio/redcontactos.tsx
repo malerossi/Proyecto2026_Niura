@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import type { Conversacion, Mensaje } from '../../interfaces/redcontactos';
 import contactosMock from '../lomio/contactos.json';
 import ContactoCard from './contactocard';
-
+import {formatearFecha} from '../../utils/funcionparalafecha';
 // Extendemos el tipo localmente para incluir la propiedad de ordenamiento
 interface ConversacionConFecha extends Conversacion {
   updatedAt: number;
@@ -146,7 +146,7 @@ export default function ChatSimplificadomio() {
                       esMio ? 'text-indigo-200' : 'text-gray-400'
                     }`}
                   >
-                    <span>{msg.fecha_envio}</span>
+                    <span> {formatearFecha(msg.fecha_envio) }</span>
                     {esMio && <span>• {msg.estado_entrega}</span>}
                   </div>
                 </div>
