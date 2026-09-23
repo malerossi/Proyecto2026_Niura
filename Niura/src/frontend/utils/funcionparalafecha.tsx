@@ -9,7 +9,7 @@ export const formatearFecha = (fechaIso: string): string => {
   
     const diffMs = ahora.getTime() - fecha.getTime();
     const diffDias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-  
+
     // 1. Hoy (muestra la hora en formato 24h, ej: "10:15")
     if (diffDias === 0) {
       return fecha.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });

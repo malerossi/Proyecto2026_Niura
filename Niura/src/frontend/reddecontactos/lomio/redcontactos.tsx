@@ -33,14 +33,35 @@ export default function ChatSimplificadomio() {
   const mensajes = contactoActivo?.mensajes || [];
 
   // Ordenamiento infalible: de mayor a menor por el campo updatedAt
-  const contactosFiltradosYOrdenados = [...contactos]
-    .filter((c) => c.nombre_contacto.toLowerCase().includes(busqueda.toLowerCase()))
-    .sort((a, b) => b.updatedAt - a.updatedAt);
+// 1. Recorremos los contactos con un bucle 'for' para asignarle la puntuación a cada uno
+const contactosConPuntuacion = [];
 
-  // Scroll automático al final del chat al cambiar mensajes o conversación activa
-  useEffect(() => {
-    mensajesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [mensajes.length, idActivo]);
+for (let i = 0; i < contactos.length; i++) {
+  const contacto = contactos[i];
+  
+  // Obtenemos el último mensaje de la conversación
+  const ultimoMensaje = contacto.mensajes[contacto.mensajes.length - 1];
+
+  // Si tiene mensajes, la puntuación es el timestamp (.getTime()) de la fecha del mensaje.
+  // Si no tiene mensajes, le asignamos 0 para que vaya al final de la lista.
+  const puntuacion = ultimoMensaje ? new Date(ultimoMensaje.fecha_envio).getTime() : 0;
+
+  // Guardamos el contacto con su nueva propiedad 'puntuacion'
+  contactosConPuntuacion.push({
+    ...contacto,
+    puntuacion: puntuacion
+  });
+}
+
+// 2. Filtramos por la búsqueda y ordenamos por la puntuación calculada
+const contactosFiltradosYOrdenados = contactosConPuntuacion
+  .filter((c) => c.nombre_contacto.toLowerCase().includes(busqueda.toLowerCase()))
+  .sort((a, b) => b.puntuacion - a.puntuacion);
+
+// Scroll automático al final del chat al cambiar mensajes o conversación activa
+useEffect(() => {
+  mensajesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+}, [mensajes.length, idActivo]);
 
   const enviarMensaje = () => {
     if (!texto.trim() || !contactoActivo) return;
