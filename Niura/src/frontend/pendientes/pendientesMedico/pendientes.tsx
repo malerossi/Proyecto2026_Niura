@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-type Tarea = {
+export type Tarea = {
     id: string;
     titulo: string;
     tipo: "motriz" | "cognitiva";
