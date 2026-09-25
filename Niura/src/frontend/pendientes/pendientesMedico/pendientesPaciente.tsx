@@ -2,12 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Notificaciones from "../../components/notificacionesPaciente";
 
-export type Tarea = {
-    id: string;
-    titulo: string;
-    tipo: "motriz" | "cognitiva";
-    completada: boolean;
-};
 
 export default function Pendientes () {
 

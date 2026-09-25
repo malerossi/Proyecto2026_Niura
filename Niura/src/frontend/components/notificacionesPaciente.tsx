@@ -1,22 +1,18 @@
-import type { Tarea } from "../pendientes/pendientesMedico/pendientesPaciente";
+import type { Notificaciones } from "../types/notificacion";
+import { useNavigate } from "react-router-dom";
 
-type NotificacionesProps = {
-    tareas: Tarea[];
-  };
+type Props = {
+    noticia: Notificaciones;
+    onResponderSolicitud?: (id: string, aceptado: boolean) => void;
+};
 
-export default function Notificaciones({tareas}: NotificacionesProps) {
+export default function TarjetaNotificaciones({noticia, onResponderSolicitud}: Props) {
+    const navigate = useNavigate();
     return (
-        <div className="notificacion">
-            <h2>Notificaciones pendientes ({tareas.length})</h2>
-            {tareas.length === 0 ? (
-                <p>No tienes tareas pendientes</p>
-            ) : (
-                <div>
-                    {tareas.map((tarea) => (
-                        <p> key={tarea.id} {tarea.titulo}</p>
-                    ))}
-                </div>
-            )}
+        <div className="NotificacionTarjeta">
+            <p className="emisor">{noticia.emisor}</p>
+
+            <p className="cuerpoNoticia">{noticia.mensaje}</p>
         </div>
-    );
+    )
 }
