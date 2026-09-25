@@ -10,7 +10,7 @@ import InicioSesionPaciente from './frontend/inicioSesionPaciente/inicioSesionPa
 import InicioSesionCuidador from './frontend/inicioSesionCuidador/inicioSesionCuidador';
 import SubirVideo from './frontend/SubirVideo/SubirVideo'
 import BotonNotificacion from './frontend/notificaciones/notificaciones'
-import Pendientes from './frontend/pendientes/pendientesMedico/pendientes'
+import Pendientes from './frontend/pendientes/pendientesMedico/pendientesPaciente'
 import ChatSimplificado from './frontend/reddecontactos/reddecontactos'
 import ChatSimplificadomio from './frontend/reddecontactos/lomio/redcontactos'
 //PROVIDERS

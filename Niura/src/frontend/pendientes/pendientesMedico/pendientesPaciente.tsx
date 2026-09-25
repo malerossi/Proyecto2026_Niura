@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Notificaciones from "../../components/notificacionesPaciente";
 
 export type Tarea = {
     id: string;
@@ -19,7 +20,7 @@ export default function Pendientes () {
     fetch ("/api/mis-tareas martiiiiinn")
     .then((res) => res.json())
     .then((data: Tarea[]) => setTareas(data))
-    .catch(() => console.error("Sucedió un error con la conexión de la API. Verificar conexión."));
+    .catch((err) => console.error("Sucedió un error con la conexión de la API. Verificar conexión. Error: ", err));
     setLoading(false);
   }, [])
 
@@ -42,6 +43,7 @@ export default function Pendientes () {
 
   return (
     <div className="Pendientes">
+      <Notificaciones tareas={tareas} />
       <div className="PopMotivacional" onClick={() => EjerciciosDiarios()}>
         {todoCompletado ? (
         <h2>🎉 ¡Felicitaciones! Completaste tus tareas de hoy.</h2>
