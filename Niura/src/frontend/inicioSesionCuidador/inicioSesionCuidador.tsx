@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function InicioSesionPaciente () {
+export default function InicioSesionCuidador () {
     const [dni, setDni] = useState<string> ('');
     const [contraseña, setContraseña] = useState<string>('');
 

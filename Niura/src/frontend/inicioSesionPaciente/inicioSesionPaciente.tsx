@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './inicioSesionPaciente.css';
+
 
 export default function InicioSesionPaciente () {
-    const [dni, setDni] = useState<string> ('');
-    const [contraseña, setContraseña] = useState<string>('');
+    const [ dni, setDni ] = useState<string> ('');
+    const [ contraseña, setContraseña ] = useState<string>('');
 
     const navigate = useNavigate();
 
@@ -19,8 +21,8 @@ export default function InicioSesionPaciente () {
 
     return (
         <form className='DatosInicioPaciente' onSubmit={handleSubmit}>
-            <input type="text" className='dni' id='dni' value={dni} onChange={(e) => setDni(e.target.value)}/>
-            <input type="password" className='contraseña' id='contraseña' value={contraseña} onChange={(e) => setContraseña(e.target.value)}/>
+            <input type="text" className='dni' id='dni' value={dni} onChange={(e) => setDni(e.target.value)} required placeholder='DNI'/>
+            <input type="password" className='contraseña' id='contraseña' value={contraseña} onChange={(e) => setContraseña(e.target.value)} required placeholder='Contraseña'/>
             <button className='enviar' id='enviar'>Enviar</button>
         </form>
     )

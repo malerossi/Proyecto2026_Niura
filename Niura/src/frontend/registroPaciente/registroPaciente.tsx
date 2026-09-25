@@ -1,28 +1,29 @@
 import React, { useState, type ReactHTMLElement } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { usePaciente } from '../Contexts/contextPaciente';
 
 
 export default function IniciodeSesion (){
 
-    const navigate = useNavigate()
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        if (nombre !== "" && apellido !== "" && mail !== "" && dni !== "" && contraseña !== ""){
-            navigate ('/registroPaciente')
-        }
-        else {
-            alert ('Porfavor, llenar sus datos.')
-        }
-    }
-
-    const [nombre, setNombre] = useState<string>("");
+    const {nombre, setNombre} = usePaciente();
     const [apellido, setApellido] = useState<string>("");
     const [mail, setMail] = useState<string>("");
     const [dni, setDni] = useState<string>("");
     const [contraseña, setContraseña] = useState<string>("");
     const [imagen, setImagen] = useState<File | null>(null);
     const [vistaPrevia, setVistaPrevia] = useState<string | null>(null);
+
+    const navigate = useNavigate()
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+        if (nombre !== "" && apellido !== "" && mail !== "" && dni !== "" && contraseña !== ""){
+            navigate ('/InicialPaciente')
+        }
+        else {
+            alert ('Porfavor, llenar sus datos.')
+        }
+    }
 
     const handleImageChange = (e : React.ChangeEvent<HTMLInputElement>) => {
         const archivo = e.target.files?.[0];
@@ -34,7 +35,8 @@ export default function IniciodeSesion (){
 
     const dominiosGmail = ["gmail.com", "yahoo.com.ar", "hotmail.com", "outlook.com"]
 
-    const usuarioMail = mail.includes("@")? mail.split("@")[0] : mail;
+    const personal= mail.includes("@")? mail.split("@")[0] : mail;
+    const usuarioMail = personal.replace(/\s+/g, '')
 
     return (
         <form className="Datos" onSubmit={handleSubmit}>
