@@ -1,4 +1,3 @@
-const Prisma = require('../db')
 const User = require('../schemas/users.schemas')
 const Services = require('../services/users.services')
 
