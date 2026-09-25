@@ -3,12 +3,13 @@ const { z } = require('zod')
 const router = Router()
 
 
-const {patientUser, companionUser, doctorUser} = require('../schemas/users.schemas')
-const {postPatient} = require('../controllers/users.controller')
+const {doctorUser, companionUser, patientUser} = require('../schemas/users.schemas')
+const {createPatient, createCompanion, createDoctor, loginGeneral} = require('../services/users.services')
 
-router.post('/patientUser', validateUser(patientUser), postPatient)
-router.post('/companionUser', validateUser(companionUser), postUser)
-router.post('/doctorUser', validateUser(doctorUser), postUser)
+router.post('/patientUser', validateUser(patientUser), createPatient)
+router.post('/companionUser', validateUser(companionUser), createCompanion)
+router.post('/doctorUser', validateUser(doctorUser), createDoctor)
+router.post('/login', validateUser(loginSchema), loginGeneral)
 
 const  validateUser = (user) =>{
     return (req, res, next) =>{

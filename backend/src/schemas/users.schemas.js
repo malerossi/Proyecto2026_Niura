@@ -26,4 +26,9 @@ const doctorUser = z.object({
     tuition: z.number().int()
 })
 
+const loginSchema = z.object({
+    dni: z.string().min(8).max(8).transform(Number),
+    password: z.string().min(7, "La contraseña debe tener al menos 7 caracteres"),
+})
+
 module.exports = {doctorUser, companionUser, patientUser}
