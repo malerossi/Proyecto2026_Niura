@@ -31,4 +31,4 @@ const loginSchema = z.object({
     password: z.string().min(7, "La contraseña debe tener al menos 7 caracteres"),
 })
 
-module.exports = {doctorUser, companionUser, patientUser}
+module.exports = {doctorUser, companionUser, patientUser, loginSchema}
