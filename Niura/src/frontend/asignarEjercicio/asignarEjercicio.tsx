@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-interface Ejercicio {
+export interface Ejercicio {
     id: string|number,
     name: string
     paciente: string
@@ -25,7 +25,7 @@ export default function PendientesMedico () {
     return (
         <div className='PendientesMedico'>
             {ejercicios.map((ejercicio) => (
-                <div 
+                <div
                     key={ejercicio.id} 
                     className='CardPendiente'
                     onClick={() => NavegaClick(ejercicio.id)}
@@ -35,6 +35,7 @@ export default function PendientesMedico () {
                     <p>¡Asignar ejercicio del día/semana!</p>
                 </div>
             ))}
+            <button className='CrearEjercicio'></button>
         </div>
     )
 }

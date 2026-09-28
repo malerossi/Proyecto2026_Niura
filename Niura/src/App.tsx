@@ -9,7 +9,7 @@ import InicioSesionPaciente from './frontend/inicioSesionPaciente/inicioSesionPa
 import InicioSesionCuidador from './frontend/inicioSesionCuidador/inicioSesionCuidador';
 import SubirVideo from './frontend/SubirVideo/SubirVideo';
 import BotonNotificacion from './frontend/notificaciones/notificaciones';
-import PendientesMedico from './frontend/pendientes/pendientesMedico/pendientesMedico';
+import PendientesMedico from './frontend/asignarEjercicio/asignarEjercicio';
 import ChatSimplificado from './frontend/reddecontactos/reddecontactos';
 import ChatSimplificadomio from './frontend/reddecontactos/lomio/redcontactos';
 import Header from './frontend/components/header'; // Importamos el nuevo Header
