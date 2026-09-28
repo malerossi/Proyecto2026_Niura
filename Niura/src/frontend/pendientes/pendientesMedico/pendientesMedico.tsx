@@ -15,7 +15,8 @@ export default function PendientesMedico () {
         fetch('api/martinProgramaporfi')
         .then((res) => res.json())
         .then ((data:Ejercicio[]) => {setEjercicios(data)})
-    })
+        .catch((err) => (`Hay un error en el almacenammiento de los ejercicios. Error: ${err}`))
+    }, [])
     
     const NavegaClick = (id:string|number) => {
         navigate (`/asignarEjercicio/${id}`)
@@ -23,7 +24,6 @@ export default function PendientesMedico () {
 
     return (
         <div className='PendientesMedico'>
-            <div className='CardPendiente'>
             {ejercicios.map((ejercicio) => (
                 <div 
                     key={ejercicio.id} 
@@ -35,7 +35,6 @@ export default function PendientesMedico () {
                     <p>¡Asignar ejercicio del día/semana!</p>
                 </div>
             ))}
-            </div>
         </div>
     )
 }
