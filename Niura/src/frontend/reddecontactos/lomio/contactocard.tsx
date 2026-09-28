@@ -1,5 +1,6 @@
 import type { Conversacion } from '../../interfaces/redcontactos';
-import {formatearFecha} from '../../utils/funcionparalafecha';
+import { formatearFecha } from '../../utils/funcionparalafecha';
+
 interface ContactoCardProps {
   contacto: Conversacion;
   esActivo: boolean;
@@ -7,40 +8,55 @@ interface ContactoCardProps {
 }
 
 export default function ContactoCard({ contacto, esActivo, onClick }: ContactoCardProps) {
-  // Obtenemos el último mensaje del array si existe
   const ultimoMensaje = contacto.mensajes?.[contacto.mensajes.length - 1];
+
+  // Gradientes / colores exactos de Figma para activo e inactivo
+  const estiloActivo = {
+    background:
+      'linear-gradient(0deg, rgba(2, 110, 255, 0.23), rgba(2, 110, 255, 0.23)), linear-gradient(0deg, #D3E2F3, #D3E2F3)',
+  };
+
+  const estiloInactivo = {
+    background:
+      'linear-gradient(0deg, rgba(242, 201, 76, 0.24), rgba(242, 201, 76, 0.24)), linear-gradient(0deg, #D3E2F3, #D3E2F3)',
+  };
 
   return (
     <button
       onClick={onClick}
-      className={`w-full text-left p-2.5 border-b text-xs flex flex-col gap-1 ${
-        esActivo
-          ? 'bg-indigo-100 font-bold text-indigo-700'
-          : 'hover:bg-gray-100 text-gray-700'
+      style={{
+        ...(esActivo ? estiloActivo : estiloInactivo),
+        fontFamily: 'Helvetica, "Helvetica Neue", Arial, sans-serif',
+      }}
+      className={`w-full text-left p-3.5 rounded-2xl border-2 border-black flex items-center justify-between transition-all shadow-sm relative ${
+        esActivo ? 'ring-2 ring-black font-semibold' : 'hover:opacity-95'
       }`}
     >
-      {/* Fila superior: Nombre y hora del último mensaje */}
-      <div className="flex justify-between items-center w-full">
-        <span className="truncate">{contacto.nombre_contacto}</span>
-        {ultimoMensaje && (
-          <span className="text-[10px] font-normal opacity-70 shrink-0 ml-1">
-            {formatearFecha(ultimoMensaje.fecha_envio) }
-          </span>
-        )}
+      <div className="flex flex-col min-w-0 flex-1 pr-2">
+        {/* Nombre / Rol */}
+        <span className="text-black text-base font-bold truncate leading-snug">
+          {contacto.nombre_contacto}
+        </span>
+
+        {/* Último mensaje y fecha */}
+        <div className="flex items-center justify-between gap-1 mt-1">
+          <p className="truncate text-gray-800 text-xs font-medium flex-1">
+            {ultimoMensaje ? ultimoMensaje.contenido : 'Sin mensajes'}
+          </p>
+          {ultimoMensaje && (
+            <span className="text-xs text-gray-700 font-semibold shrink-0 ml-1">
+              {formatearFecha(ultimoMensaje.fecha_envio)}
+            </span>
+          )}
+        </div>
       </div>
 
-      {/* Fila inferior: Texto del mensaje truncado y contador */}
-      <div className="flex justify-between items-center w-full font-normal">
-        <p className="truncate text-gray-500 text-[11px] max-w-[80%]">
-          {ultimoMensaje ? ultimoMensaje.contenido : 'Sin mensajes'}
-        </p>
-        
-        {contacto.mensajes_no_leidos > 0 && (
-          <span className="bg-red-500 text-white rounded-full px-1.5 py-0.5 text-[10px] font-bold shrink-0">
-            {contacto.mensajes_no_leidos}
-          </span>
-        )}
-      </div>
+      {/* Insignia de notificación */}
+      {contacto.mensajes_no_leidos > 0 && (
+        <span className="bg-[#FF0000] text-white font-black text-sm rounded-full h-7 min-w-[28px] px-1.5 flex items-center justify-center shrink-0 border border-black shadow-sm ml-1">
+          +{contacto.mensajes_no_leidos}
+        </span>
+      )}
     </button>
   );
 }

@@ -182,3 +182,12 @@
     border-right-color: var(--border);
   }
 }
+/* Reseteo para ocupar el 100% de la pantalla sin franjas laterales */
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  max-width: none !important;
+  box-sizing: border-box;
+}

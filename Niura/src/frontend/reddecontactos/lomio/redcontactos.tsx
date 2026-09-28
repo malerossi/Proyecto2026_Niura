@@ -2,19 +2,17 @@ import { useEffect, useState, useRef } from 'react';
 import type { Conversacion, Mensaje } from '../../interfaces/redcontactos';
 import contactosMock from '../lomio/contactos.json';
 import ContactoCard from './contactocard';
-import {formatearFecha} from '../../utils/funcionparalafecha';
-// Extendemos el tipo localmente para incluir la propiedad de ordenamiento
+import { formatearFecha } from '../../utils/funcionparalafecha';
+
 interface ConversacionConFecha extends Conversacion {
   updatedAt: number;
 }
 
 export default function ChatSimplificadomio() {
-  // Inicializamos las conversaciones asignándoles un timestamp base según su orden en el JSON
   const [contactos, setContactos] = useState<ConversacionConFecha[]>(() => {
     const tiempoBase = Date.now();
     return (contactosMock as Conversacion[]).map((c, index) => ({
       ...c,
-      // Restamos minutos según la posición inicial para mantener el orden base del JSON
       updatedAt: tiempoBase - index * 60000,
     }));
   });
@@ -27,41 +25,29 @@ export default function ChatSimplificadomio() {
 
   const mensajesEndRef = useRef<HTMLDivElement>(null);
 
-  // Derivamos la conversación activa y los mensajes directamente del estado
   const contactoActivo =
     contactos.find((c) => c.id_conversacion === idActivo) || contactos[0];
   const mensajes = contactoActivo?.mensajes || [];
 
-  // Ordenamiento infalible: de mayor a menor por el campo updatedAt
-// 1. Recorremos los contactos con un bucle 'for' para asignarle la puntuación a cada uno
-const contactosConPuntuacion = [];
+  const contactosConPuntuacion = [];
+  for (let i = 0; i < contactos.length; i++) {
+    const contacto = contactos[i];
+    const ultimoMensaje = contacto.mensajes?.[contacto.mensajes.length - 1];
+    const puntuacion = ultimoMensaje ? new Date(ultimoMensaje.fecha_envio).getTime() : 0;
 
-for (let i = 0; i < contactos.length; i++) {
-  const contacto = contactos[i];
-  
-  // Obtenemos el último mensaje de la conversación
-  const ultimoMensaje = contacto.mensajes[contacto.mensajes.length - 1];
+    contactosConPuntuacion.push({
+      ...contacto,
+      puntuacion: puntuacion,
+    });
+  }
 
-  // Si tiene mensajes, la puntuación es el timestamp (.getTime()) de la fecha del mensaje.
-  // Si no tiene mensajes, le asignamos 0 para que vaya al final de la lista.
-  const puntuacion = ultimoMensaje ? new Date(ultimoMensaje.fecha_envio).getTime() : 0;
+  const contactosFiltradosYOrdenados = contactosConPuntuacion
+    .filter((c) => c.nombre_contacto.toLowerCase().includes(busqueda.toLowerCase()))
+    .sort((a, b) => b.puntuacion - a.puntuacion);
 
-  // Guardamos el contacto con su nueva propiedad 'puntuacion'
-  contactosConPuntuacion.push({
-    ...contacto,
-    puntuacion: puntuacion
-  });
-}
-
-// 2. Filtramos por la búsqueda y ordenamos por la puntuación calculada
-const contactosFiltradosYOrdenados = contactosConPuntuacion
-  .filter((c) => c.nombre_contacto.toLowerCase().includes(busqueda.toLowerCase()))
-  .sort((a, b) => b.puntuacion - a.puntuacion);
-
-// Scroll automático al final del chat al cambiar mensajes o conversación activa
-useEffect(() => {
-  mensajesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-}, [mensajes.length, idActivo]);
+  useEffect(() => {
+    mensajesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [mensajes.length, idActivo]);
 
   const enviarMensaje = () => {
     if (!texto.trim() || !contactoActivo) return;
@@ -76,17 +62,16 @@ useEffect(() => {
       contenido: texto,
       estado_entrega: 'enviando',
       eliminado: false,
-      fecha_envio: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      fecha_envio: new Date().toISOString(),
     };
 
-    // Actualizamos los mensajes Y actualizamos el updatedAt a Date.now()
     setContactos((prev) =>
       prev.map((c) =>
         c.id_conversacion === contactoActivo.id_conversacion
           ? {
               ...c,
               mensajes: [...(c.mensajes || []), nuevoMensaje],
-              updatedAt: ahora, // <-- Esto garantiza que pase al primer lugar de inmediato
+              updatedAt: ahora,
             }
           : c
       )
@@ -96,20 +81,23 @@ useEffect(() => {
   };
 
   return (
-    <div className="flex h-96 w-full max-w-2xl border border-gray-300 rounded-lg overflow-hidden bg-white">
-      {/* Lista de contactos */}
-      <div className="w-1/3 border-r border-gray-200 bg-gray-50 overflow-y-auto">
-        <div className="p-3 font-bold text-sm border-b bg-gray-100">
-          Contactos ({contactos.length})
-        </div>
-        <div className="p-2">
+    <div
+      style={{ fontFamily: 'Helvetica, "Helvetica Neue", Arial, sans-serif' }}
+      className="flex w-[84.11vw] h-[62.89vh] min-w-[340px] min-h-[420px] max-w-[1600px] border-[12px] border-[#18243A] rounded-[10px] overflow-hidden bg-[#182232] shadow-2xl transition-all duration-200 my-auto"
+    >
+      {/* COLUMNA LATERAL DE CONTACTOS (#009490) */}
+      <div className="w-1/3 min-w-[260px] max-w-[360px] bg-[#009490] p-3 flex flex-col gap-3 border-r-2 border-black shrink-0">
+        <div className="w-full">
           <input
             type="text"
-            placeholder="Buscar contacto..."
+            placeholder="Buscar"
             value={busqueda}
             onChange={(e) => setBusqueda(e.target.value)}
-            className="w-full p-1.5 text-xs border rounded bg-white outline-none focus:border-indigo-500 mb-2"
+            className="w-full bg-[#D9D9D9] border-2 border-black rounded-xl px-3.5 py-2 text-sm text-black font-semibold placeholder-gray-700 outline-none focus:ring-2 focus:ring-black"
           />
+        </div>
+
+        <div className="flex flex-col gap-2.5 overflow-y-auto pr-0.5 flex-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           {contactosFiltradosYOrdenados.map((contacto) => (
             <ContactoCard
               key={contacto.id_conversacion}
@@ -130,66 +118,68 @@ useEffect(() => {
         </div>
       </div>
 
-      {/* Pantalla del chat seleccionado */}
-      <div className="w-2/3 flex flex-col justify-between p-4 bg-white">
+      {/* ÁREA PRINCIPAL DEL CHAT (#182232) */}
+      <div className="flex-1 flex flex-col justify-between bg-[#182232] min-w-0">
         
-        {/* Cabecera del contacto actual */}
-        <div className="border-b pb-2 flex justify-between items-center">
-          <div>
-            <h3 className="font-bold text-gray-800">{contactoActivo?.nombre_contacto}</h3>
-            <p className="text-xs text-gray-400">Estado: {contactoActivo?.estado_presencia}</p>
+        {/* Cabecera del chat */}
+        <div className="bg-[#D3E2F3] px-5 py-2.5 flex items-center gap-3 border-b-2 border-black shrink-0">
+          <div className="w-9 h-9 rounded-full bg-[#D9D9D9] border-2 border-black flex items-center justify-center shrink-0 overflow-hidden">
+            {contactoActivo?.avatar_contacto ? (
+              <img
+                src={contactoActivo.avatar_contacto}
+                alt={contactoActivo.nombre_contacto}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="w-full h-full bg-[#D9D9D9]" />
+            )}
           </div>
-          <button
-            onClick={() => alert(`Nombre de contacto: ${contactoActivo?.nombre_contacto}`)}
-            className="text-xs bg-gray-200 hover:bg-gray-300 px-2 py-1 rounded"
-          >
-            Ver Info
-          </button>
+          <h3 className="font-bold text-black text-base tracking-wide truncate">
+            {contactoActivo?.nombre_contacto || 'Nombre de la Persona'}
+          </h3>
         </div>
 
-        {/* Espacio para renderizar mensajes */}
-        <div className="flex-1 overflow-y-auto flex flex-col gap-2 my-2 p-2 bg-gray-50 rounded border border-gray-100">
+        {/* Mensajes */}
+        <div className="flex-1 overflow-y-auto flex flex-col gap-3 p-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           {mensajes && mensajes.length > 0 ? (
             mensajes.map((msg) => {
               const esMio = msg.id_emisor === 999;
               return (
                 <div
                   key={msg.id_mensaje}
-                  className={`p-2 rounded-lg text-xs max-w-[80%] ${
+                  className={`px-4 py-2.5 rounded-2xl text-sm max-w-[75%] break-words border-2 border-black/40 shadow-sm ${
                     esMio
-                      ? 'bg-indigo-600 text-white self-end rounded-br-none'
-                      : 'bg-white border text-gray-800 self-start rounded-bl-none shadow-sm'
+                      ? 'bg-[#0085FF] text-white self-end rounded-br-none'
+                      : 'bg-[#D9D9D9] text-black self-start rounded-bl-none'
                   }`}
                 >
-                  <p className="break-words">{msg.contenido}</p>
+                  <p className="leading-snug font-medium">{msg.contenido}</p>
                   <div
-                    className={`flex items-center justify-end gap-1 mt-1 text-[9px] ${
-                      esMio ? 'text-indigo-200' : 'text-gray-400'
+                    className={`text-[11px] mt-1 text-right font-bold ${
+                      esMio ? 'text-blue-100' : 'text-gray-700'
                     }`}
                   >
-                    <span> {formatearFecha(msg.fecha_envio) }</span>
-                    {esMio && <span>• {msg.estado_entrega}</span>}
+                    {formatearFecha(msg.fecha_envio)}
                   </div>
                 </div>
               );
             })
           ) : (
-            <div className="m-auto text-center text-xs text-gray-400 italic">
-              No hay mensajes en esta conversación con {contactoActivo?.nombre_contacto}.
+            <div className="m-auto text-center text-xs text-gray-300 italic font-medium">
+              No hay mensajes en esta conversación.
             </div>
           )}
-          
           <div ref={mensajesEndRef} />
         </div>
 
-        {/* Input y botón enviar */}
-        <div className="flex gap-2 border-t pt-2">
+        {/* Campo de mensaje y botón Enviar */}
+        <div className="p-3 bg-[#182232] flex items-center gap-3 shrink-0 border-t-2 border-black/30">
           <input
             type="text"
-            placeholder="Escribe un mensaje..."
+            placeholder="Escribe acá tu mensaje"
             value={texto}
             onChange={(e) => setTexto(e.target.value)}
-            className="flex-1 border p-2 text-xs rounded outline-none focus:border-indigo-500"
+            className="flex-1 bg-[#D9D9D9] border-2 border-black rounded-xl px-4 py-2.5 text-sm text-black font-semibold placeholder-gray-700 outline-none focus:ring-2 focus:ring-black"
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 enviarMensaje();
@@ -198,9 +188,21 @@ useEffect(() => {
           />
           <button
             onClick={enviarMensaje}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 text-xs rounded font-bold transition-colors"
+            className="w-10 h-10 bg-[#0085FF] border-2 border-black hover:bg-[#0072DB] text-white rounded-full flex items-center justify-center shrink-0 transition-all shadow-md active:scale-95"
+            title="Enviar mensaje"
           >
-            Enviar
+            <svg
+              className="w-5 h-5 -translate-x-0.5 translate-y-0.5 text-white"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M22 2L11 13" />
+              <path d="M22 2L15 22L11 13L2 9L22 2Z" />
+            </svg>
           </button>
         </div>
 
