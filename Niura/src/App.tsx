@@ -9,7 +9,7 @@ import InicioSesionPaciente from './frontend/inicioSesionPaciente/inicioSesionPa
 import InicioSesionCuidador from './frontend/inicioSesionCuidador/inicioSesionCuidador';
 import SubirVideo from './frontend/SubirVideo/SubirVideo';
 import BotonNotificacion from './frontend/notificaciones/notificaciones';
-import Pendientes from './frontend/pendientes/pendientesMedico/pendientesPaciente';
+import PendientesMedico from './frontend/pendientes/pendientesMedico/pendientesMedico';
 import ChatSimplificado from './frontend/reddecontactos/reddecontactos';
 import ChatSimplificadomio from './frontend/reddecontactos/lomio/redcontactos';
 import Header from './frontend/components/header'; // Importamos el nuevo Header
@@ -38,7 +38,7 @@ function App() {
               <Route path="/inicioSesionPaciente" element={<InicioSesionPaciente />} />
               <Route path="/inicioSesionMedico" element={<InicioSesionMedico />} />
               <Route path="/notificaciones" element={<BotonNotificacion />} />
-              <Route path="/pendientespaciente" element={<Pendientes />} />
+              <Route path="/pendientesmedico" element={<PendientesMedico />} />
               <Route path="/reddecontactos" element={<ChatSimplificado />} />
               <Route path="/reddecontactosmia" element={<ChatSimplificadomio />} />
             </Routes>
