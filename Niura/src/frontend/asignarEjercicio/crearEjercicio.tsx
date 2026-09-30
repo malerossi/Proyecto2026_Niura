@@ -13,8 +13,22 @@ export default function Asignar() {
         setVideo(video)
     }
 
-    const handleCrearEjercicio = () => {
-        navigate('/asignarEjercicio')	
+    const handleCrearEjercicio = async () => {
+        navigate('/asignarEjercicio')
+        
+        const res = await fetch('api/crearEjercicio', {
+            method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify()
+            });
+
+            if (res.ok) {
+                const ejercicioCreado: Ejercicio = await res.json();
+                
+                // Actualiza el estado para que el nuevo ejercicio aparezca en la lista sin recargar la página
+                setEjercicios([...ejercicios, ejercicioCreado]);	
     }
 
     return (

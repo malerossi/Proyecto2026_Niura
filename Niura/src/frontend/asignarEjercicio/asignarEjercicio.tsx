@@ -22,6 +22,10 @@ export default function PendientesMedico () {
         navigate (`/asignarEjercicio/${id}`)
     }
 
+    const CrearEjercicio = async () => {
+        navigate('/crearEjercicio')
+    }
+
     return (
         <div className='PendientesMedico'>
             {ejercicios.map((ejercicio) => (
@@ -35,7 +39,7 @@ export default function PendientesMedico () {
                     <p>¡Asignar ejercicio del día/semana!</p>
                 </div>
             ))}
-            <button className='CrearEjercicio'></button>
+            <button className='CrearEjercicio' onClick={CrearEjercicio}>Crear ejercicio</button>
         </div>
     )
 }
