@@ -19,7 +19,7 @@ export default function PendientesMedico () {
     }, [])
     
     const NavegaClick = (id:string|number) => {
-        navigate (`/asignarEjercicio/${id}`)
+        navigate (`/quieresAsignarlo`)
     }
 
     const CrearEjercicio = async () => {
@@ -32,10 +32,9 @@ export default function PendientesMedico () {
                 <div
                     key={ejercicio.id} 
                     className='CardPendiente'
-                    onClick={() => NavegaClick(ejercicio.id)}
                 >
-                    <p><strong>Paciente:</strong> {ejercicio.paciente}</p>
                     <p><strong>Ejercicio:</strong> {ejercicio.name}</p>
+                    <button className='botonAsignar' onClick={() => NavegaClick(ejercicio.id)}>Asignar</button>
                     <p>¡Asignar ejercicio del día/semana!</p>
                 </div>
             ))}

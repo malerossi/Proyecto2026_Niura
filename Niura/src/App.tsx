@@ -9,11 +9,12 @@ import InicioSesionPaciente from './frontend/inicioSesionPaciente/inicioSesionPa
 import InicioSesionCuidador from './frontend/inicioSesionCuidador/inicioSesionCuidador';
 import SubirVideo from './frontend/SubirVideo/SubirVideo';
 import BotonNotificacion from './frontend/notificaciones/notificaciones';
-import PendientesMedico from './frontend/asignarEjercicio/asignarEjercicio';
+import PendientesMedico from './frontend/asignarEjercicio/tsx/asignarEjercicio';
 import ChatSimplificado from './frontend/reddecontactos/reddecontactos';
 import ChatSimplificadomio from './frontend/reddecontactos/lomio/redcontactos';
-import Header from './frontend/components/header'; // Importamos el nuevo Header
-
+import CrearEjercicio from './frontend/asignarEjercicio/tsx/crearEjercicio';
+import AsignarEjercicio from './frontend/asignarEjercicio/tsx/asignarEjercicio';
+import Header from './frontend/components/header';
 // PROVIDERS
 import { PacienteProvider } from './frontend/Contexts/contextPaciente';
 import { MedicoProvider } from './frontend/Contexts/contextoMedico';
@@ -41,6 +42,8 @@ function App() {
               <Route path="/pendientesmedico" element={<PendientesMedico />} />
               <Route path="/reddecontactos" element={<ChatSimplificado />} />
               <Route path="/reddecontactosmia" element={<ChatSimplificadomio />} />
+              <Route path="/crearEjercicio" element={<CrearEjercicio />} />
+              <Route path="/asignarEjercicio" element={<AsignarEjercicio />} />
             </Routes>
           </main>
         </div>
