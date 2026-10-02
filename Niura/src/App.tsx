@@ -14,6 +14,7 @@ import ChatSimplificado from './frontend/reddecontactos/reddecontactos';
 import ChatSimplificadomio from './frontend/reddecontactos/lomio/redcontactos';
 import CrearEjercicio from './frontend/asignarEjercicio/tsx/crearEjercicio';
 import AsignarEjercicio from './frontend/asignarEjercicio/tsx/asignarEjercicio';
+import QuieresAsignarlo from './frontend/asignarEjercicio/tsx/quieresAsignarlo';
 import Header from './frontend/components/header';
 // PROVIDERS
 import { PacienteProvider } from './frontend/Contexts/contextPaciente';
@@ -44,6 +45,7 @@ function App() {
               <Route path="/reddecontactosmia" element={<ChatSimplificadomio />} />
               <Route path="/crearEjercicio" element={<CrearEjercicio />} />
               <Route path="/asignarEjercicio" element={<AsignarEjercicio />} />
+              <Route path='/quieresAsignar' element={<QuieresAsignarlo />} />
             </Routes>
           </main>
         </div>
