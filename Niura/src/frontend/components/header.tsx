@@ -4,135 +4,168 @@ export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Determinamos cuál es la ruta actual para encender la pestaña correcta
   const rutaActual = location.pathname;
 
   return (
     <header
       style={{ fontFamily: 'Helvetica, "Helvetica Neue", Arial, sans-serif' }}
-      className="w-full bg-[#87C9D6] border-b-2 border-black/20 px-6 py-2.5 flex items-center justify-center shrink-0 shadow-sm"
+      className="w-full bg-[#87C9D6] border-b-2 border-[#18243A]/20 px-4 py-3 flex items-center justify-center shrink-0 shadow-sm select-none"
     >
-      <nav className="flex items-center justify-center gap-8 md:gap-16 max-w-4xl w-full">
+      <nav className="flex items-center justify-center gap-8 sm:gap-12 md:gap-16 max-w-4xl w-full">
         
-        {/* INICIO */}
+        {/* 1. INICIO */}
         <button
           onClick={() => navigate('/pendientespaciente')}
-          className={`flex flex-col items-center justify-center gap-1 transition-all group ${
+          className={`flex flex-col items-center justify-center gap-1 transition-all cursor-pointer ${
             rutaActual === '/pendientespaciente' || rutaActual === '/'
-              ? 'scale-105 font-bold opacity-100'
-              : 'opacity-80 hover:opacity-100'
+              ? 'scale-105'
+              : 'opacity-90 hover:opacity-100 hover:scale-105'
           }`}
         >
-          <div className="w-8 h-8 flex items-center justify-center">
-            <svg
-              className="w-7 h-7 text-black stroke-[1.8]"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-            >
+          <div className="w-9 h-9 flex items-center justify-center">
+            <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Casa con relleno beige y borde oscuro */}
               <path
-                strokeLinecap="round"
+                d="M16 3L3 14H6V28H12V20H20V28H26V14H29L16 3Z"
+                fill="#DDD8D0"
+                stroke="#18243A"
+                strokeWidth="1.8"
                 strokeLinejoin="round"
-                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
               />
             </svg>
           </div>
-          <span className="text-black text-xs md:text-sm font-bold tracking-tight">
+          <span className="text-[#18243A] text-sm md:text-base font-semibold tracking-tight">
             Inicio
           </span>
         </button>
 
-        {/* USUARIO */}
+        {/* 2. USUARIO */}
         <button
           onClick={() => navigate('/inicioSesionPaciente')}
-          className={`flex flex-col items-center justify-center gap-1 transition-all group ${
+          className={`flex flex-col items-center justify-center gap-1 transition-all cursor-pointer ${
             rutaActual.includes('inicioSesion') || rutaActual.includes('registro')
-              ? 'scale-105 font-bold opacity-100'
-              : 'opacity-80 hover:opacity-100'
+              ? 'scale-105'
+              : 'opacity-90 hover:opacity-100 hover:scale-105'
           }`}
         >
-          <div className="w-8 h-8 flex items-center justify-center">
-            <svg
-              className="w-7 h-7 text-black stroke-[1.8]"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-            >
-              <circle cx="12" cy="12" r="9" />
-              <circle cx="12" cy="9" r="3" />
-              <path d="M6 18c0-3 2.5-5 6-5s6 2 6 5" />
+          <div className="w-9 h-9 flex items-center justify-center">
+            <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Círculo exterior */}
+              <circle cx="16" cy="16" r="14" stroke="#18243A" strokeWidth="1.8" />
+              {/* Cabeza celeste con borde oscuro */}
+              <circle cx="16" cy="11.5" r="4.2" fill="#D9E8FF" stroke="#18243A" strokeWidth="1.5" />
+              {/* Hombros celestes con borde oscuro */}
+              <path
+                d="M7.5 25.5C7.5 20.8 11.3 17 16 17C20.7 17 24.5 20.8 24.5 25.5"
+                fill="#D9E8FF"
+                stroke="#18243A"
+                strokeWidth="1.5"
+              />
             </svg>
           </div>
-          <span className="text-black text-xs md:text-sm font-bold tracking-tight">
+          <span className="text-[#18243A] text-sm md:text-base font-semibold tracking-tight">
             Usuario
           </span>
         </button>
 
-        {/* RACHA */}
+        {/* 3. RACHA */}
         <button
           onClick={() => navigate('/racha')}
-          className={`flex flex-col items-center justify-center gap-1 transition-all group ${
+          className={`flex flex-col items-center justify-center gap-1 transition-all cursor-pointer ${
             rutaActual === '/racha'
-              ? 'scale-105 font-bold opacity-100'
-              : 'opacity-80 hover:opacity-100'
+              ? 'scale-105'
+              : 'opacity-90 hover:opacity-100 hover:scale-105'
           }`}
         >
-          <div className="w-8 h-8 flex items-center justify-center relative">
-            <svg
-              className="w-8 h-8 text-[#E2922A] fill-[#E2922A]"
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 23c-4.97 0-9-3.58-9-8 0-4.19 3.03-7.6 7-8 .5 1.5 1.5 2.5 3 3 0-2.5 1-5 4-7 1 3.5 4 5 4 9 0 4.42-4.03 8-9 8z" />
+          <div className="w-9 h-9 flex items-center justify-center">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Llama amarilla */}
+              <path
+                d="M20 3C20 3 24 7.5 24 11.5C24 13.2 23.2 14.5 22 15.3C24.5 15 27.5 17.5 27.5 21.5C27.5 26.5 23 30 18 30C13 30 9 26.5 9 21.5C9 18.5 10.8 15.8 13 14.2C13 12.5 14.2 11 15.5 10C15.5 12 17 13.5 18.5 13.5C18.5 11 20 3 20 3Z"
+                fill="#FFD13B"
+                stroke="#18243A"
+                strokeWidth="1.8"
+                strokeLinejoin="round"
+              />
+              {/* Número "10" sobrepuesto */}
+              <text
+                x="15"
+                y="28"
+                fontFamily="Arial, Helvetica, sans-serif"
+                fontWeight="900"
+                fontSize="13"
+                fill="#FFD13B"
+                stroke="#18243A"
+                strokeWidth="2.8"
+                paintOrder="stroke fill"
+                textAnchor="middle"
+              >
+                {localStorage.getItem('rachaActual') || 10}
+              </text>
             </svg>
-            <span className="absolute bottom-1 text-[10px] font-extrabold text-black">
-              {localStorage.getItem('rachaActual') || 0}
-            </span>
           </div>
-          <span className="text-black text-xs md:text-sm font-bold tracking-tight">
+          <span className="text-[#18243A] text-sm md:text-base font-semibold tracking-tight">
             Racha
           </span>
         </button>
 
-        {/* NOTICIAS */}
+        {/* 4. NOTICIAS */}
         <button
           onClick={() => navigate('/notificaciones')}
-          className={`flex flex-col items-center justify-center gap-1 transition-all group ${
+          className={`flex flex-col items-center justify-center gap-1 transition-all cursor-pointer ${
             rutaActual === '/notificaciones'
-              ? 'scale-105 font-bold opacity-100'
-              : 'opacity-80 hover:opacity-100'
+              ? 'scale-105'
+              : 'opacity-90 hover:opacity-100 hover:scale-105'
           }`}
         >
-          <div className="w-8 h-8 flex items-center justify-center">
-            <svg
-              className="w-7 h-7 text-[#E5B82A] fill-[#E5B82A] stroke-black stroke-[1]"
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 22a2.5 2.5 0 002.5-2.5h-5A2.5 2.5 0 0012 22zm6.5-6v-5.5c0-3.07-1.63-5.64-4.5-6.32V3.5a1.5 1.5 0 00-3 0v.68C8.13 4.86 6.5 7.42 6.5 10.5V16l-2 2v1h15v-1l-2-2z" />
+          <div className="w-9 h-9 flex items-center justify-center">
+            <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Batidor / Péndulo inferior */}
+              <path
+                d="M13.5 25.5C13.5 26.9 14.6 28 16 28C17.4 28 18.5 26.9 18.5 25.5"
+                fill="#DDD8D0"
+                stroke="#18243A"
+                strokeWidth="1.8"
+              />
+              {/* Argolla superior */}
+              <path d="M16 4V7" stroke="#18243A" strokeWidth="2" strokeLinecap="round" />
+              {/* Cuerpo de la campana */}
+              <path
+                d="M7.5 23.5C7.5 23.5 9 22 9 15C9 11.1 12.1 8 16 8C19.9 8 23 11.1 23 15C23 22 24.5 23.5 24.5 23.5H7.5Z"
+                fill="#FFD13B"
+                stroke="#18243A"
+                strokeWidth="1.8"
+                strokeLinejoin="round"
+              />
             </svg>
           </div>
-          <span className="text-black text-xs md:text-sm font-bold tracking-tight">
+          <span className="text-[#18243A] text-sm md:text-base font-semibold tracking-tight">
             Noticias
           </span>
         </button>
 
-        {/* TU RED */}
+        {/* 5. TU RED */}
         <button
           onClick={() => navigate('/reddecontactosmia')}
-          className={`flex flex-col items-center justify-center gap-1 transition-all group ${
+          className={`flex flex-col items-center justify-center gap-1 transition-all cursor-pointer ${
             rutaActual.includes('reddecontactos')
-              ? 'scale-105 font-bold opacity-100'
-              : 'opacity-80 hover:opacity-100'
+              ? 'scale-105'
+              : 'opacity-90 hover:opacity-100 hover:scale-105'
           }`}
         >
-          <div className="w-8 h-8 rounded-lg bg-[#0085FF] border border-black/30 flex items-center justify-center shadow-sm">
-            <svg
-              className="w-5 h-5 text-white fill-current"
-              viewBox="0 0 24 24"
-            >
-              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+          <div className="w-9 h-9 flex items-center justify-center">
+            <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Botón azul redondeado */}
+              <rect x="2" y="2" width="28" height="28" rx="7" fill="#0082D0" stroke="#18243A" strokeWidth="1.5" />
+              {/* Persona frontal */}
+              <circle cx="13" cy="12" r="3" fill="white" />
+              <path d="M7.5 22C7.5 18.8 10 16.5 13 16.5C16 16.5 18.5 18.8 18.5 22H7.5Z" fill="white" />
+              {/* Persona secundaria atrás */}
+              <circle cx="20.5" cy="13" r="2.4" fill="white" />
+              <path d="M18.2 22C18.5 20.1 20 18.2 22 18.2C23.2 18.2 24.2 18.7 24.8 19.5C24.2 21 24 22 24 22H18.2Z" fill="white" />
             </svg>
           </div>
-          <span className="text-black text-xs md:text-sm font-bold tracking-tight">
+          <span className="text-[#18243A] text-sm md:text-base font-semibold tracking-tight">
             Tu red
           </span>
         </button>

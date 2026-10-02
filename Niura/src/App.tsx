@@ -6,7 +6,7 @@ import { ListaRacha } from './frontend/racha/racha';
 import RegistroCuidador from './frontend/registroCuidador/registroCuidador';
 import InicioSesionMedico from './frontend/inicioSesionMedico/inicioSesionMedico';
 import InicioSesionPaciente from './frontend/inicioSesionPaciente/inicioSesionPaciente';
-import InicioSesionCuidador from './frontend/inicioSesionCuidador/inicioSesionCuidador';
+import InicioSesionCuidador from './frontend/pages/inicioSesionCuidador/inicioSesionCuidador';
 import SubirVideo from './frontend/SubirVideo/SubirVideo';
 import BotonNotificacion from './frontend/notificaciones/notificaciones';
 import PendientesMedico from './frontend/asignarEjercicio/tsx/asignarEjercicio';
