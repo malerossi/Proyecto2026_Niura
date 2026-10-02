@@ -1,10 +1,7 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const { patientUser : patientUserSchema } = require('../schemas/users.schemas');
 
 async function updatePatientStreak(patientId) {
-  const patient = await prisma.patientUser.findUnique({
-    where: { id: patientId },
-  });
+  const patient = await query(`SELECT * FROM "Paciente" WHERE id = $1`, [patientId]);
 
   if (!patient) {
     throw new Error(`No se encontró el paciente con ID ${patientId}`);
@@ -40,14 +37,7 @@ async function updatePatientStreak(patientId) {
 
   const newLongestStreak = Math.max(newCurrentStreak, patient.longestStreak);
 
-  const updatedPatient = await prisma.patientUser.update({
-    where: { id: patientId },
-    data: {
-      currentStreak: newCurrentStreak,
-      longestStreak: newLongestStreak,
-      lastStreakUpdate: today,
-    },
-  });
+  const updatedPatient = await query("UPDATE Paciente SET currentStreak = $1, longestStreak = $2, lastStreakUpdate = $3 WHERE id = $4", [newCurrentStreak, newLongestStreak, today, patientId]);
 
   return {
     updated: true,
@@ -56,4 +46,12 @@ async function updatePatientStreak(patientId) {
   };
 }
 
-module.exports = { updatePatientStreak };
+async function createPatientUser(data) {
+  const validatedData = patientUserSchema.parse(data);
+
+  const newPatient = await query("INSERT INTO Paciente (name, surname, email, dni, password) VALUES ($1, $2, $3, $4, $5) RETURNING *", [validatedData.name, validatedData.surname, validatedData.email, validatedData.dni, validatedData.password]);
+
+  return newPatient;
+}
+
+module.exports = { updatePatientStreak, createPatientUser };

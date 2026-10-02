@@ -1,5 +1,28 @@
-const { PrismaClient } = require('./generated/prisma')
+import pkg from "pg"
+const {Pool} = pkg
 
-const Prisma = new PrismaClient()
-
-module.exports = Prisma
+export const pool = new Pool({
+    host: "ep-frosty-queen-acwcglms-pooler.sa-east-1.aws.neon.tech",
+    user: "neondb_owner",
+    password: "npg_0s3dhjYEXely",
+    database: "neondb",
+    port: 5432,
+    ssl: {
+        rejectUnauthorized: false,
+      },
+      channelBinding: "require",
+    });
+    
+    export const dbController = {
+      pool: pool,
+    };
+    
+    export const query = async (text, params = []) => {
+      const client = await dbController.pool.connect();
+      try {
+        const result = await client.query(text, params);
+        return result;
+      } finally {
+        client.release();
+      }
+    };

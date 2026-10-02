@@ -1,17 +1,13 @@
 const express = require('express')
 const dotenv = require('dotenv').config()
-const teamsRouter = require('./routes/teams.routes')
-const playersRouter = require('./routes/players.routes')
-const matchesRouter = require('./routes/matches.routes')
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const patientsRouter = require('./src/routes/patients.routes')
+const usersRouter = require('./src/routes/users.routes')
 const app = express()
-const PORT = process.env.PORT
+const PORT = 3000
 
 app.use(express.json())
-app.use('/teams', teamsRouter)
-app.use('/players', playersRouter)
-app.use('/matches', matchesRouter)
+app.use('/patients', patientsRouter)
+app.use('/users', usersRouter)
 
 
 function errorHandler(err, req, res, next){
