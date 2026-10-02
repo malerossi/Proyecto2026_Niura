@@ -18,11 +18,11 @@ export default function PendientesMedico () {
         .catch((err) => (`Hay un error en el almacenammiento de los ejercicios. Error: ${err}`))
     }, [])
     
-    const NavegaClick = (id:string|number) => {
+    const NavegaClick = () => {
         navigate (`/quieresAsignarlo`)
     }
 
-    const CrearEjercicio = async () => {
+    const CrearEjercicio = () => {
         navigate('/crearEjercicio')
     }
 
@@ -34,7 +34,7 @@ export default function PendientesMedico () {
                     className='CardPendiente'
                 >
                     <p><strong>Ejercicio:</strong> {ejercicio.name}</p>
-                    <button className='botonAsignar' onClick={() => NavegaClick(ejercicio.id)}>Asignar</button>
+                    <button className='botonAsignar' onClick={() => NavegaClick()}>Asignar</button>
                     <p>¡Asignar ejercicio del día/semana!</p>
                 </div>
             ))}
