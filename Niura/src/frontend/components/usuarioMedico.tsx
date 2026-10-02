@@ -8,7 +8,7 @@ export default function UsuarioMedico() {
                 className="btnUsuarioMedico"
                 onClick={() => navigate('./frontend/usuarioMedico/usuarioMedico')}
             >
-                Home
+                Usuario
             </button>
         </div>
     )

@@ -8,7 +8,7 @@ export default function Contactos() {
                 className="btnContactos"
                 onClick={() => navigate('./frontend/reddecontactos/reddecontactos')}
             >
-                Home
+                Red de Contactos
             </button>
         </div>
     )
