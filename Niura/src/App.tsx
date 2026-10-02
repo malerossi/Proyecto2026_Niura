@@ -7,7 +7,7 @@ import RegistroCuidador from './frontend/registroCuidador/registroCuidador';
 import InicioSesionMedico from './frontend/inicioSesionMedico/inicioSesionMedico';
 import InicioSesionPaciente from './frontend/inicioSesionPaciente/inicioSesionPaciente';
 import InicioSesionCuidador from './frontend/inicioSesionCuidador/inicioSesionCuidador';
-import SubirVideo from './frontend/SubirVideo/SubirVideo';
+import Video from './frontend/SubirEjercitacion/tsx/video';
 import BotonNotificacion from './frontend/notificaciones/notificaciones';
 import PendientesMedico from './frontend/asignarEjercicio/tsx/asignarEjercicio';
 import ChatSimplificado from './frontend/reddecontactos/reddecontactos';
@@ -33,7 +33,7 @@ function App() {
             <Routes>
               <Route path="/registroPaciente" element={<RegistroPaciente />} />
               <Route path="/racha" element={<ListaRacha />} />
-              <Route path="/subirvideo" element={<SubirVideo />} />
+              <Route path="/subirvideo" element={<Video />} />
               <Route path="/registroMedico" element={<RegistroMedico />} />
               <Route path="/registroCuidador" element={<RegistroCuidador />} />
               <Route path="/inicioSesionCuidador" element={<InicioSesionCuidador />} />

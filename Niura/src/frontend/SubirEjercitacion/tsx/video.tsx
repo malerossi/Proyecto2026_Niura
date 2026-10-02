@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-export default function SubirVideo() {
+export default function Video() {
     const [grabando, setGrabando] = useState<boolean>(false);
     const [videoPrevisualizado, setVideoPrevisualizado] = useState<string>('');
     const [videoArchivo, setVideoArchivo] = useState<File | null>(null);
