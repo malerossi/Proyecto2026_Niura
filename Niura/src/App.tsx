@@ -7,7 +7,7 @@ import RegistroCuidador from './frontend/registroCuidador/registroCuidador';
 import InicioSesionMedico from './frontend/inicioSesionMedico/inicioSesionMedico';
 import InicioSesionPaciente from './frontend/inicioSesionPaciente/inicioSesionPaciente';
 import InicioSesionCuidador from './frontend/pages/inicioSesionCuidador/inicioSesionCuidador';
-import Video from './frontend/SubirEjercitacion/tsx/video';
+import Video from './frontend/seleccionVIDEO/video';
 import BotonNotificacion from './frontend/pages/notificaciones/notificaciones';
 import PendientesMedico from './frontend/asignarEjercicio/tsx/asignarEjercicio';
 import ChatSimplificado from './frontend/reddecontactos/reddecontactos';
