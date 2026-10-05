@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-
+import { useRacha } from '../Contexts/contextracha';
 import inicioImg from '../images/inicio_icono.png';
 import usuarioImg from '../images/usuario_icono.png';
 import rachaImg from '../images/racha_icono.png';
@@ -44,12 +44,10 @@ export default function Header() {
   const navigate = useNavigate();
   const { pathname: rutaActual } = useLocation();
  
-  let racha: string | number = 0;
-  try {
-    racha = localStorage.getItem('rachaActual') || 0;
-  } catch {
+ 
+ const rachaActual = useRacha();
+  
     // localStorage no disponible: usamos el valor por defecto
-  }
   return (
     <header
       className="w-full bg-[#87C9D6] border-b-2 border-[#18243A]/20 px-4 py-3 flex items-center justify-center shrink-0 shadow-sm select-none"
@@ -81,7 +79,7 @@ export default function Header() {
     paintOrder: 'stroke fill',
   }}
 >
-  {racha}
+  {rachaActual.rachaActual}
 </span>
         </NavItem>
 
