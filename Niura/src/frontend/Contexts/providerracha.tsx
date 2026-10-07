@@ -21,10 +21,9 @@ const calcularRacha = (rachas: DiaRacha[]): [number, number] => {
 
 interface RachaProviderProps {
   children: ReactNode;
-  usuarioId: string | number;
 }
 
-export function RachaProvider({ children, usuarioId }: RachaProviderProps) {
+export function RachaProvider({ children}: RachaProviderProps) {
   const [historial, setHistorial] = useState<DiaRacha[]>([]);
 
   // Petición al backend para traer el historial del usuario
