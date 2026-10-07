@@ -6,15 +6,24 @@ export const ListaRacha = () => {
   const { rachaActual, rachaMaxima, historial, toggleDia } = useRacha();
 
   const [mes, setMes] = React.useState(new Date().getMonth() + 1);
+  const [año, setAño] = React.useState(new Date().getFullYear());
+
+  const moverMes = (delta: number) => {
+    const fechaActual = new Date(año, mes - 1, 1);
+    fechaActual.setMonth(fechaActual.getMonth() + delta);
+
+    setMes(fechaActual.getMonth() + 1);
+    setAño(fechaActual.getFullYear());
+  };
 
   React.useEffect(() => {
     const detectarTecla = (evento: KeyboardEvent) => {
       if (evento.key === "ArrowLeft") {
-        setMes((c) => c - 1);
+        moverMes(-1);
       }
 
       if (evento.key === "ArrowRight") {
-        setMes((c) => c + 1);
+        moverMes(1);
       }
     };
 
@@ -23,14 +32,23 @@ export const ListaRacha = () => {
     return () => {
       window.removeEventListener("keydown", detectarTecla);
     };
-  }, []);
+  }, [año, mes]);
+
+  const nombreMes = new Intl.DateTimeFormat("es-ES", {
+    month: "long",
+    year: "numeric",
+  }).format(new Date(año, mes - 1, 1));
 
   return (
     <div className="relative min-h-screen">
 
+      <div className="flex justify-center pt-8 pb-4 text-2xl font-semibold capitalize">
+        {nombreMes}
+      </div>
+
       {/* BOTÓN ATRÁS */}
       <button
-        onClick={() => setMes((c) => c - 1)}
+        onClick={() => moverMes(-1)}
         className="
           fixed left-4 top-1/2 -translate-y-1/2
           z-50
@@ -63,7 +81,7 @@ export const ListaRacha = () => {
 
       {/* BOTÓN ADELANTE */}
       <button
-        onClick={() => setMes((c) => c + 1)}
+        onClick={() => moverMes(1)}
         className="
           fixed right-4 top-1/2 -translate-y-1/2
           z-50
@@ -97,7 +115,10 @@ export const ListaRacha = () => {
       {/* CONTENEDOR DE LA RACHA */}
       <div className="contenedor-racha">
         {historial
-          .filter((dia) => dia.fecha.getMonth() + 1 === mes)
+          .filter(
+            (dia) =>
+              dia.fecha.getFullYear() === año && dia.fecha.getMonth() + 1 === mes
+          )
           .map((dia, index) => (
             <React.Fragment key={index}>
               <div>
