@@ -19,9 +19,11 @@ import Header from './frontend/components/header';
 // PROVIDERS
 import { PacienteProvider } from './frontend/Contexts/contextPaciente';
 import { MedicoProvider } from './frontend/Contexts/contextoMedico';
+import { RachaProvider } from './frontend/Contexts/providerracha';
 
 function App() {
   return (
+    <RachaProvider>
     <MedicoProvider>
       <PacienteProvider>
         <div className="min-h-screen w-full bg-[#C5DCEE] flex flex-col justify-between m-0 p-0 overflow-x-hidden">
@@ -51,6 +53,7 @@ function App() {
         </div>
       </PacienteProvider>
     </MedicoProvider>
+    </RachaProvider>
   );
 }
 
