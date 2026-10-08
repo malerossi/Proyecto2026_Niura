@@ -1,7 +1,7 @@
-import Pacientes from "../components/pacientes";
-import Contactos from "../components/contactos";
-import Home from "../components/home";
-import UsuarioPaciente from "../components/usuarioPaciente";
+import Pacientes from "../../components/pacientes";
+import Contactos from "../../components/contactos";
+import Home from "../../components/home";
+import UsuarioPaciente from "../../components/usuarioPaciente";
 import { useNavigate } from "react-router-dom";
 
 export default function PaginaGralPaciente() {

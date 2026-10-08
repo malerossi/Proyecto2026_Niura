@@ -1,20 +1,15 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-
-export interface Ejercicio {
-    id: string|number,
-    name: string
-    paciente: string
-}
+import type { Ejercicios } from '../../../PACIENTE/seleccionEjercicio/seleccionDeEjercicios';
 
 export default function PendientesMedico () {
-    const [ ejercicios, setEjercicios ] = useState<Ejercicio[]>([]);
+    const [ ejercicios, setEjercicios ] = useState<Ejercicios[]>([]);
     const navigate = useNavigate();
 
     useEffect(() => {
         fetch('api/martinProgramaporfi')
         .then((res) => res.json())
-        .then ((data:Ejercicio[]) => {setEjercicios(data)})
+        .then ((data:Ejercicios[]) => {setEjercicios(data)})
         .catch((err) => (`Hay un error en el almacenammiento de los ejercicios. Error: ${err}`))
     }, [])
     
@@ -33,7 +28,7 @@ export default function PendientesMedico () {
                     key={ejercicio.id} 
                     className='CardPendiente'
                 >
-                    <p><strong>Ejercicio:</strong> {ejercicio.name}</p>
+                    <p><strong>Ejercicio:</strong> {ejercicio.nombre}</p>
                     <button className='botonAsignar' onClick={() => NavegaClick(ejercicio.id)}>Asignar</button>
                     <p>¡Asignar ejercicio del día/semana!</p>
                 </div>

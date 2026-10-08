@@ -1,6 +1,6 @@
 import React, { useState, type ReactHTMLElement } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { usePaciente } from '../Contexts/contextPaciente';
+import { usePaciente } from '../../Contexts/contextPaciente';
 
 
 export default function IniciodeSesion (){
