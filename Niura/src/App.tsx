@@ -16,6 +16,7 @@ import CrearEjercicio from './frontend/MEDICO/asignarEjercicio/tsx/crearEjercici
 import AsignarEjercicio from './frontend/MEDICO/asignarEjercicio/tsx/asignarEjercicio';
 import QuieresAsignarlo from './frontend/MEDICO/asignarEjercicio/tsx/quieresAsignarlo';
 import Header from './frontend/components/header';
+import PaginaGeneral from './frontend/pages/paginageneral/paginageneral';
 // PROVIDERS
 import { PacienteProvider } from './frontend/Contexts/contextPaciente';
 import { MedicoProvider } from './frontend/Contexts/contextoMedico';
@@ -28,11 +29,13 @@ function App() {
       <PacienteProvider>
         <div className="min-h-screen w-full bg-[#C5DCEE] flex flex-col justify-between m-0 p-0 overflow-x-hidden">
           {/* Header global conectado con react-router */}
+       
           <Header />
-
           {/* Rutas de la aplicación */}
           <main className="flex-1 flex items-center justify-center p-4">
             <Routes>
+              <Route path="/" element={<PaginaGeneral />} />
+          
               <Route path="/registroPaciente" element={<RegistroPaciente />} />
               <Route path="/racha" element={<ListaRacha />} />
               <Route path="/subirvideo" element={<Video />} />
