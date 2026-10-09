@@ -15,7 +15,7 @@ export default function InicioSesionPaciente () {
             alert('Porfavor, llenar sus datos.');
         }
         else {
-            navigate ('/inicioSesionPaciente');
+            navigate ('/paginaGralPaciente');
         }
     }
 
