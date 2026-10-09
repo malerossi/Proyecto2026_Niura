@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useMedico } from "../Contexts/contextoMedico";
+import { useMedico } from "../../Contexts/contextoMedico";
 
 export default function InicioSesionMedico() {
     const navigate = useNavigate()

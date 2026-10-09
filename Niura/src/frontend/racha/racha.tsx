@@ -1,109 +1,54 @@
 import * as React from 'react';
-import { useState } from 'react';
-interface DiaRacha {
-  fecha: Date;
-  completado: boolean;
-}
-
-export const historialRacha: DiaRacha[] = [
-  // Julio
-  { fecha: new Date("2026-07-15T00:00:00"), completado: true },
-  { fecha: new Date("2026-07-16T00:00:00"), completado: true },
-  { fecha: new Date("2026-07-17T00:00:00"), completado: true },
-  { fecha: new Date("2026-07-18T00:00:00"), completado: true },
-  { fecha: new Date("2026-07-19T00:00:00"), completado: true },
-  { fecha: new Date("2026-07-20T00:00:00"), completado: true },
-  { fecha: new Date("2026-07-21T00:00:00"), completado: true },
-  { fecha: new Date("2026-07-22T00:00:00"), completado: true },
-  { fecha: new Date("2026-07-23T00:00:00"), completado: true },
-  { fecha: new Date("2026-07-24T00:00:00"), completado: true },
-  { fecha: new Date("2026-07-25T00:00:00"), completado: true },
-  { fecha: new Date("2026-07-26T00:00:00"), completado: true },
-  { fecha: new Date("2026-07-27T00:00:00"), completado: true },
-  { fecha: new Date("2026-07-28T00:00:00"), completado: true },
-  { fecha: new Date("2026-07-29T00:00:00"), completado: true },
-  { fecha: new Date("2026-07-30T00:00:00"), completado: true },
-  { fecha: new Date("2026-07-31T00:00:00"), completado: true },
-
-  // Agosto
-  { fecha: new Date("2026-08-01T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-02T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-03T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-04T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-05T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-06T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-07T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-08T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-09T00:00:00"), completado: false },
-  { fecha: new Date("2026-08-10T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-11T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-12T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-13T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-14T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-15T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-16T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-17T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-18T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-19T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-20T00:00:00"), completado: false },
-  { fecha: new Date("2026-08-21T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-22T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-23T00:00:00"), completado: true },
-  { fecha: new Date("2026-08-24T00:00:00"), completado: true },
-];
-
-const calcularRacha= (rachas)=>{
-  let rachamaxima=0;
-  let conteoRacha = 0;
-  for (let i = 0; i < rachas.length; i++) {
-    if (rachas[i].completado) {
-       conteoRacha++;
-      console.log(conteoRacha)
-      if (conteoRacha>rachamaxima){
-        rachamaxima=conteoRacha
-      }
-    } else {
-      conteoRacha = 0;
-    }
-  }
-
-  return [conteoRacha,rachamaxima];
-}
+import { useRacha } from '../Contexts/contextracha';
 
 export const ListaRacha = () => {
-  const resultado = calcularRacha(historialRacha);
+  // Consumimos todo del contexto
+  const { rachaActual, rachaMaxima, historial, toggleDia } = useRacha();
 
- const [rachacatualconst,setrachacatual]=useState(resultado[0]);
- React.useEffect(() => {
-  localStorage.setItem("rachaActual", rachacatualconst.toString());
-}, [rachacatualconst]);
-  const [rachamaximaconst,setrachamaxima]=useState(resultado[1]);
-
-  
   const [mes, setMes] = React.useState(new Date().getMonth() + 1);
+  const [año, setAño] = React.useState(new Date().getFullYear());
+
+  const moverMes = (delta: number) => {
+    const fechaActual = new Date(año, mes - 1, 1);
+    fechaActual.setMonth(fechaActual.getMonth() + delta);
+
+    setMes(fechaActual.getMonth() + 1);
+    setAño(fechaActual.getFullYear());
+  };
+
   React.useEffect(() => {
     const detectarTecla = (evento: KeyboardEvent) => {
       if (evento.key === "ArrowLeft") {
-        setMes((c) => c - 1);
+        moverMes(-1);
       }
-  
+
       if (evento.key === "ArrowRight") {
-        setMes((c) => c + 1);
+        moverMes(1);
       }
     };
-  
+
     window.addEventListener("keydown", detectarTecla);
-  
+
     return () => {
       window.removeEventListener("keydown", detectarTecla);
     };
-  }, []);
+  }, [año, mes]);
+
+  const nombreMes = new Intl.DateTimeFormat("es-ES", {
+    month: "long",
+    year: "numeric",
+  }).format(new Date(año, mes - 1, 1));
+
   return (
     <div className="relative min-h-screen">
 
+      <div className="flex justify-center pt-8 pb-4 text-2xl font-semibold capitalize">
+        {nombreMes}
+      </div>
+
       {/* BOTÓN ATRÁS */}
       <button
-        onClick={() => setMes((c) => c - 1)}
+        onClick={() => moverMes(-1)}
         className="
           fixed left-4 top-1/2 -translate-y-1/2
           z-50
@@ -121,22 +66,22 @@ export const ListaRacha = () => {
         aria-label="Mes anterior"
       >
         <svg
-  className="h-8 w-8"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  strokeWidth="2"
-  strokeLinecap="round"
-  strokeLinejoin="round"
->
-  <path d="M19 12H5" />
-  <path d="M12 19l-7-7 7-7" />
-</svg>
+          className="h-8 w-8"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M19 12H5" />
+          <path d="M12 19l-7-7 7-7" />
+        </svg>
       </button>
 
       {/* BOTÓN ADELANTE */}
       <button
-        onClick={() => setMes((c) => c + 1)}
+        onClick={() => moverMes(1)}
         className="
           fixed right-4 top-1/2 -translate-y-1/2
           z-50
@@ -152,29 +97,34 @@ export const ListaRacha = () => {
           cursor-pointer
         "
         aria-label="Mes siguiente"
-      >      <svg
-  className="h-8 w-8"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  strokeWidth="2"
-  strokeLinecap="round"
-  strokeLinejoin="round"
->
-  <path d="M5 12h14" />
-  <path d="M12 5l7 7-7 7" />
-</svg>
+      >
+        <svg
+          className="h-8 w-8"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M5 12h14" />
+          <path d="M12 5l7 7-7 7" />
+        </svg>
       </button>
 
       {/* CONTENEDOR DE LA RACHA */}
       <div className="contenedor-racha">
-        {historialRacha
-          .filter((dia) => dia.fecha.getMonth() + 1 === mes)
+        {historial
+          .filter(
+            (dia) =>
+              dia.fecha.getFullYear() === año && dia.fecha.getMonth() + 1 === mes
+          )
           .map((dia, index) => (
             <React.Fragment key={index}>
               <div>
                 <img
-                  className="cuadrado-verde"
+                  className="cuadrado-verde cursor-pointer"
+                  onClick={() => toggleDia(dia.fecha)}
                   src={
                     dia.completado
                       ? "/imagenes/Racha_prendida.png"
@@ -190,8 +140,8 @@ export const ListaRacha = () => {
             </React.Fragment>
           ))}
       </div>
-<p>la racha maxima es: {rachamaximaconst}</p>
-<p>la racha actual es: {rachacatualconst}</p>
+      <p>la racha maxima es: {rachaMaxima}</p>
+      <p>la racha actual es: {rachaActual}</p>
     </div>
   );
 };

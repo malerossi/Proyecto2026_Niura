@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-export default function Paciente() {
+export default function Pacientes() {
     const navigate = useNavigate();
     return (
         <div className="pacientes">
@@ -8,7 +8,7 @@ export default function Paciente() {
                 className="btnPacientes"
                 onClick={() => navigate('./frontend/pacientes/pacientes')}
             >
-                Home
+                Pacientes
             </button>
         </div>
     )

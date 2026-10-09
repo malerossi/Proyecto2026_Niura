@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCuidador } from '../Contexts/contextoCuidador';
+import { useCuidador } from '../../Contexts/contextoCuidador';
 
 export default function RegistroCuidador () {
 
