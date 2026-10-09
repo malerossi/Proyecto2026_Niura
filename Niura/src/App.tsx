@@ -43,7 +43,7 @@ function App() {
           <main className="flex-1 flex items-center justify-center p-4">
             <Routes>
               <Route path="/" element={<PaginaGeneral />} />
-          
+            <Route path="/elegirusuario" element ={<Elegirusuario/>}></Route>
               <Route path="/registroPaciente" element={<RegistroPaciente />} />
               <Route path="/racha" element={<ListaRacha />} />
               <Route path="/subirvideo" element={<Video />} />
@@ -59,6 +59,15 @@ function App() {
               <Route path="/crearEjercicio" element={<CrearEjercicio />} />
               <Route path="/asignarEjercicio" element={<AsignarEjercicio />} />
               <Route path='/quieresAsignar' element={<QuieresAsignarlo />} />
+              <Route path="/video/:id" element={<Video />} />
+              <Route path="/seleccionarArchivo/:id" element={<SeleccionarArchivo />} />
+              <Route path="/paginaGralPaciente" element={<PaginaGralPaciente />} />
+              <Route path="/ejercitar" element={<Ejercitar />} />
+              <Route path="/eleccionEjercicio" element={<EleccionEjercicio />} />
+              <Route path="/seleccionDeEjercicios" element={<SeleccionDeEjercicios />} />
+              <Route path="/ejercicio/:id" element={<ConfirmarSeleccionEjercicio />} />
+              <Route path="/accionEjercitar/:id" element={<AccionEjercitar />} />
+              
             </Routes>
           </main>
         </div>
