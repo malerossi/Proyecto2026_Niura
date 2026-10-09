@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './inicioSesionPaciente.css';
+import './inicioSesionCuidador.css';
 
 
 export default function InicioSesionPaciente () {
@@ -15,12 +15,12 @@ export default function InicioSesionPaciente () {
             alert('Porfavor, llenar sus datos.');
         }
         else {
-            navigate ('/inicioSesionPaciente');
+            navigate ('/inicioSesionCuidador');
         }
     }
 
     return (
-        <form className='DatosInicioPaciente' onSubmit={handleSubmit}>
+        <form className='DatosInicioCuidador' onSubmit={handleSubmit}>
             <input type="text" className='dni' id='dni' value={dni} onChange={(e) => setDni(e.target.value)} required placeholder='DNI'/>
             <input type="password" className='contraseña' id='contraseña' value={contraseña} onChange={(e) => setContraseña(e.target.value)} required placeholder='Contraseña'/>
             <button className='enviar' id='enviar'>Enviar</button>

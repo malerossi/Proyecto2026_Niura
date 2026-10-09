@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import type { Ejercicio } from './asignarEjercicio';
+import type { Ejercicios } from '../../../PACIENTE/seleccionEjercicio/seleccionDeEjercicios';
 import '../css/crearEjercicio.css';
 
 export default function Asignar() {
@@ -8,7 +8,7 @@ export default function Asignar() {
     const [ descripcion, setDescripcion ] = useState<string>('');
     const [ elementos, setElementos ] = useState<string>('');
     const [ video, setVideo ] = useState<File | null>(null);
-    const [ ejercicios, setEjercicios ] = useState<Ejercicio[]>([]);
+    const [ ejercicios, setEjercicios ] = useState<Ejercicios[]>([]);
     const navigate = useNavigate();
 
     const handleSeleccionarArchivo = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +32,7 @@ export default function Asignar() {
             });
 
             if (res.ok) {
-                const ejercicioCreado: Ejercicio = await res.json();
+                const ejercicioCreado: Ejercicios = await res.json();
                 
                 setEjercicios([...ejercicios, ejercicioCreado]); 
                 

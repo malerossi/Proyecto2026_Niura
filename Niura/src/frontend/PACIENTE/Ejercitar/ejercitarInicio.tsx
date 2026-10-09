@@ -4,7 +4,7 @@ export default function Ejercitar () {
     const navigate = useNavigate();
 
     const handleNavigateSeleccionEjercicio = () => {
-        navigate('/seleccionEjercicio');
+        navigate('eleccionEjercicio');
     }
 
     return (
