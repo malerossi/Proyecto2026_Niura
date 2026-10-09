@@ -7,7 +7,6 @@ import RegistroCuidador from './frontend/CUIDADOR/registroCuidador/registroCuida
 import InicioSesionMedico from './frontend/MEDICO/inicioSesionMedico/inicioSesionMedico';
 import InicioSesionPaciente from './frontend/PACIENTE/inicioSesionPaciente/inicioSesionPaciente';
 import InicioSesionCuidador from './frontend/pages/inicioSesionCuidador/inicioSesionCuidador';
-import Video from './frontend/PACIENTE/seleccionVIDEO/video';
 import BotonNotificacion from './frontend/pages/notificaciones/notificaciones';
 import PendientesMedico from './frontend/MEDICO/asignarEjercicio/tsx/asignarEjercicio';
 import ChatSimplificado from './frontend/reddecontactos/reddecontactos';
@@ -17,6 +16,14 @@ import AsignarEjercicio from './frontend/MEDICO/asignarEjercicio/tsx/asignarEjer
 import QuieresAsignarlo from './frontend/MEDICO/asignarEjercicio/tsx/quieresAsignarlo';
 import Header from './frontend/components/header';
 import PaginaGeneral from './frontend/pages/paginageneral/paginageneral';
+import PaginaGralPaciente from './frontend/PACIENTE/paginagralPaciente/paginagralPaciente';
+import Ejercitar from './frontend/PACIENTE/Ejercitar/ejercitarInicio';
+import EleccionEjercicio from './frontend/PACIENTE/EleccionEjercicio/EleccionEjercicio';
+import SeleccionDeEjercicios from './frontend/PACIENTE/seleccionEjercicio/seleccionDeEjercicios';
+import ConfirmarSeleccionEjercicio from './frontend/PACIENTE/confirmarSeleccionEjercicio/confirmar';
+import AccionEjercitar from './frontend/PACIENTE/accionEjercitar/accionEjercitar';
+import Video from './frontend/PACIENTE/seleccionVIDEO/subirVideo';
+import SeleccionarArchivo from './frontend/PACIENTE/seleccionVIDEO/seleccionarArchivo';
 // PROVIDERS
 import { PacienteProvider } from './frontend/Contexts/contextPaciente';
 import { MedicoProvider } from './frontend/Contexts/contextoMedico';
@@ -35,10 +42,16 @@ function App() {
           <main className="flex-1 flex items-center justify-center p-4">
             <Routes>
               <Route path="/" element={<PaginaGeneral />} />
-          
+              <Route path="/video/:id" element={<Video />} />
+              <Route path="/seleccionarArchivo/:id" element={<SeleccionarArchivo />} />
+              <Route path="/paginaGralPaciente" element={<PaginaGralPaciente />} />
+              <Route path="/ejercitar" element={<Ejercitar />} />
+              <Route path="/eleccionEjercicio" element={<EleccionEjercicio />} />
+              <Route path="/seleccionDeEjercicios" element={<SeleccionDeEjercicios />} />
+              <Route path="/ejercicio/:id" element={<ConfirmarSeleccionEjercicio />} />
+              <Route path="/accionEjercitar/:id" element={<AccionEjercitar />} />
               <Route path="/registroPaciente" element={<RegistroPaciente />} />
               <Route path="/racha" element={<ListaRacha />} />
-              <Route path="/subirvideo" element={<Video />} />
               <Route path="/registroMedico" element={<RegistroMedico />} />
               <Route path="/registroCuidador" element={<RegistroCuidador />} />
               <Route path="/inicioSesionCuidador" element={<InicioSesionCuidador />} />

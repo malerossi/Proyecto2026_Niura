@@ -16,16 +16,6 @@ export default function Video() {
         }
     }, [grabando]);
 
-    const handleSeleccionarArchivo = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            if (videoPrevisualizado) {
-                URL.revokeObjectURL(videoPrevisualizado);
-            }
-            setVideoArchivo(file);
-            setVideoPrevisualizado(URL.createObjectURL(file));
-        }
-    };
 
     const handleGrabacion = async () => {
         if (!grabando) {
@@ -115,40 +105,19 @@ export default function Video() {
     };
 
     return (
-        <div className="GrabadorContainer">
-            {grabando ? (
-                <video ref={videoRef} autoPlay playsInline muted className="previewVideo" />
-            ) : videoPrevisualizado ? (
-                <video src={videoPrevisualizado} controls className="previewVideo" />
-            ) : (
-                <div className="videoPlaceholder">
-                    <p>Graba un video o selecciona uno de tus archivos.</p>
-                </div>
-            )}
-
-            <div className="acciones-container">
-                <button type="button" onClick={handleGrabacion} className="btnCamara">
-                    {grabando ? "⏹️ Terminar grabación" : "🎥 Empezar a grabar"}
+        <div>
+            <video ref={videoRef} autoPlay muted style={{ width: '100%', maxWidth: '600px' }} />
+            <div>
+                <button onClick={handleGrabacion}>
+                    {grabando ? "Detener Grabación" : "Iniciar Grabación"}
                 </button>
-
-                {!grabando && (
-                    <label className="btnArchivo">
-                        Seleccionar del equipo
-                        <input 
-                            type="file" 
-                            accept="video/*" 
-                            onChange={handleSeleccionarArchivo} 
-                            style={{ display: 'none' }} 
-                        />
-                    </label>
-                )}
-
-                {videoArchivo && !grabando && (
-                    <button type="button" onClick={handleEnviarVideo} className="btnSubir">
-                        Subir video ({videoArchivo.name})
-                    </button>
+                {videoPrevisualizado && (
+                    <>
+                        <video controls src={videoPrevisualizado} style={{ width: '100%', maxWidth: '600px' }} />
+                        <button onClick={handleEnviarVideo}>Enviar Video</button>
+                    </>
                 )}
             </div>
         </div>
-    );
+    )
 }

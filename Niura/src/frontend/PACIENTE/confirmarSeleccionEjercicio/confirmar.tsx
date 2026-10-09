@@ -4,16 +4,16 @@ import { useParams } from "react-router-dom";
 import type { Ejercicios } from "../seleccionEjercicio/seleccionDeEjercicios";
 
 export default function ConfirmarSeleccionEjercicio() {
-    const { tipo, id } = useParams<{ tipo: string; id: string }>();
+    const { id } = useParams<{ id: string }>();
     const [ ejercicio, setEjercicio ] = useState<Ejercicios | null>(null);
     const navigate = useNavigate();
 
     useEffect  (() => {
-        fetch(`api/ejercicio/${tipo}/${id}`)
+        fetch(`api/ejercicio/${id}`)
         .then((res) => res.json())
         .then((data) => setEjercicio(data))
         .catch((err) => console.error(`Error fetching ejercicio: ${err}`))
-    })
+    }, [id]);
 
     const handleNavigate = () => {
         navigate(`/accionEjercitar/${id}`);
