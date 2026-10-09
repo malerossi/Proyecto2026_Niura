@@ -1,3 +1,4 @@
+
 import type { ReactNode } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useRacha } from '../Contexts/contextracha';
@@ -18,6 +19,7 @@ interface NavItemProps {
 }
 
 function NavItem({ activo, onClick, src, alt, children }: NavItemProps) {
+
   return (
     <button
       type="button"
@@ -43,7 +45,7 @@ function NavItem({ activo, onClick, src, alt, children }: NavItemProps) {
 export default function Header() {
   const navigate = useNavigate();
   const { pathname: rutaActual } = useLocation();
- 
+  if(useLocation().pathname.includes('paciente')) {
  
  const rachaActual = useRacha();
   
@@ -70,7 +72,7 @@ export default function Header() {
           src={rachaImg}
           alt="Racha"
           activo={rutaActual === '/racha'}
-          onClick={() => navigate('/racha')}
+          onClick={() => navigate('/paciente/racha')}
         >
          <span
   className="absolute left-[11px] top-[20.93px] w-[27px] h-[27px] flex items-center justify-center whitespace-nowrap text-[#F2C94C] font-['Inter'] font-bold text-[22.36px] leading-none tracking-normal"
@@ -99,4 +101,4 @@ export default function Header() {
       </nav>
     </header>
   );
-}
+}}

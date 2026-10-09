@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import logoPaginaGeneral from '/src/frontend/images/logo_pagina_general.png';
+import logoPaginaGeneral from '/src/frontend/images/logo_niura.png';
 
 export default function PaginaGeneral() {
   const navigate = useNavigate();
@@ -10,21 +10,17 @@ export default function PaginaGeneral() {
       <img
         src={logoPaginaGeneral}
         alt="Logo Niura"
-        className="w-[250px] h-[325px] object-contain"
+        className="w-[250px] h-[325px] object-contain ml-[30px] "
       />
 
       {/* TEXTO NIURA */}
-      <h1
-        className="semiblod -mt-[6px] text-black leading-none lowercase font-['Archivo'] font-black text-[80px] [font-stretch:125%]"
-      >
-        niura
-      </h1>
+    
 
       {/* BOTONES */}
       <div className="mt-[77px] flex items-start justify-center gap-4">
         {/* Regístrate */}
         <button
-          onClick={() => navigate('/registroPaciente')}
+          onClick={() => navigate('/elegirUsuario')}
           className="bg-[#D2E1F2] hover:bg-[#c3d6ec] text-black font-['Inter'] font-normal text-2xl px-3 py-2 rounded-[10px] border-2 border-[#1A8ECE] shadow-[0_3px_6px_rgba(0,0,0,0.25)] transition-all active:scale-95 cursor-pointer"
         >
           Registrate
