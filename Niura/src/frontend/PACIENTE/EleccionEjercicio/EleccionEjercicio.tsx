@@ -4,20 +4,22 @@ export default function EleccionEjercicio() {
     const navigate = useNavigate();
 
     const handleNavigateAudio = () => {
-        navigate('/audio');
+        navigate('/seleccionAudio');
     }
 
     const handleNavigateVideo = () => {
-        navigate('/video');
+        navigate('/seleccionVideo');
     }
 
     return (
         <div className="CajaEleccion">
             <p>¿Que quieres entrenar hoy?</p>
             <button className="audio" onClick={handleNavigateAudio}>
+                AUDIO
                 <img src="" className="audioPic"/>
             </button>
             <button className="video" onClick={handleNavigateVideo}>
+                VIDEO
                 <img src="" className="videoPic" />
             </button>
         </div>

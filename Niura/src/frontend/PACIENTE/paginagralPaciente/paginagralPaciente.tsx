@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 export default function PaginaGralPaciente() {
     const navigate = useNavigate();
     const handleNavigateEjercitar = () => {
-        navigate('/frontend/SubirEjercitacion/tsx/EleccionEjercicio');
+        navigate('/EleccionEjercicio');
     }
 
     return (

@@ -25,6 +25,8 @@ import ConfirmarSeleccionEjercicio from './frontend/PACIENTE/confirmarSeleccionE
 import AccionEjercitar from './frontend/PACIENTE/accionEjercitar/accionEjercitar';
 import Video from './frontend/PACIENTE/seleccionVIDEO/subirVideo';
 import SeleccionarArchivo from './frontend/PACIENTE/seleccionVIDEO/seleccionarArchivo';
+import SeleccionAudio from './frontend/PACIENTE/seleccionAUDIO/audio';
+import SeleccionVideo from './frontend/PACIENTE/seleccionVIDEO/video';
 // PROVIDERS
 import { PacienteProvider } from './frontend/Contexts/contextPaciente';
 import { MedicoProvider } from './frontend/Contexts/contextoMedico';
@@ -45,6 +47,8 @@ function App() {
               <Route path="/" element={<PaginaGeneral />} />
               <Route path="/elegirusuario" element ={<Elegirusuario/>}></Route>
               <Route path="/registroPaciente" element={<RegistroPaciente />} />
+              <Route path="/seleccionAudio" element={<SeleccionAudio />} />
+              <Route path="/seleccionVideo" element={<SeleccionVideo />} />
               <Route path="/racha" element={<ListaRacha />} />
               <Route path="/subirvideo" element={<Video />} />
               <Route path="/registroMedico" element={<RegistroMedico />} />
