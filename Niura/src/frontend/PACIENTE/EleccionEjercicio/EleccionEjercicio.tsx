@@ -1,14 +1,15 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function EleccionEjercicio() {
+    const { type } = useParams();
     const navigate = useNavigate();
 
     const handleNavigateAudio = () => {
-        navigate('/seleccionAudio');
+        navigate(`/seleccionEjercicio/${type}`);
     }
 
     const handleNavigateVideo = () => {
-        navigate('/seleccionVideo');
+        navigate(`/seleccionEjercicio/${type}`);
     }
 
     return (
