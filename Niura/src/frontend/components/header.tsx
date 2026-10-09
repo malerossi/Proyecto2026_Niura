@@ -48,8 +48,6 @@ export default function Header() {
   if(useLocation().pathname.includes('paciente')) {
  
  const rachaActual = useRacha();
-  
-    // localStorage no disponible: usamos el valor por defecto
   return (
     <header
       className="w-full bg-[#87C9D6] border-b-2 border-[#18243A]/20 px-4 py-3 flex items-center justify-center shrink-0 shadow-sm select-none"
@@ -101,4 +99,7 @@ export default function Header() {
       </nav>
     </header>
   );
-}}
+}
+if(useLocation().pathname.includes('medico')) {} 
+
+}
