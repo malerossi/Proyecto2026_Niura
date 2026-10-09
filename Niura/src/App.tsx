@@ -17,7 +17,6 @@ import QuieresAsignarlo from './frontend/MEDICO/asignarEjercicio/tsx/quieresAsig
 import Header from './frontend/components/header';
 import PaginaGeneral from './frontend/pages/paginageneral/paginageneral';
 import Elegirusuario from './frontend/pages/eleccion_de_usuario/elccion_de_usuario';
-import PaginaGralPaciente from './frontend/PACIENTE/paginagralPaciente/paginagralPaciente';
 import Ejercitar from './frontend/PACIENTE/Ejercitar/ejercitarInicio';
 import EleccionEjercicio from './frontend/PACIENTE/EleccionEjercicio/EleccionEjercicio';
 import SeleccionDeEjercicios from './frontend/PACIENTE/seleccionEjercicio/seleccionDeEjercicios';
@@ -65,7 +64,6 @@ function App() {
               <Route path='/quieresAsignar' element={<QuieresAsignarlo />} />
               <Route path="/video/:id" element={<Video />} />
               <Route path="/seleccionarArchivo/:id" element={<SeleccionarArchivo />} />
-              <Route path="/paginaGralPaciente" element={<PaginaGralPaciente />} />
               <Route path="/ejercitar" element={<Ejercitar />} />
               <Route path="/eleccionEjercicio" element={<EleccionEjercicio />} />
               <Route path="/seleccionDeEjercicios" element={<SeleccionDeEjercicios />} />
