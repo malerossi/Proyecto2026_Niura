@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export type Ejercicios = {
     id: number|string;
@@ -10,18 +10,19 @@ export type Ejercicios = {
 }
 
 export default function SeleccionDeEjercicios() {
+    const { type, id } = useParams();
     const [ejercicios, setEjercicios] = useState<Ejercicios[]>([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('igottawaitformrsmilesmorales')
+        fetch(`api/qsy/ejercicios/${type}`)
             .then(response => response.json())
             .then(data => {setEjercicios(data)})
             .catch(error => {console.error('Error fetching ejercicios:', error)});
     }, []);
 
-    const NavigateEjercicio = (id, tipo) => {
-        navigate(`/ejercicio/${tipo}/${id}`);	
+    const NavigateEjercicio = () => {
+        navigate(`/ejercicio/${id}`);	
     }
 
     return (

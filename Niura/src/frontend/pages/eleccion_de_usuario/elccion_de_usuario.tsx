@@ -82,10 +82,9 @@ export default function Elegirusuario() {
           >
             <ArrowLeft />
           </button>
-
-          <h1 className="text-[length:calc(var(--u)*56)] font-bold leading-none text-black underline decoration-[2px] underline-offset-[calc(var(--u)*6)]">
-            Registrate
-          </h1>
+          <h1 className="text-[length:calc(var(--u)*56)] font-bold leading-none text-black underline decoration-[2px] underline-offset-[calc(var(--u)*6)] translate-x-[23px]">
+  Registrate
+</h1>
         </header>
 
         {/* Botones de rol */}

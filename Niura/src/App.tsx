@@ -17,7 +17,6 @@ import QuieresAsignarlo from './frontend/MEDICO/asignarEjercicio/tsx/quieresAsig
 import Header from './frontend/components/header';
 import PaginaGeneral from './frontend/pages/paginageneral/paginageneral';
 import Elegirusuario from './frontend/pages/eleccion_de_usuario/elccion_de_usuario';
-import PaginaGralPaciente from './frontend/PACIENTE/paginagralPaciente/paginagralPaciente';
 import Ejercitar from './frontend/PACIENTE/Ejercitar/ejercitarInicio';
 import EleccionEjercicio from './frontend/PACIENTE/EleccionEjercicio/EleccionEjercicio';
 import SeleccionDeEjercicios from './frontend/PACIENTE/seleccionEjercicio/seleccionDeEjercicios';
@@ -45,7 +44,7 @@ function App() {
           <main className="flex-1 flex items-center justify-center p-4">
             <Routes>
               <Route path="/" element={<PaginaGeneral />} />
-            <Route path="/elegirusuario" element ={<Elegirusuario/>}></Route>
+              <Route path="/elegirusuario" element ={<Elegirusuario/>}></Route>
               <Route path="/registroPaciente" element={<RegistroPaciente />} />
               <Route path="/seleccionAudio" element={<SeleccionAudio />} />
               <Route path="/seleccionVideo" element={<SeleccionVideo />} />
