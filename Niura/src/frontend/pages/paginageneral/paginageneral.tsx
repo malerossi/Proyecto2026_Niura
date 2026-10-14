@@ -28,7 +28,7 @@ export default function PaginaGeneral() {
 
         {/* Inicia sesión */}
         <button
-          onClick={() => navigate('/inicioSesionPaciente')}
+          onClick={() => navigate('/elegirinicio')}
           className="bg-[#1A8ECE] hover:bg-[#157BB5] text-black font-['Inter'] font-normal text-2xl px-2.5 py-2 rounded-[10px] shadow-[0_3px_6px_rgba(0,0,0,0.25)] transition-all active:scale-95 cursor-pointer"
         >
           Inicia sesión

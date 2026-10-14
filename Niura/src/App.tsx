@@ -26,6 +26,7 @@ import Video from './frontend/PACIENTE/seleccionVIDEO/subirVideo';
 import SeleccionarArchivo from './frontend/PACIENTE/seleccionVIDEO/seleccionarArchivo';
 import SeleccionAudio from './frontend/PACIENTE/seleccionAUDIO/audio';
 import SeleccionVideo from './frontend/PACIENTE/seleccionVIDEO/video';
+import PerfilPaciente from './frontend/pages/usuario_paciente/usuario_paciente';
 // PROVIDERS
 import { PacienteProvider } from './frontend/Contexts/contextPaciente';
 import { MedicoProvider } from './frontend/Contexts/contextoMedico';
@@ -34,47 +35,73 @@ import { RachaProvider } from './frontend/Contexts/providerracha';
 function App() {
   return (
     <RachaProvider>
-    <MedicoProvider>
-      <PacienteProvider>
-        <div className="min-h-screen w-full bg-[#C5DCEE] flex flex-col justify-between m-0 p-0 overflow-x-hidden">
-          {/* Header global conectado con react-router */}
-       
-          <Header/>
-          {/* Rutas de la aplicación */}
-          <main className="flex-1 flex items-center justify-center p-4">
-            <Routes>
-              <Route path="/" element={<PaginaGeneral />} />
-              <Route path="/elegirusuario" element ={<Elegirusuario/>}></Route>
-              <Route path="/registroPaciente" element={<RegistroPaciente />} />
-              <Route path="/seleccionAudio" element={<SeleccionAudio />} />
-              <Route path="/seleccionVideo" element={<SeleccionVideo />} />
-              <Route path="/racha" element={<ListaRacha />} />
-              <Route path="/subirvideo" element={<Video />} />
-              <Route path="/registroMedico" element={<RegistroMedico />} />
-              <Route path="/registroCuidador" element={<RegistroCuidador />} />
-              <Route path="/inicioSesionCuidador" element={<InicioSesionCuidador />} />
-              <Route path="/inicioSesionPaciente" element={<InicioSesionPaciente />} />
-              <Route path="/inicioSesionMedico" element={<InicioSesionMedico />} />
-              <Route path="/notificaciones" element={<BotonNotificacion />} />
-              <Route path="/pendientesmedico" element={<PendientesMedico />} />
-              <Route path="/reddecontactos" element={<ChatSimplificado />} />
-              <Route path="/reddecontactosmia" element={<ChatSimplificadomio />} />
-              <Route path="/crearEjercicio" element={<CrearEjercicio />} />
-              <Route path="/asignarEjercicio" element={<AsignarEjercicio />} />
-              <Route path='/quieresAsignar' element={<QuieresAsignarlo />} />
-              <Route path="/video/:id" element={<Video />} />
-              <Route path="/seleccionarArchivo/:id" element={<SeleccionarArchivo />} />
-              <Route path="/ejercitar" element={<Ejercitar />} />
-              <Route path="/eleccionEjercicio" element={<EleccionEjercicio />} />
-              <Route path="/seleccionDeEjercicios" element={<SeleccionDeEjercicios />} />
-              <Route path="/ejercicio/:id" element={<ConfirmarSeleccionEjercicio />} />
-              <Route path="/accionEjercitar/:id" element={<AccionEjercitar />} />
-              
-            </Routes>
-          </main>
-        </div>
-      </PacienteProvider>
-    </MedicoProvider>
+      <MedicoProvider>
+        <PacienteProvider>
+          <div className="min-h-screen w-full bg-[#C5DCEE] flex flex-col justify-between m-0 p-0 overflow-x-hidden">
+            {/* Header global conectado con react-router */}
+            <Header />
+            {/* Rutas de la aplicación */}
+            <main className="flex-1 flex items-center justify-center p-4">
+              <Routes>
+                <Route path="/" element={<PaginaGeneral />} />
+
+                {/* Elegir tipo de usuario: REGISTRO */}
+                <Route
+                  path="/elegirusuario"
+                  element={
+                    <Elegirusuario
+                      titulo="Registrate"
+                      rutaVolver="/"
+                      rutaPaciente="/registroPaciente"
+                      rutaCuidador="/registroCuidador"
+                      rutaMedico="/registroMedico"
+                    />
+                  }
+                />
+
+                {/* Elegir tipo de usuario: INICIO DE SESIÓN */}
+                <Route
+                  path="/elegirinicio"
+                  element={
+                    <Elegirusuario
+                      titulo="Inicia sesión"
+                      rutaVolver="/"
+                      rutaPaciente="/inicioSesionPaciente"
+                      rutaCuidador="/inicioSesionCuidador"
+                      rutaMedico="/inicioSesionMedico"
+                    />
+                  }
+                />
+                <Route path ="/perfilPaciente" element={<PerfilPaciente />} />
+                <Route path="/registroPaciente" element={<RegistroPaciente />} />
+                <Route path="/seleccionAudio" element={<SeleccionAudio />} />
+                <Route path="/seleccionVideo" element={<SeleccionVideo />} />
+                <Route path="/racha" element={<ListaRacha />} />
+                <Route path="/subirvideo" element={<Video />} />
+                <Route path="/registroMedico" element={<RegistroMedico />} />
+                <Route path="/registroCuidador" element={<RegistroCuidador />} />
+                <Route path="/inicioSesionCuidador" element={<InicioSesionCuidador />} />
+                <Route path="/inicioSesionPaciente" element={<InicioSesionPaciente />} />
+                <Route path="/inicioSesionMedico" element={<InicioSesionMedico />} />
+                <Route path="/notificaciones" element={<BotonNotificacion />} />
+                <Route path="/pendientesmedico" element={<PendientesMedico />} />
+                <Route path="/reddecontactos" element={<ChatSimplificado />} />
+                <Route path="/reddecontactosmia" element={<ChatSimplificadomio />} />
+                <Route path="/crearEjercicio" element={<CrearEjercicio />} />
+                <Route path="/asignarEjercicio" element={<AsignarEjercicio />} />
+                <Route path="/quieresAsignar" element={<QuieresAsignarlo />} />
+                <Route path="/video/:id" element={<Video />} />
+                <Route path="/seleccionarArchivo/:id" element={<SeleccionarArchivo />} />
+                <Route path="/ejercitar" element={<Ejercitar />} />
+                <Route path="/eleccionEjercicio" element={<EleccionEjercicio />} />
+                <Route path="/seleccionDeEjercicios" element={<SeleccionDeEjercicios />} />
+                <Route path="/ejercicio/:id" element={<ConfirmarSeleccionEjercicio />} />
+                <Route path="/accionEjercitar/:id" element={<AccionEjercitar />} />
+              </Routes>
+            </main>
+          </div>
+        </PacienteProvider>
+      </MedicoProvider>
     </RachaProvider>
   );
 }
