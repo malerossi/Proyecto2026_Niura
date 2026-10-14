@@ -1,0 +1,51 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Contenedor principal con el fondo de la pantalla */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Gradiente de fondo imitando la imagen inicialPaciente.png */
+    background: linear-gradient(to bottom, #a0d4e4 0%, #dce8f0 100%);
+}
+
+/* Contenedor del botón con proporciones y colores exactos */
+.btnEjercitar {
+    /* Gradiente azul específico del botón */
+    background: linear-gradient(to bottom, #62b0e6 0%, #5097f3 100%);
+    width: 460px;
+    height: 260px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Icono de Play gigante creado con CSS */
+.play-icon {
+    width: 0;
+    height: 0;
+    border-top: 42px solid transparent;
+    border-left: 72px solid #e1effd; /* Color celeste casi blanco */
+    border-bottom: 42px solid transparent;
+    margin-bottom: 25px;
+    margin-left: 12px; /* Corrección óptica para que el triángulo parezca centrado */
+}
+
+/* Tipografía del botón */
+.btnText {
+    color: #FFFFFF;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
