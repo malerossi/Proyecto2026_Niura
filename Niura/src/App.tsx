@@ -26,6 +26,7 @@ import Video from './frontend/PACIENTE/seleccionVIDEO/subirVideo';
 import SeleccionarArchivo from './frontend/PACIENTE/seleccionVIDEO/seleccionarArchivo';
 import SeleccionAudio from './frontend/PACIENTE/seleccionAUDIO/audio';
 import SeleccionVideo from './frontend/PACIENTE/seleccionVIDEO/video';
+import PerfilPaciente from './frontend/pages/usuario_paciente/usuario_paciente';
 // PROVIDERS
 import { PacienteProvider } from './frontend/Contexts/contextPaciente';
 import { MedicoProvider } from './frontend/Contexts/contextoMedico';
@@ -64,6 +65,7 @@ function App() {
               <Route path='/quieresAsignar' element={<QuieresAsignarlo />} />
               <Route path="/video/:id" element={<Video />} />
               <Route path="/seleccionarArchivo/:id" element={<SeleccionarArchivo />} />
+              <Route path="/paginaGralPaciente" element={<PaginaGralPaciente />} />
               <Route path="/paciente/ejercitar" element={<Ejercitar />} />
               <Route path="/paciente/eleccionEjercicio" element={<EleccionEjercicio />} />
               <Route path="/seleccionDeEjercicios" element={<SeleccionDeEjercicios />} />
