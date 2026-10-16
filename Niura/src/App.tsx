@@ -64,7 +64,6 @@ function App() {
               <Route path='/quieresAsignar' element={<QuieresAsignarlo />} />
               <Route path="/video/:id" element={<Video />} />
               <Route path="/seleccionarArchivo/:id" element={<SeleccionarArchivo />} />
-              <Route path="/paginaGralPaciente" element={<PaginaGralPaciente />} />
               <Route path="/paciente/ejercitar" element={<Ejercitar />} />
               <Route path="/paciente/eleccionEjercicio" element={<EleccionEjercicio />} />
               <Route path="/seleccionDeEjercicios" element={<SeleccionDeEjercicios />} />
