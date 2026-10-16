@@ -16,7 +16,7 @@ const estiloEscala = {
 /* Endpoint que devuelve el perfil. Debe responder un JSON así:
    { "correo": "alguien@mail.com", "imagen": "https://...jpg" }
    ("imagen" puede venir vacía o no venir si la persona no tiene foto). */
-const URL_PERFIL = "https://mocki.io/v1/REEMPLAZAR-CON-TU-MOCKI-DE-PERFIL";
+const URL_PERFIL = "https://mocki.io/v1/fd125f8b-20ed-4509-8051-f34005b873d8";
 
 /* Endpoint que cambia el correo. */
 const URL_CAMBIAR_CORREO =

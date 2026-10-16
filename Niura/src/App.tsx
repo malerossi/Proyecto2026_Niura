@@ -44,49 +44,23 @@ function App() {
             <main className="flex-1 flex items-center justify-center p-4">
               <Routes>
                 <Route path="/" element={<PaginaGeneral />} />
-
-                {/* Elegir tipo de usuario: REGISTRO */}
-                <Route
-                  path="/elegirusuario"
-                  element={
-                    <Elegirusuario
-                      titulo="Registrate"
-                      rutaVolver="/"
-                      rutaPaciente="/registroPaciente"
-                      rutaCuidador="/registroCuidador"
-                      rutaMedico="/registroMedico"
-                    />
-                  }
-                />
-
-                {/* Elegir tipo de usuario: INICIO DE SESIÓN */}
-                <Route
-                  path="/elegirinicio"
-                  element={
-                    <Elegirusuario
-                      titulo="Inicia sesión"
-                      rutaVolver="/"
-                      rutaPaciente="/inicioSesionPaciente"
-                      rutaCuidador="/inicioSesionCuidador"
-                      rutaMedico="/inicioSesionMedico"
-                    />
-                  }
-                />
-                <Route path ="/perfilPaciente" element={<PerfilPaciente />} />
+                <Route path="/elegirusuario"element={<Elegirusuario titulo="Registrate"rutaVolver="/"rutaPaciente="/registroPaciente" rutaCuidador="/registroCuidador" rutaMedico="/registroMedico"/>}/>
+                <Route path="/elegirinicio" element={ <Elegirusuario titulo="Inicia sesión"rutaVolver="/"rutaPaciente="/inicioSesionPaciente"rutaCuidador="/inicioSesionCuidador"rutaMedico="/inicioSesionMedico" />}/>
+                <Route path ="/paciente/perfilPaciente" element={<PerfilPaciente />} />
                 <Route path="/registroPaciente" element={<RegistroPaciente />} />
-                <Route path="/seleccionAudio" element={<SeleccionAudio />} />
-                <Route path="/seleccionVideo" element={<SeleccionVideo />} />
-                <Route path="/racha" element={<ListaRacha />} />
-                <Route path="/subirvideo" element={<Video />} />
+                <Route path="/paciente/seleccionAudio" element={<SeleccionAudio />} />
+                <Route path="/paciente/seleccionVideo" element={<SeleccionVideo />} />
+                <Route path="/paciente/racha" element={<ListaRacha />} />
+                <Route path="/paciente/subirvideo" element={<Video />} />
                 <Route path="/registroMedico" element={<RegistroMedico />} />
                 <Route path="/registroCuidador" element={<RegistroCuidador />} />
                 <Route path="/inicioSesionCuidador" element={<InicioSesionCuidador />} />
                 <Route path="/inicioSesionPaciente" element={<InicioSesionPaciente />} />
                 <Route path="/inicioSesionMedico" element={<InicioSesionMedico />} />
-                <Route path="/notificaciones" element={<BotonNotificacion />} />
+                <Route path="/paciente/notificaciones" element={<BotonNotificacion />} />
                 <Route path="/pendientesmedico" element={<PendientesMedico />} />
                 <Route path="/reddecontactos" element={<ChatSimplificado />} />
-                <Route path="/reddecontactosmia" element={<ChatSimplificadomio />} />
+                <Route path="/paciente/reddecontactosmia" element={<ChatSimplificadomio />} />
                 <Route path="/crearEjercicio" element={<CrearEjercicio />} />
                 <Route path="/asignarEjercicio" element={<AsignarEjercicio />} />
                 <Route path="/quieresAsignar" element={<QuieresAsignarlo />} />
