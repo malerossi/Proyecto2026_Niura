@@ -8,7 +8,7 @@ interface ConversacionConFecha extends Conversacion {
   updatedAt: number;
 }
 
-export default function ChatSimplificadomio() {
+export default function ChatSimplificadomiopaciente() {
   const [contactos, setContactos] = useState<ConversacionConFecha[]>(() => {
     const tiempoBase = Date.now();
     return (contactosMock as Conversacion[]).map((c, index) => ({

@@ -10,7 +10,7 @@ import InicioSesionCuidador from './frontend/pages/inicioSesionCuidador/inicioSe
 import BotonNotificacion from './frontend/pages/notificaciones/notificaciones';
 import PendientesMedico from './frontend/MEDICO/asignarEjercicio/tsx/asignarEjercicio';
 import ChatSimplificado from './frontend/reddecontactos/reddecontactos';
-import ChatSimplificadomio from './frontend/reddecontactos/lomio/redcontactos';
+import ChatSimplificadomiopaciente from './frontend/reddecontactos/lomio/redcontactos';
 import CrearEjercicio from './frontend/MEDICO/asignarEjercicio/tsx/crearEjercicio';
 import AsignarEjercicio from './frontend/MEDICO/asignarEjercicio/tsx/asignarEjercicio';
 import QuieresAsignarlo from './frontend/MEDICO/asignarEjercicio/tsx/quieresAsignarlo';
@@ -27,13 +27,17 @@ import SeleccionarArchivo from './frontend/PACIENTE/seleccionVIDEO/seleccionarAr
 import SeleccionAudio from './frontend/PACIENTE/seleccionAUDIO/audio';
 import SeleccionVideo from './frontend/PACIENTE/seleccionVIDEO/video';
 import PerfilPaciente from './frontend/pages/usuario_paciente/usuario_paciente';
+import PerfilCuidador from './frontend/pages/usuario_cuidador/usuario_cuidador';
+
 // PROVIDERS
 import { PacienteProvider } from './frontend/Contexts/contextPaciente';
 import { MedicoProvider } from './frontend/Contexts/contextoMedico';
 import { RachaProvider } from './frontend/Contexts/providerracha';
+import { CuidadorProvider } from './frontend/Contexts/contextoCuidador';
 
 function App() {
   return (
+    <CuidadorProvider>
     <RachaProvider>
     <MedicoProvider>
       <PacienteProvider>
@@ -49,28 +53,31 @@ function App() {
               <Route path="/registroPaciente" element={<RegistroPaciente />} />
               <Route path="/seleccionAudio" element={<SeleccionAudio />} />
               <Route path="/seleccionVideo" element={<SeleccionVideo />} />
-              <Route path="/racha" element={<ListaRacha />} />
+              <Route path="/paciente/racha" element={<ListaRacha />} />
               <Route path="/subirvideo" element={<Video />} />
               <Route path="/registroMedico" element={<RegistroMedico />} />
               <Route path="/registroCuidador" element={<RegistroCuidador />} />
               <Route path="/inicioSesionCuidador" element={<InicioSesionCuidador />} />
               <Route path="/inicioSesionPaciente" element={<InicioSesionPaciente />} />
               <Route path="/inicioSesionMedico" element={<InicioSesionMedico />} />
-              <Route path="/notificaciones" element={<BotonNotificacion />} />
+              <Route path="/paciente/notificaciones" element={<BotonNotificacion />} />
               <Route path="/pendientesmedico" element={<PendientesMedico />} />
               <Route path="/reddecontactos" element={<ChatSimplificado />} />
-              <Route path="/reddecontactosmia" element={<ChatSimplificadomio />} />
+              <Route path="/paciente/reddecontactosmia" element={<ChatSimplificadomiopaciente />} />
+              <Route path="/medico/reddecontactosmia" element={<ChatSimplificado />} />
               <Route path="/crearEjercicio" element={<CrearEjercicio />} />
               <Route path="/asignarEjercicio" element={<AsignarEjercicio />} />
               <Route path='/quieresAsignar' element={<QuieresAsignarlo />} />
               <Route path="/video/:id" element={<Video />} />
               <Route path="/seleccionarArchivo/:id" element={<SeleccionarArchivo />} />
-              <Route path="/paginaGralPaciente" element={<PaginaGralPaciente />} />
+              <Route path="/paciente/perfil" element={<PerfilPaciente />} />
               <Route path="/paciente/ejercitar" element={<Ejercitar />} />
               <Route path="/paciente/eleccionEjercicio" element={<EleccionEjercicio />} />
               <Route path="/seleccionDeEjercicios" element={<SeleccionDeEjercicios />} />
               <Route path="/ejercicio/:id" element={<ConfirmarSeleccionEjercicio />} />
               <Route path="/accionEjercitar/:id" element={<AccionEjercitar />} />
+              <Route path="/cuidador/perfil" element={<PerfilCuidador />} />
+
               
             </Routes>
           </main>
@@ -78,6 +85,7 @@ function App() {
       </PacienteProvider>
     </MedicoProvider>
     </RachaProvider>
+    </CuidadorProvider>
   );
 }
 
