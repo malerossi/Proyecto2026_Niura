@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 
-export default function SeleccionAudio () {
+export default function SeleccionAudio() {
+  const { type } = useParams();
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   
@@ -49,7 +51,7 @@ export default function SeleccionAudio () {
 
     const link = document.createElement('a');
     link.href = audioUrl;
-    link.download = `grabacion_${new Date().toISOString().slice(0, 10)}.webm`;
+    link.download = `grabacion_${type}_${new Date().toISOString().slice(0, 10)}.webm`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -57,7 +59,7 @@ export default function SeleccionAudio () {
 
   return (
     <div style={{ padding: '20px', fontFamily: 'system-ui, sans-serif' }}>
-      <h2>Grabadora de Audio</h2>
+      <h2>Grabadora de Audio - Tipo: {type}</h2>
 
       <div>
         {!isRecording ? (
@@ -79,4 +81,4 @@ export default function SeleccionAudio () {
       )}
     </div>
   );
-};
+}
