@@ -20,7 +20,7 @@ const URL_PERFIL = "https://mocki.io/v1/fd125f8b-20ed-4509-8051-f34005b873d8";
 
 /* Endpoint que cambia el correo. */
 const URL_CAMBIAR_CORREO =
-  "https://mocki.io/v1/d42ede49-cf64-42f1-8da6-d7f40d7236b5";
+  "http://localhost:3000/paciente/cambiarCorreo"; // Cambialo por tu back real
 
 /* SOLO PRUEBAS: mocki no acepta POST, así que usamos GET.
    Pasalo a false cuando tengas el back real. */
@@ -186,16 +186,11 @@ export default function PerfilPaciente() {
     setMensaje("");
 
     try {
-      const respuesta = USAR_GET_PRUEBA
-        ? // Mocki solo acepta GET: mandamos los datos en la URL
-          await fetch(
-            `${URL_CAMBIAR_CORREO}?usuario=${encodeURIComponent(nombre)}&nuevoCorreo=${encodeURIComponent(correoLimpio)}`,
-          )
-        : // Back real: POST con los datos en el body
+      const respuesta =  // Back real: POST con los datos en el body
           await fetch(URL_CAMBIAR_CORREO, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ usuario: nombre, nuevoCorreo: correoLimpio }),
+            body: JSON.stringify({nuevoCorreo: correoLimpio }),
           });
 
       if (!respuesta.ok) {
