@@ -50,12 +50,18 @@ function App() {
           <main className="flex-1 flex items-center justify-center p-4">
             <Routes>
               <Route path="/" element={<PaginaGeneral />} />
-              <Route path="/elegirusuario" element ={<Elegirusuario/>}></Route>
+              <Route path="/elegirusuario" element ={<Elegirusuario/>} />
               <Route path="/registroPaciente" element={<RegistroPaciente />} />
               <Route path ="/cuidador/noticias" element={<Noticias />}  />
+<<<<<<< HEAD
+              <Route path="/seleccionAudio/:type" element={<SeleccionAudio />} />
+              <Route path="/seleccionVideo/:type" element={<SeleccionVideo />} />
+              <Route path="/racha" element={<ListaRacha />} />
+=======
               <Route path="/seleccionAudio" element={<SeleccionAudio />} />
               <Route path="/seleccionVideo" element={<SeleccionVideo />} />
               <Route path="/paciente/racha" element={<ListaRacha />} />
+>>>>>>> d70f75dc5dbcc5a5a64dd4d5dbe4710906137f78
               <Route path="/subirvideo" element={<Video />} />
               <Route path="/registroMedico" element={<RegistroMedico />} />
               <Route path="/registroCuidador" element={<RegistroCuidador />} />
@@ -72,10 +78,13 @@ function App() {
               <Route path='/quieresAsignar' element={<QuieresAsignarlo />} />
               <Route path="/video/:id" element={<Video />} />
               <Route path="/seleccionarArchivo/:id" element={<SeleccionarArchivo />} />
+<<<<<<< HEAD
+=======
               <Route path="/paciente/perfil" element={<PerfilPaciente />} />
+>>>>>>> d70f75dc5dbcc5a5a64dd4d5dbe4710906137f78
               <Route path="/paciente/ejercitar" element={<Ejercitar />} />
               <Route path="/paciente/eleccionEjercicio" element={<EleccionEjercicio />} />
-              <Route path="/seleccionDeEjercicios" element={<SeleccionDeEjercicios />} />
+              <Route path="/seleccionDeEjercicios/:type" element={<SeleccionDeEjercicios />} />
               <Route path="/ejercicio/:id" element={<ConfirmarSeleccionEjercicio />} />
               <Route path="/accionEjercitar/:id" element={<AccionEjercitar />} />
               <Route path="/cuidador/perfil" element={<PerfilCuidador />} />

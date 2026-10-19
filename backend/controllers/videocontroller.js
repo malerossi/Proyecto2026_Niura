@@ -1,5 +1,6 @@
 const cloudinary = require('../config/cloudinary');
 const streamifier = require('streamifier');
+const{completarTarea} = require('./usuarios.js')
 
 async function subirVideoPaciente(req, res) {
     try {
@@ -29,6 +30,8 @@ async function subirVideoPaciente(req, res) {
         };
 
         const result = await uploadToCloudinary(req.file.buffer);
+
+        completarTarea(req.body.id_usuario, 'subir_video_paciente');
 
         return res.status(200).json({
             message: 'Video subido con éxito',
