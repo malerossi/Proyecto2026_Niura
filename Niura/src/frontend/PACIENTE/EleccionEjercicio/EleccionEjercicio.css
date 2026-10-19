@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'Atkinson Hyperlegible';
+    src: url('AtkinsonHyperlegible-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+/* Contenedor principal (La tarjeta blanca/celeste claro) */
+.CajaEleccion {
+    background-color: #eaf3f9; /* Color de la tarjeta de fondo */
+    width: 848px;
+    min-height: 501px;
+    padding: 60px 40px 40px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra suave para que resalte */
+    position: relative; /* Muy importante para que la flecha se posicione bien */
+    text-align: center;
+    margin: 40px auto; /* Centra la tarjeta en la pantalla */
+  }
+  
+  /* El texto de "¿Qué quieres entrenar hoy?" */
+  .CajaEleccion p {
+    font-size: 32px; /* Más grande */
+    color: #000;
+    margin-top: 0;
+    margin-bottom: 50px;
+    font-weight: 500;
+    font-family: Atkinson Hyperlegible;
+  }
+  
+  /* El botón de la flecha para volver */
+  .CajaEleccion > img[alt="flecha"] {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: 35px; /* Tamaño de la flecha */
+    height: 35px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: opacity 0.2s;
+  }
+  
+  .CajaEleccion > img[alt="flecha"]:hover {
+    opacity: 0.7;
+  }
