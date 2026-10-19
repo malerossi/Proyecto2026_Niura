@@ -23,4 +23,4 @@ const query = async (text, params = []) => {
   }
 };
 
-module.exports = { pool, query }; 
+module.exports = { pool, query }

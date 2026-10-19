@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const llavesupersecreta = "llavesupersecreta"
-const { query } = require('./db.js');
+const { query } = require('../db.js');
 
 // 0: Paciente 1: Acompañante 2: Doctor
 
@@ -121,7 +121,7 @@ async function loginGeneral(req, res) {
 }
 
 async function agregarObjetos(req, res) {
-    const { token, idObjeto } = req.body;
+    const { idObjeto } = req.body;
 
     try {
         const idPaciente = payloadOriginal.id;
@@ -279,7 +279,7 @@ async function completarTarea(req, res) {
             });
         }
 
-    const estadoRacha = await actualizarRachaPaciente(user.id);
+    const estadoRacha = await actualizarRachaPaciente(req.user.id);
 
         return res.status(200).json({
             message: 'Tarea completada con éxito',
@@ -350,7 +350,7 @@ async function actualizarRachaPaciente(patientId) {
     };
 }
 
-async function enviarInvitacion(req, res) {
+async function enviarInvitacionAcompañante(req, res) {
     const { idPaciente } = req.body
     const idAcompanante = req.user.id
 
@@ -385,4 +385,230 @@ async function enviarInvitacion(req, res) {
     }
     
 }
-module.exports = {createPatient, createCompanion, createDoctor, loginGeneral, agregarObjetos, crearTarea, completarTarea}
+
+async function verInvitacionesAcompañante(req, res){
+    const {idPaciente} = req.user.id
+
+    try {
+        const result = await query(
+            "SELECT * FROM 'Acompañante_Paciente' WHERE idPaciente = $1 AND estado = 0", [idPaciente]
+        )
+        return res.status(200).json({message: 'Invitaciones obtenidas con éxito', invitaciones: result.rows})
+    } catch(e) {
+        console.error(e)
+        return res.status(500).json({message: 'Error interno del servidor', error: e.message})
+    }
+}
+
+async function aceptarInvitacionAcompañante(req, res){
+    const {idInvitacion, aceptar} = req.body
+    const idPaciente = req.user.id
+    if (invitacionId === undefined || aceptar === undefined) {
+        return res.status(400).json({ message: 'Faltan parámetros requeridos (invitacionId, aceptar)' });
+    }
+    try{
+        const result = await query(`UPDATE "Acompañante_Paciente" 
+             SET "estado" = $1 
+             WHERE "id" = $2 AND "idPaciente" = $3 AND "estado" = 0
+             RETURNING *`,
+            [nuevoEstado, invitacionId, idPaciente]
+        )
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({
+                message: 'No se encontró una invitación pendiente con ese ID para el paciente indicado'
+            });
+        }
+        const mensajeRespuesta = aceptar 
+            ? 'Invitación aceptada con éxito. El vínculo ha sido establecido.' 
+            : 'Invitación rechazada.';
+            return res.status(200).json({
+                message: mensajeRespuesta,
+                invitacion: result.rows[0]
+            });
+    
+        } catch (e) {
+            console.error(e);
+            return res.status(500).json({ 
+                message: 'Error interno del servidor', 
+                error: e.message 
+            });
+        }
+    }
+
+    async function enviarInvitacionDoctor(req, res) {
+    const { idPaciente } = req.body
+    const idDoctor = req.user.id
+
+    if(!idPaciente){
+        return res.status(400).json({message: 'Se requiere el ID del paciente'})
+    }
+
+    try {
+        const pacienteCheck = await query (
+            "SELECT * FROM 'Usuario' WHERE id = $1 AND rol = 0", [idPaciente]
+        )
+        if(pacienteCheck.rows.length === 0){
+            return res.status(404).json({message: 'Paciente no encontrado'})
+        }
+
+        const relacionCheck = await query(
+            "SELECT * FROM 'Doctor_Paciente' WHERE idDoctor = $1 AND idPaciente = $2", [idDoctor, idPaciente]
+        )
+        if(relacionCheck.rows.length > 0 && relacionCheck.rows[0].estado === 0){
+            return res.status(400).json({message: 'Ya le mandaste una invitación a este paciente'})
+        } else if (relacionCheck.rows.length > 0 && relacionCheck.rows[0].estado === 1){
+            return res.status(400).json({message: 'Ya eres médico de este paciente'})
+        } else if (relacionCheck.rows.length === 0) {
+           const result = await query(
+                "INSERT INTO 'Doctor_Paciente' (idDoctor, idPaciente, estado) VALUES ($1, $2, 0)", [idDoctor, idPaciente]
+            )
+            return res.status(200).json({message: 'Invitación enviada con éxito', invitacion: result.rows[0]}) 
+            }
+        } catch(e) {
+        console.error(e)
+        return res.status(500).json({message: 'Error interno del servidor', error: e.message})
+    }
+    
+}
+
+async function verInvitacionesDoctor(req, res){
+    const {idPaciente} = req.user.id
+
+    try {
+        const result = await query(
+            "SELECT * FROM 'Doctor_Paciente' WHERE idPaciente = $1 AND estado = 0", [idPaciente]
+        )
+        return res.status(200).json({message: 'Invitaciones obtenidas con éxito', invitaciones: result.rows})
+    } catch(e) {
+        console.error(e)
+        return res.status(500).json({message: 'Error interno del servidor', error: e.message})
+    }
+}
+
+async function aceptarInvitacionDoctor(req, res){
+    const {idInvitacion, aceptar} = req.body
+    const idPaciente = req.user.id
+    if (idInvitacion === undefined || aceptar === undefined) {
+        return res.status(400).json({ message: 'Faltan parámetros requeridos (idInvitacion, aceptar)' });
+    }
+    try{
+
+        const nuevoestado = aceptar ? 1 : 2
+        const result = await query(`UPDATE "Doctor_Paciente" 
+             SET "estado" = $1 
+             WHERE "id" = $2 AND "idPaciente" = $3 AND "estado" = 0
+             RETURNING *`,
+            [nuevoestado, idInvitacion, idPaciente]
+        )
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({
+                message: 'No se encontró una invitación pendiente con ese ID para el paciente indicado'
+            });
+        }
+        const mensajeRespuesta = aceptar 
+            ? 'Invitación aceptada con éxito. El vínculo ha sido establecido.' 
+            : 'Invitación rechazada.';
+            return res.status(200).json({
+                message: mensajeRespuesta,
+                invitacion: result.rows[0]
+            });
+    
+        } catch (e) {
+            console.error(e);
+            return res.status(500).json({ 
+                message: 'Error interno del servidor', 
+                error: e.message 
+            });
+        }
+    }
+
+async function enviarInvitacionDoctor(req, res) {
+    const { idPaciente } = req.body
+    const idDoctor = req.user.id
+    
+    if(!idPaciente){
+        return res.status(400).json({message: 'Se requiere el ID del paciente'})
+    }
+    
+    try {
+        const pacienteCheck = await query (
+             "SELECT * FROM 'Usuario' WHERE id = $1 AND rol = 0", [idPaciente]
+        )
+        if(pacienteCheck.rows.length === 0){
+            return res.status(404).json({message: 'Paciente no encontrado'})
+        }
+    
+        const relacionCheck = await query(
+            "SELECT * FROM 'Doctor_Paciente' WHERE idDoctor = $1 AND idPaciente = $2", [idDoctor, idPaciente]
+        )
+        if(relacionCheck.rows.length > 0 && relacionCheck.rows[0].estado === 0){
+            return res.status(400).json({message: 'Ya le mandaste una invitación a este paciente'})
+        } else if (relacionCheck.rows.length > 0 && relacionCheck.rows[0].estado === 1){
+            return res.status(400).json({message: 'Ya eres médico de este paciente'})
+        } else if (relacionCheck.rows.length === 0) {
+            const result = await query(
+                "INSERT INTO 'Doctor_Paciente' (idDoctor, idPaciente, estado) VALUES ($1, $2, 0)", [idDoctor, idPaciente]
+            )
+            return res.status(200).json({message: 'Invitación enviada con éxito', invitacion: result.rows[0]}) 
+            }
+        } catch(e) {
+            console.error(e)
+            return res.status(500).json({message: 'Error interno del servidor', error: e.message})
+        }
+        
+    }
+    
+async function verInvitacionesDoctor(req, res){
+        const {idPaciente} = req.user.id
+    
+        try {
+            const result = await query(
+                "SELECT * FROM 'Doctor_Paciente' WHERE idPaciente = $1 AND estado = 0", [idPaciente]
+            )
+            return res.status(200).json({message: 'Invitaciones obtenidas con éxito', invitaciones: result.rows})
+        } catch(e) {
+            console.error(e)
+            return res.status(500).json({message: 'Error interno del servidor', error: e.message})
+        }
+    }
+    
+async function aceptarInvitacionDoctor(req, res){
+        const {idInvitacion, aceptar} = req.body
+        const idPaciente = req.user.id
+        if (idInvitacion === undefined || aceptar === undefined) {
+            return res.status(400).json({ message: 'Faltan parámetros requeridos (idInvitacion, aceptar)' });
+        }
+        try{
+    
+            const nuevoestado = aceptar ? 1 : 2
+            const result = await query(`UPDATE "Doctor_Paciente" 
+                 SET "estado" = $1 
+                 WHERE "id" = $2 AND "idPaciente" = $3 AND "estado" = 0
+                 RETURNING *`,
+                [nuevoestado, idInvitacion, idPaciente]
+            )
+    
+            if (result.rows.length === 0) {
+                return res.status(404).json({
+                    message: 'No se encontró una invitación pendiente con ese ID para el paciente indicado'
+                });
+            }
+            const mensajeRespuesta = aceptar 
+                ? 'Invitación aceptada con éxito. El vínculo ha sido establecido.' 
+                : 'Invitación rechazada.';
+                return res.status(200).json({
+                    message: mensajeRespuesta,
+                    invitacion: result.rows[0]
+                });
+        
+            } catch (e) {
+                console.error(e);
+                return res.status(500).json({ 
+                    message: 'Error interno del servidor', 
+                    error: e.message 
+                });
+            }
+        }
+module.exports = {createPatient, createCompanion, createDoctor, loginGeneral, agregarObjetos, crearTarea, completarTarea, enviarInvitacionAcompañante, verInvitacionesAcompañante, aceptarInvitacionAcompañante, enviarInvitacionDoctor, verInvitacionesDoctor, aceptarInvitacionDoctor}
