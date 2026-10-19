@@ -100,7 +100,7 @@ export default function Header() {
             src={usuarioImg}
             alt="Usuario"
             activo={rutaActual.includes('inicioSesion') || rutaActual.includes('registro')}
-            onClick={() => navigate('/inicioSesionPaciente')}
+            onClick={() => navigate('/paciente/perfil')}
           />
           <NavItem
             src={rachaImg}
@@ -122,15 +122,15 @@ export default function Header() {
           <NavItem
             src={noticiasImg}
             alt="Noticias"
-            activo={rutaActual === '/notificaciones'}
-            onClick={() => navigate('/notificaciones')}
+            activo={rutaActual === '/paciente/notificaciones'}
+            onClick={() => navigate('/paciente/notificaciones')}
           />
 
           <NavItem
             src={tuRedImg}
             alt="Tu red"
             activo={rutaActual.includes('reddecontactos')}
-            onClick={() => navigate('/reddecontactosmia')}
+            onClick={() => navigate('/paciente/reddecontactosmia')}
           />
         </nav>
       </header>
@@ -147,35 +147,72 @@ export default function Header() {
           <NavItemMedico
             icono="mdi:home"
             label="inicio"
-            activo={rutaActual === '/pendientesmedico'}
-            onClick={() => navigate('/pendientesmedico')}
+            activo={rutaActual === '/medico/pendientesmedico'}
+            onClick={() => navigate('/medico/pendientesmedico')}
           />
 
           <NavItemMedico
             icono="mdi:account"
             label="tu usuario"
             activo={rutaActual.includes('inicioSesion') || rutaActual.includes('registro')}
-            onClick={() => navigate('/inicioSesionMedico')}
+            onClick={() => navigate('/medico/inicioSesionMedico')}
           />
 
           <NavItemMedico
             icono="mdi:bell"
             label="notificaciones"
-            activo={rutaActual === '/notificaciones'}
-            onClick={() => navigate('/notificaciones')}
+            activo={rutaActual === '/medico/notificaciones'}
+            onClick={() => navigate('/medico/notificaciones')}
           />
 
           <NavItemMedico
             icono="mdi:share-variant-outline"
             label="red de contactos"
             activo={rutaActual.includes('reddecontactos')}
-            onClick={() => navigate('/reddecontactosmia')}
+            onClick={() => navigate('/medico/reddecontactosmia')}
           />
         </nav>
       </header>
     );
   }
+  if (rutaActual.includes('cuidador')) {
+    return (
+      <header
+        style={estiloEscala}
+        className="w-full min-h-[calc(var(--u)*97)] bg-[#a1cfdb]/[0.52] px-4 py-2 flex items-center justify-center shrink-0 select-none font-[Helvetica,Arial,sans-serif] text-[#18243a]"
+      >
+        <nav className="flex flex-wrap items-center justify-center gap-x-[calc(var(--u)*150)] gap-y-2 w-full">
+          <NavItemMedico
+            icono="mdi:home"
+            label="inicio"
+            activo={rutaActual === '/medico/pendientesmedico'}
+            onClick={() => navigate('/medico/pendientesmedico')}
+          />
 
+          <NavItemMedico
+            icono="mdi:account"
+            label="tu usuario"
+            activo={rutaActual.includes('inicioSesion') || rutaActual.includes('registro')}
+            onClick={() => navigate('/cuidador/perfil')}
+          />
+
+          <NavItemMedico
+            icono="mdi:bell"
+            label="notificaciones"
+            activo={rutaActual === '/medico/notificaciones'}
+            onClick={() => navigate('/medico/notificaciones')}
+          />
+
+          <NavItemMedico
+            icono="mdi:share-variant-outline"
+            label="red de contactos"
+            activo={rutaActual.includes('reddecontactos')}
+            onClick={() => navigate('/medico/reddecontactosmia')}
+          />
+        </nav>
+      </header>
+    );
+  }
   // Cualquier otra ruta: sin header
   return null;
 }

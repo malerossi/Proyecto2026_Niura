@@ -1,10 +1,11 @@
 const pkg = require("pg");
 const { Pool } = pkg;
+const dotenv = require("dotenv");
 
 const pool = new Pool({
-  host: "ep-frosty-queen-acwcglms-pooler.sa-east-1.aws.neon.tech",
-  user: "neondb_owner",
-  password: "npg_0s3dhjYEXely",
+  host: process.env.DATABASE_HOST_NAME,
+  user: process.env.DATABASE_OWNER_NAME,
+  password: process.env.DATABASE_PASSWORD,
   database: "neondb",
   port: 5432,
   ssl: {
@@ -23,4 +24,4 @@ const query = async (text, params = []) => {
   }
 };
 
-module.exports = { pool, query }; 
+module.exports = { pool, query }
