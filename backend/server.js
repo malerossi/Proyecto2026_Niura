@@ -5,8 +5,8 @@ const {usuariosRouter} = require("./routes/usuarios.router.js")
 const {pacienteRouter} = require("./routes/paciente.router.js")
 const {doctorRouter} = require("./routes/doctor.router.js")
 const {acompananteRouter} = require("./routes/acompanante.router.js")
-const {verificarToken} = require("./middleware/verificartoken.js")
-const {upload} = require("./middleware/upload.js")
+const {verificarToken} = require("./middleware/verifytoken.js")
+
 const upload = require("./middleware/upload.js")
 const {videoRouter} = require("./routes/cloudinary.router.js")
 const http = require('http');
@@ -26,9 +26,7 @@ app.use("/doctor", verificarToken, doctorRouter)
 app.use("/acompañante", verificarToken, acompananteRouter)
 app.use("/videos", verificarToken, videoRouter)
 
-const express = require('express');
-const http = require('http');
-const { Server } = require('socket.io');
+
 
 
 app.use(express.static('public'));
