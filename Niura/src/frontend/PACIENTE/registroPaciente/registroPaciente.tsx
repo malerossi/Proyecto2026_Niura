@@ -37,6 +37,20 @@ export default function IniciodeSesion (){
 
     const personal= mail.includes("@")? mail.split("@")[0] : mail;
     const usuarioMail = personal.replace(/\s+/g, '')
+    fetch("http://localhost:3000/usuario/loginGeneral", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nombre,
+            apellido,
+            mail,
+            dni,
+            contraseña,
+            imagen
+        })
+    })
 
     return (
         <form className="Datos" onSubmit={handleSubmit}>
