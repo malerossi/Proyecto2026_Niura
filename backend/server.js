@@ -26,8 +26,6 @@ app.use("/doctor", verificarToken, doctorRouter)
 app.use("/acompañante", verificarToken, acompananteRouter)
 app.use("/videos", verificarToken, videoRouter)
 
-app.post('/video', verificarToken, videoRouter)
-
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
