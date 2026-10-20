@@ -153,58 +153,6 @@ async function agregarObjetos(req, res) {
     }
 }
 
-async function crearTarea(req, res) {
-  const { token, doctorID, patientID, nombre, descripcion, objetosRequeridos } = req.body;
-
-
-  try {
-      const userObjectsResult = await query(
-          `SELECT "objetoID", "cantidad" FROM "Paciente_Objeto" WHERE "pacienteID" = $1`,
-          [patientID]
-      );
-
-      const inventarioPaciente = userObjectsResult.rows; 
-
-      const tieneObjetosSuficientes = (objetosRequeridos || []).every(reqObj => {
-          const posee = inventarioPaciente.find(inv => inv.objetoID === reqObj.objetoID);
-          return posee && posee.cantidad >= reqObj.cantidad;
-      });
-
-      if (!tieneObjetosSuficientes) {
-          return res.status(400).json({
-              message: 'El paciente no posee los objetos o las cantidades necesarias para realizar la tarea'
-          });
-      }
-
-      const tareaResult = await query(
-          `INSERT INTO "Tarea" ("doctorID", "patientID", "nombre", "descripcion", "estado") 
-           VALUES ($1, $2, $3, $4, 0) 
-           RETURNING *`,
-          [doctorID, patientID, nombre, descripcion]
-      );
-
-      const nuevaTarea = tareaResult.rows[0];
-
-      if (objetosRequeridos && objetosRequeridos.length > 0) {
-          for (const item of objetosRequeridos) {
-              await query(
-                  `INSERT INTO "Tarea_Objeto" ("tarea", "objeto", "cantidad") 
-                   VALUES ($1, $2, $3)`,
-                  [nuevaTarea.id, item.objetoID, item.cantidad]
-              );
-          }
-      }
-
-      return res.status(201).json({
-          message: 'Tarea creada y asignada con éxito',
-          tarea: nuevaTarea
-      });
-
-  } catch (e) {
-      console.error(e);
-      return res.status(500).json({ message: 'Error interno del servidor', error: e.message });
-  }
-}
 
 async function crearTarea(req, res) {
     const { token, idPaciente, nombre, descripcion, puntaje, objetosRequeridos } = req.body;
@@ -611,4 +559,41 @@ async function aceptarInvitacionDoctor(req, res){
                 });
             }
         }
-module.exports = {createPatient, createCompanion, createDoctor, loginGeneral, agregarObjetos, crearTarea, completarTarea, enviarInvitacionAcompañante, verInvitacionesAcompañante, aceptarInvitacionAcompañante, enviarInvitacionDoctor, verInvitacionesDoctor, aceptarInvitacionDoctor}
+
+async function verTareas(req, res){
+const patientId = req.user.id
+const result = await query("SELECT * FROM 'Tarea' WHERE idPaciente = $1", [patientId])
+return (res.status(200).json({message: 'Tareas obtenidas con éxito', tareas: result.rows})
+)
+}
+
+async function verRacha(req, res) {
+    const patientId = req.user.id
+    const result = await query("SELECT currentStreak FROM 'Paciente_Racha' WHERE idPaciente = $1", [patientId])
+    if(result.rows.length === 0){
+        return res.status(404).json({message: 'Racha no encontrada'})
+    } else return res.status(200).json({message: 'Racha obtenida con éxito', racha: result.rows[0].currentStreak})
+
+}
+
+async function verDatosPaciente(req, res) {
+    const patientId = req.user.id
+    const result = await query("SELECT nombre, apellido, email FROM 'Usuario' WHERE id = $1 AND rol = 0", [patientId])
+    if (result.rows.length === 0) {
+        return res.status(404).json({ message: 'Paciente no encontrado' });
+    }
+}
+
+async function cambiarCorreo(req, res){
+    const id = req.user.id
+    const {email} = req.body
+
+    const result = await query ("UPDATE 'Usuario' SET email = $1 WHERE id = $2 RETURNING *", [email, patientId])
+    if (result.rows.length === 0) {
+        return res.status(404).json({ message: 'Paciente no encontrado' });
+    } else {
+        return {status: 200, json: {data: "ok"}}
+    }
+}
+
+    module.exports = {createPatient, createCompanion, createDoctor, loginGeneral, agregarObjetos, crearTarea, completarTarea, enviarInvitacionAcompañante, verInvitacionesAcompañante, cambiarCorreo, aceptarInvitacionAcompañante, enviarInvitacionDoctor, verInvitacionesDoctor, aceptarInvitacionDoctor, verTareas, verRacha, verDatosPaciente}

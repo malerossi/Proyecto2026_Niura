@@ -28,6 +28,7 @@ import SeleccionAudio from './frontend/PACIENTE/seleccionAUDIO/audio';
 import SeleccionVideo from './frontend/PACIENTE/seleccionVIDEO/video';
 import PerfilPaciente from './frontend/pages/usuario_paciente/usuario_paciente';
 import PerfilCuidador from './frontend/pages/usuario_cuidador/usuario_cuidador';
+import Noticias from './frontend/pages/notificaciones/notificaciones_cuidador';
 
 // PROVIDERS
 import { PacienteProvider } from './frontend/Contexts/contextPaciente';
@@ -51,12 +52,10 @@ function App() {
               <Route path="/" element={<PaginaGeneral />} />
               <Route path="/elegirusuario" element ={<Elegirusuario/>} />
               <Route path="/registroPaciente" element={<RegistroPaciente />} />
+<<<<<<< HEAD
               <Route path="/seleccionAudio/:type" element={<SeleccionAudio />} />
               <Route path="/seleccionVideo/:type" element={<SeleccionVideo />} />
               <Route path="/racha" element={<ListaRacha />} />
-              <Route path="/seleccionAudio" element={<SeleccionAudio />} />
-              <Route path="/seleccionVideo" element={<SeleccionVideo />} />
-              <Route path="/paciente/racha" element={<ListaRacha />} />
               <Route path="/subirvideo" element={<Video />} />
               <Route path="/registroMedico" element={<RegistroMedico />} />
               <Route path="/registroCuidador" element={<RegistroCuidador />} />

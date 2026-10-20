@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const llavesupersecreta = "llavesupersecreta";
-const { query } = require('./db.js');
+const { query } = require('../db');
 const bcrypt = require('bcrypt');
 const express = require('express');
 
