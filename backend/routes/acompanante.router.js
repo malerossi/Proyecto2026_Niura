@@ -4,3 +4,5 @@ const { cambiarCorreo, enviarInvitacionAcompañante } = require("../controllers/
 
 router.post("/enviarInvitacionAcompañante", enviarInvitacionAcompañante)
 router.put("/cambiarCorreo", cambiarCorreo)
+
+module.exports = router
