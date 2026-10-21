@@ -29,7 +29,8 @@ import SeleccionVideo from './frontend/PACIENTE/seleccionVIDEO/video';
 import PerfilPaciente from './frontend/pages/usuario_paciente/usuario_paciente';
 import PerfilCuidador from './frontend/pages/usuario_cuidador/usuario_cuidador';
 import Noticias from './frontend/pages/notificaciones/notificaciones_cuidador';
-
+import Pacientes from './frontend/pages/Pacientes';
+import DetallePaciente from './frontend/pages/DetallePaciente';
 // PROVIDERS
 import { PacienteProvider } from './frontend/Contexts/contextPaciente';
 import { MedicoProvider } from './frontend/Contexts/contextoMedico';
@@ -49,12 +50,15 @@ function App() {
           {/* Rutas de la aplicación */}
           <main className="flex-1 flex items-center justify-center p-4">
             <Routes>
+            <Route path="/pacientes" element={<Pacientes />} />
+            <Route path="/pacientes/:id" element={<DetallePaciente />} />
+              <Route path="/noticias" element={<Noticias />} />
               <Route path="/" element={<PaginaGeneral />} />
               <Route path="/elegirusuario" element ={<Elegirusuario/>} />
               <Route path="/registroPaciente" element={<RegistroPaciente />} />
               <Route path="/seleccionAudio/:type" element={<SeleccionAudio />} />
               <Route path="/seleccionVideo/:type" element={<SeleccionVideo />} />
-              <Route path="/racha" element={<ListaRacha />} />
+              <Route path="/paciente/racha" element={<ListaRacha />} />
               <Route path="/subirvideo" element={<Video />} />
               <Route path="/registroMedico" element={<RegistroMedico />} />
               <Route path="/registroCuidador" element={<RegistroCuidador />} />
