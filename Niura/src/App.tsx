@@ -52,7 +52,6 @@ function App() {
               <Route path="/" element={<PaginaGeneral />} />
               <Route path="/elegirusuario" element ={<Elegirusuario/>} />
               <Route path="/registroPaciente" element={<RegistroPaciente />} />
-              <Route path ="/cuidador/noticias" element={<Noticias />}  />
               <Route path="/seleccionAudio/:type" element={<SeleccionAudio />} />
               <Route path="/seleccionVideo/:type" element={<SeleccionVideo />} />
               <Route path="/racha" element={<ListaRacha />} />
