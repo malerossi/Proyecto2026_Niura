@@ -44,10 +44,10 @@ export interface DatosBackNotificacion {
 /*   alrededor)                                                        */
 /* ================================================================== */
 // Pegá acá tu URL de mocki
-const URL_NOTIFICACIONES = "https://mocki.io/v1/106ec522-2111-4490-805b-040b1e6e69a1";
+const URL_NOTIFICACIONES = "https://mocki.io/v1/f0be5fa9-b312-4338-8e26-e3fdea68030c";
 
-async function pedirNotificaciones() {
-  const respuesta = await fetch(URL_NOTIFICACIONES);
+async function pedir(url: string) {
+  const respuesta = await fetch(url);
   if (!respuesta.ok) throw new Error(`El servidor respondió ${respuesta.status}`);
   return respuesta.json();
 }
@@ -67,7 +67,7 @@ export default function Noticias() {
 
   // Al entrar: pedir las notificaciones (una sola vez)
   useEffect(() => {
-    pedirNotificaciones()
+    pedir(URL_NOTIFICACIONES)
       .then((lista) => {
         // Tiene que ser una lista; si no, la pantalla se rompería
         if (!Array.isArray(lista)) throw new Error("El back no devolvió una lista de notificaciones");

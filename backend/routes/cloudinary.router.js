@@ -4,3 +4,5 @@ const {subirVideoPaciente} = require("../controllers/videocontroller.js")
 const upload = require("../middleware/upload.js")
 
 router.post("/subirVideoPaciente", upload.single('video'), subirVideoPaciente)
+
+module.exports = router
