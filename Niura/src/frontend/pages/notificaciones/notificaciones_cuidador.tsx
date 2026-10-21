@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { CSSProperties } from "react";
+import { useNavigate } from "react-router-dom";
 
 /* ================================================================== */
 /* TIPOS: así llega cada notificación del back                         */
@@ -32,24 +33,39 @@ export interface DatosBackNotificacion {
   remitente: Remitente;
   fecha_envio: string;
   leida: boolean;
-  redireccion?: Redireccion; // por ahora no se usa en esta pantalla
+  redireccion?: Redireccion;
 }
 
 /* ================================================================== */
 /* BACK (mocki)                                                        */
 /*                                                                     */
 /* Formato propuesto para el back real:                                */
-/*  GET notificaciones → DatosBackNotificacion[]                       */
-/*  (todas las notificaciones, directamente la lista, sin objeto       */
-/*   alrededor)                                                        */
+/*  notificaciones → DatosBackNotificacion[]                           */
+/*  (directamente la lista, sin objeto alrededor; son todas las        */
+/*   notificaciones, sin filtrar por tipo de usuario)                  */
+/*  eliminar notificación → { id_notificacion }                        */
+/*  (se llama al tocar una notificación, antes de redirigir)           */
 /* ================================================================== */
-// Pegá acá tu URL de mocki
 const URL_NOTIFICACIONES = "https://mocki.io/v1/f0be5fa9-b312-4338-8e26-e3fdea68030c";
+// Mocki que responde {"data":"ok"}
+const URL_ELIMINAR_NOTIFICACION = "https://mocki.io/v1/d42ede49-cf64-42f1-8da6-d7f40d7236b5";
 
-async function pedir(url: string) {
-  const respuesta = await fetch(url);
+// Mocki solo acepta GET, así que los datos van en la URL.
+// Con el back real: pasar a POST/DELETE con los datos en el body.
+async function pedir(url: string, datos?: Record<string, string>) {
+  const consulta = datos ? `?${new URLSearchParams(datos)}` : "";
+  const respuesta = await fetch(`${url}${consulta}`);
   if (!respuesta.ok) throw new Error(`El servidor respondió ${respuesta.status}`);
   return respuesta.json();
+}
+
+// Le pide al back que saque la notificación (le pasamos el id de la que se tocó)
+async function eliminarEnBack(idNotificacion: number) {
+  const respuesta = await pedir(URL_ELIMINAR_NOTIFICACION, {
+    id_notificacion: String(idNotificacion),
+  });
+  // SOLO PRUEBAS: el mocki responde {"data":"ok"}. Borrar con el back real.
+  if (respuesta?.data !== "ok") throw new Error("Respuesta inesperada");
 }
 
 /* ================================================================== */
@@ -61,9 +77,11 @@ const estiloEscala = {
 } as CSSProperties;
 
 export default function Noticias() {
+  const navigate = useNavigate();
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(false);
   const [notificaciones, setNotificaciones] = useState<DatosBackNotificacion[]>([]);
+  const [enviando, setEnviando] = useState(false);
 
   // Al entrar: pedir las notificaciones (una sola vez)
   useEffect(() => {
@@ -79,6 +97,24 @@ export default function Noticias() {
       })
       .finally(() => setCargando(false));
   }, []);
+
+  // Al tocar una notificación: se saca del back y, si el back confirma,
+  // desaparece de la lista y vamos a la página de su redirección.
+  async function abrir(n: DatosBackNotificacion) {
+    if (!n.redireccion || enviando) return;
+    setEnviando(true);
+    try {
+      await eliminarEnBack(n.id_notificacion);
+      setNotificaciones((anteriores) =>
+        anteriores.filter((x) => x.id_notificacion !== n.id_notificacion),
+      );
+      navigate(n.redireccion.ruta);
+    } catch (e) {
+      console.error(e); // si falla, la notificación se queda y no se navega
+    } finally {
+      setEnviando(false);
+    }
+  }
 
   // Las más nuevas arriba
   const ordenadas = [...notificaciones].sort(
@@ -105,16 +141,21 @@ export default function Noticias() {
 
         <ul className="flex w-[calc(var(--u)*655)] max-w-full flex-col gap-[calc(var(--u)*12)]">
           {ordenadas.map((n) => (
-            <li
-              key={n.id_notificacion}
-              className="rounded-[calc(var(--u)*10)] bg-[#ddeafd] px-[calc(var(--u)*23)] py-[calc(var(--u)*10)] shadow-[0_3px_4px_rgba(0,0,0,0.3)]"
-            >
-              <p className="text-[length:calc(var(--u)*15)] font-bold uppercase leading-tight text-black">
-                {n.remitente.nombre}
-              </p>
-              <p className="mt-[calc(var(--u)*6)] text-[length:calc(var(--u)*14)] leading-tight text-black">
-                {n.mensaje}
-              </p>
+            <li key={n.id_notificacion}>
+              {/* Sin redirección no se puede tocar */}
+              <button
+                type="button"
+                disabled={!n.redireccion || enviando}
+                onClick={() => abrir(n)}
+                className="block w-full rounded-[calc(var(--u)*10)] bg-[#ddeafd] px-[calc(var(--u)*23)] py-[calc(var(--u)*10)] text-left shadow-[0_3px_4px_rgba(0,0,0,0.3)] enabled:cursor-pointer enabled:hover:bg-[#cfe1fb]"
+              >
+                <span className="block text-[length:calc(var(--u)*15)] font-bold uppercase leading-tight text-black">
+                  {n.remitente.nombre}
+                </span>
+                <span className="mt-[calc(var(--u)*6)] block text-[length:calc(var(--u)*14)] leading-tight text-black">
+                  {n.mensaje}
+                </span>
+              </button>
             </li>
           ))}
         </ul>

@@ -43,6 +43,7 @@ export default function IniciodeSesion (){
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
+            "rol": "paciente",
             nombre,
             apellido,
             mail,
