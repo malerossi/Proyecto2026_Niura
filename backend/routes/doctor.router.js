@@ -5,3 +5,5 @@ const { crearTarea, enviarInvitacionDoctor, cambiarCorreo} = require("../control
 router.post("/crearTarea", crearTarea)
 router.post("/enviarInvitacionDoctor", enviarInvitacionDoctor)
 router.put("/cambiarCorreo", cambiarCorreo)
+
+module.exports = router

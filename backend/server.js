@@ -1,14 +1,14 @@
 const express = require('express')
 const app = express()
 const PORT = 3000
-const {usuariosRouter} = require("./routes/usuarios.router.js")
-const {pacienteRouter} = require("./routes/paciente.router.js")
-const {doctorRouter} = require("./routes/doctor.router.js")
-const {acompananteRouter} = require("./routes/acompanante.router.js")
+const usuariosRouter = require("./routes/usuarios.router.js")
+const pacienteRouter = require("./routes/paciente.router.js")
+const doctorRouter = require("./routes/doctor.router.js")
+const acompananteRouter = require("./routes/acompanante.router.js")
 const {verificarToken} = require("./middleware/verifytoken.js")
 
 const upload = require("./middleware/upload.js")
-const {videoRouter} = require("./routes/cloudinary.router.js")
+const videoRouter = require("./routes/cloudinary.router.js")
 const http = require('http');
 const { Server } = require('socket.io');
 const db = require('./db');

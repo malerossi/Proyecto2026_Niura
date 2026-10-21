@@ -6,7 +6,7 @@ const express = require('express');
 
 function verificarToken(req, res, next) {
     const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1]; // Formato "Bearer TOKEN" o el propio token si viene directo
+    const token = authHeader && authHeader.split(' ')[1]; 
 
     const tokenAUsar = token || req.body.token;
 
@@ -16,7 +16,7 @@ function verificarToken(req, res, next) {
 
     try {
         const decoded = jwt.verify(tokenAUsar, llavesupersecreta);
-        req.user = decoded; // Guardamos el payload (id, email, rol) en la request
+        req.user = decoded;
         next();
     } catch (e) {
         return res.status(403).json({ message: 'Token inválido o expirado' });
