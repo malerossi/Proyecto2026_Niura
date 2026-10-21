@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import {arrowback.png} from './arrowback.png';
+import arrowback from './arrowback.png';
 
 export type Ejercicios = {
     id: number | string;
@@ -39,7 +39,7 @@ export default function SeleccionDeEjercicios() {
     return (
         <div>
             <h1>Tu selección de hoy</h1>
-            <img src="" alt="" onClick={handleNavigateBack}/>
+            <img src={arrowback} alt="arrowback" className="arrowback" onClick={handleNavigateBack}/>
             <ul>
                 {ejercicios.map((ejercicio) => (
                     <li key={ejercicio.id}>
