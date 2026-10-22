@@ -50,9 +50,10 @@ function App() {
           {/* Rutas de la aplicación */}
           <main className="flex-1 flex items-center justify-center p-4">
             <Routes>
-            <Route path="/pacientes" element={<Pacientes />} />
-            <Route path="/pacientes/:id" element={<DetallePaciente />} />
-              <Route path="/noticias" element={<Noticias />} />
+            <Route path="/medico/pacient" element={<Pacientes />} />
+            <Route path="/medico/pacient/:id" element={<DetallePaciente />} />
+              <Route path="/cuidador/noticias" element={<Noticias />} />
+              <Route path="/medico/noticias" element={<Noticias />} />
               <Route path="/" element={<PaginaGeneral />} />
               <Route path="/elegirusuario" element ={<Elegirusuario/>} />
               <Route path="/registroPaciente" element={<RegistroPaciente />} />

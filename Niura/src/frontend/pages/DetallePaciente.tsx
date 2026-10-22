@@ -1,4 +1,3 @@
-
 import { Icon } from '@iconify/react';
 import { useNavigate } from 'react-router-dom';
 import { useMedico } from '../Contexts/contextoMedico';
@@ -12,55 +11,65 @@ export default function DetallePaciente() {
     }
 
     return (
-        <main className="min-h-screen bg-slate-50 px-6 py-8 md:px-10">
-            <div className="mx-auto max-w-4xl">
-                <button
-                    type="button"
-                    onClick={() => navigate('/pacientes')}
-                    className="mb-6 flex items-center gap-2 text-sky-700 hover:text-sky-900"
-                >
-                    <Icon icon="mdi:arrow-left" className="h-5 w-5" />
-                    Volver a pacientes
-                </button>
+        <main >
+            <div className="mx-auto max-w-[910px]">
 
-                <section className="overflow-hidden rounded-2xl border border-sky-100 bg-white shadow-sm">
-                    <div className="flex flex-col items-center gap-4 bg-sky-100 px-6 py-10 sm:flex-row sm:justify-start">
-                        {pacienteActivo.avatar ? (
-                            <img
-                                src={pacienteActivo.avatar}
-                                alt={`${pacienteActivo.nombre} ${pacienteActivo.apellido}`}
-                                className="h-28 w-28 rounded-full object-cover"
-                            />
-                        ) : (
-                            <Icon
-                                icon="mdi:account-circle"
-                                className="h-28 w-28 text-sky-600"
-                            />
-                        )}
+                {/* Nombre del paciente */}
+                <h1 className="mb-14 text-center text-2xl text-black sm:text-left sm:text-3xl">
+                    <span className="font-bold">Paciente:</span>{' '}
+                    {pacienteActivo.nombre} {pacienteActivo.apellido}
+                </h1>
 
-                        <div>
-                            <h1 className="text-2xl font-bold text-slate-800">
-                                {pacienteActivo.nombre} {pacienteActivo.apellido}
-                            </h1>
-                            <p className="mt-2 text-slate-600">
-                                {pacienteActivo.rol}
-                            </p>
-                        </div>
-                    </div>
+                {/* Tarjetas principales */}
+                <div className="grid grid-cols-1 justify-items-center gap-8 sm:grid-cols-3 sm:gap-6">
 
-                    <div className="p-6">
-                        <h2 className="mb-4 text-lg font-semibold text-slate-800">
-                            Información del paciente
-                        </h2>
+                    {/* Ver historial */}
+                    <button
+                        type="button"
+                        onClick={() => navigate(`/medico/pacient/${pacienteActivo.id}/historial`)}
+                        className="flex h-[260px] w-full max-w-[270px] items-center justify-center rounded-xl border-l-[11px] border-[#827d70] bg-gradient-to-b from-[#d6eaff] to-[#51a9d8] px-4 text-center text-2xl font-bold text-black shadow-md transition-transform hover:scale-[1.03]"
+                    >
+                        <span className="drop-shadow-[2px_3px_2px_rgba(0,0,0,0.45)]">
+                            Ver historial
+                        </span>
+                    </button>
 
-                        <p className="text-slate-600">
-                            <span className="font-medium text-slate-800">
-                                ID:
-                            </span>{' '}
-                            {pacienteActivo.id}
-                        </p>
-                    </div>
-                </section>
+                    {/* Ver progreso */}
+                    <button
+                        type="button"
+                        onClick={() => navigate(`/medico/pacient/${pacienteActivo.id}/progreso`)}
+                        className="flex h-[260px] w-full max-w-[270px] items-center justify-center rounded-xl border-l-[11px] border-[#827d70] bg-gradient-to-b from-[#e4edfa] to-[#f2df91] px-4 text-center text-2xl font-bold text-black shadow-md transition-transform hover:scale-[1.03]"
+                    >
+                        <span className="drop-shadow-[2px_3px_2px_rgba(0,0,0,0.45)]">
+                            Ver progreso
+                        </span>
+                    </button>
+
+                    {/* Asignar ejercicios */}
+                    <button
+                        type="button"
+                        onClick={() => navigate(`/medico/pacient/${pacienteActivo.id}/ejercicios`)}
+                        className="flex h-[260px] w-full max-w-[270px] items-center justify-center rounded-xl border-l-[11px] border-[#827d70] bg-gradient-to-b from-[#d6eaff] to-[#9bd2d4] px-4 text-center text-2xl font-bold text-black shadow-md transition-transform hover:scale-[1.03]"
+                    >
+                        <span className="max-w-[190px] drop-shadow-[2px_3px_2px_rgba(0,0,0,0.45)]">
+                            Asignar ejercicios
+                        </span>
+                    </button>
+
+                </div>
+
+                {/* Cambiar paciente */}
+                <div className="mt-16 flex justify-center">
+                    <button
+                        type="button"
+                        onClick={() => navigate('/medico/pacient')}
+                        className="flex items-center gap-3 rounded-xl bg-[#087bff] px-3 py-2 text-xl font-bold text-white shadow-md transition-colors hover:bg-blue-700"
+                    >
+                        Cambiar paciente
+                        <Icon icon="mdi:swap-horizontal" className="h-7 w-7" />
+                    </button>
+                </div>
+
             </div>
         </main>
     );
