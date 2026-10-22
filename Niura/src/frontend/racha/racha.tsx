@@ -1,147 +1,48 @@
-import * as React from 'react';
-import { useRacha } from '../Contexts/contextracha';
+import * as React from "react";
+import { useRacha } from "../Contexts/contextracha";
 
 export const ListaRacha = () => {
-  // Consumimos todo del contexto
-  const { rachaActual, rachaMaxima, historial, toggleDia } = useRacha();
+  // Consumimos los datos del contexto de la racha
+  const { rachaActual, historial } = useRacha();
 
-  const [mes, setMes] = React.useState(new Date().getMonth() + 1);
-  const [año, setAño] = React.useState(new Date().getFullYear());
+  // Objetivo temporal: llegar a los 30 días
+  const proximoObjetivo = 30;
 
-  const moverMes = (delta: number) => {
-    const fechaActual = new Date(año, mes - 1, 1);
-    fechaActual.setMonth(fechaActual.getMonth() + delta);
+  // Calculamos cuántos días faltan para llegar al objetivo
+  const diasRestantes = Math.max(0, proximoObjetivo - rachaActual);
 
-    setMes(fechaActual.getMonth() + 1);
-    setAño(fechaActual.getFullYear());
-  };
+  // Estimamos las semanas suponiendo que se completa un día por día
+  const semanasRestantes = Math.ceil(diasRestantes / 7);
 
-  React.useEffect(() => {
-    const detectarTecla = (evento: KeyboardEvent) => {
-      if (evento.key === "ArrowLeft") {
-        moverMes(-1);
-      }
-
-      if (evento.key === "ArrowRight") {
-        moverMes(1);
-      }
-    };
-
-    window.addEventListener("keydown", detectarTecla);
-
-    return () => {
-      window.removeEventListener("keydown", detectarTecla);
-    };
-  }, [año, mes]);
-
-  const nombreMes = new Intl.DateTimeFormat("es-ES", {
-    month: "long",
-    year: "numeric",
-  }).format(new Date(año, mes - 1, 1));
+  // Conservamos el historial disponible para futuras estadísticas.
+  // La estimación actual usa la racha actual y el objetivo temporal.
+  const diasCompletados = historial.filter(
+    (dia) => dia.completado
+  ).length;
 
   return (
-    <div className="relative min-h-screen">
+    <div className="min-h-screen w-full bg-gradient-to-b from-[#a3d5df] to-[#d3e1f5] px-4 pt-[60px]">
+      {/* Panel principal */}
+      <div className="mx-auto flex min-h-[500px] w-full max-w-[904px] flex-col items-center rounded-[11px] bg-[#e4d585] px-6 pb-7 pt-8 shadow-md sm:px-12">
 
-      <div className="flex justify-center pt-8 pb-4 text-2xl font-semibold capitalize">
-        {nombreMes}
+        {/* Título de la racha */}
+        <h1 className="text-center text-2xl font-bold leading-tight text-[#34445f] sm:text-[34px]">
+          Llevas una racha de {rachaActual} días
+        </h1>
+
+        {/* Rectángulo celeste vacío */}
+        <div
+          className="mt-[55px] h-[238px] w-full max-w-[544px] rounded-[14px] border-[3px] border-black bg-[#deebfc]"
+          aria-label="Espacio para la representación gráfica de la racha"
+        />
+
+        {/* Estimación del próximo objetivo */}
+        <p className="mt-7 max-w-[650px] text-center text-xl leading-[1.4] text-[#14284b] sm:text-[30px]">
+          A este ritmo, estimamos que llegarás a tu próximo objetivo en{" "}
+          {semanasRestantes}{" "}
+          {semanasRestantes === 1 ? "semana" : "semanas"}
+        </p>
       </div>
-
-      {/* BOTÓN ATRÁS */}
-      <button
-        onClick={() => moverMes(-1)}
-        className="
-          fixed left-4 top-1/2 -translate-y-1/2
-          z-50
-          flex h-16 w-16 items-center justify-center
-          rounded-full
-          bg-black/10
-          text-4xl text-black/30
-          backdrop-blur-sm
-          transition-all duration-300
-          hover:bg-black/20
-          hover:text-black
-          hover:scale-110
-          cursor-pointer
-        "
-        aria-label="Mes anterior"
-      >
-        <svg
-          className="h-8 w-8"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M19 12H5" />
-          <path d="M12 19l-7-7 7-7" />
-        </svg>
-      </button>
-
-      {/* BOTÓN ADELANTE */}
-      <button
-        onClick={() => moverMes(1)}
-        className="
-          fixed right-4 top-1/2 -translate-y-1/2
-          z-50
-          flex h-16 w-16 items-center justify-center
-          rounded-full
-          bg-black/10
-          text-4xl text-black/30
-          backdrop-blur-sm
-          transition-all duration-300
-          hover:bg-black/20
-          hover:text-black
-          hover:scale-110
-          cursor-pointer
-        "
-        aria-label="Mes siguiente"
-      >
-        <svg
-          className="h-8 w-8"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M5 12h14" />
-          <path d="M12 5l7 7-7 7" />
-        </svg>
-      </button>
-
-      {/* CONTENEDOR DE LA RACHA */}
-      <div className="contenedor-racha">
-        {historial
-          .filter(
-            (dia) =>
-              dia.fecha.getFullYear() === año && dia.fecha.getMonth() + 1 === mes
-          )
-          .map((dia, index) => (
-            <React.Fragment key={index}>
-              <div>
-                <img
-                  className="cuadrado-verde cursor-pointer"
-                  onClick={() => toggleDia(dia.fecha)}
-                  src={
-                    dia.completado
-                      ? "/imagenes/Racha_prendida.png"
-                      : "/imagenes/Racha_apagada.png"
-                  }
-                  title={`${dia.fecha.getDate()}/${dia.fecha.getMonth() + 1}: ${
-                    dia.completado ? "Completado" : "No completado"
-                  }`}
-                />
-
-                <p>{dia.fecha.getDate()}</p>
-              </div>
-            </React.Fragment>
-          ))}
-      </div>
-      <p>la racha maxima es: {rachaMaxima}</p>
-      <p>la racha actual es: {rachaActual}</p>
     </div>
   );
 };

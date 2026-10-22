@@ -147,22 +147,22 @@ export default function Header() {
           <NavItemMedico
             icono="mdi:home"
             label="inicio"
-            activo={rutaActual === '/medico/pendientesmedico'}
-            onClick={() => navigate('/medico/pendientesmedico')}
+            activo={rutaActual === '/medico/pacient'}
+            onClick={() => navigate('/medico/pacient')}
           />
 
           <NavItemMedico
             icono="mdi:account"
             label="tu usuario"
-            activo={rutaActual.includes('inicioSesion') || rutaActual.includes('registro')}
-            onClick={() => navigate('/medico/inicioSesionMedico')}
+            activo={rutaActual === '/medico/perfil'}
+            onClick={() => navigate('/medico/perfil')}
           />
 
           <NavItemMedico
             icono="mdi:bell"
             label="notificaciones"
-            activo={rutaActual === '/medico/notificaciones'}
-            onClick={() => navigate('/medico/notificaciones')}
+            activo={rutaActual === '/medico/noticias'}
+            onClick={() => navigate('/medico/noticias')}
           />
 
           <NavItemMedico
