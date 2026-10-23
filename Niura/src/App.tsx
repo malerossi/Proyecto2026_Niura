@@ -31,6 +31,8 @@ import PerfilCuidador from './frontend/pages/usuario_cuidador/usuario_cuidador';
 import Noticias from './frontend/pages/notificaciones/notificaciones_cuidador';
 import Pacientes from './frontend/pages/Pacientes';
 import DetallePaciente from './frontend/pages/DetallePaciente';
+import Elegirinicio from './frontend/pages/eleccion_de_usuario/elegirinicio';
+import NoticiasPaciente from './frontend/pages/notificaciones/notificaciones';
 // PROVIDERS
 import { PacienteProvider } from './frontend/Contexts/contextPaciente';
 import { MedicoProvider } from './frontend/Contexts/contextoMedico';
@@ -53,7 +55,9 @@ function App() {
             <Route path="/medico/pacient" element={<Pacientes />} />
             <Route path="/medico/pacient/:id" element={<DetallePaciente />} />
               <Route path="/cuidador/noticias" element={<Noticias />} />
+              <Route path="/elegirinicio" element={<Elegirinicio/>} />
               <Route path="/medico/noticias" element={<Noticias />} />
+              <Route path="/paciente/noticias" element={<NoticiasPaciente />} />
               <Route path="/" element={<PaginaGeneral />} />
               <Route path="/elegirusuario" element ={<Elegirusuario/>} />
               <Route path="/registroPaciente" element={<RegistroPaciente />} />
