@@ -33,7 +33,7 @@ export default function SeleccionDeEjercicios() {
     }, [type]);
 
     const handleNavigateEjercicio = (ejercicioId: number | string) => {
-        navigate(`/ejercicio/${ejercicioId}`);
+        navigate(`/paciente/ejercicio/${ejercicioId}`);
     }
 
     const handleNavigateBack = () => {
@@ -67,8 +67,6 @@ export default function SeleccionDeEjercicios() {
                             className="CardEjercicio" 
                             onClick={() => handleNavigateEjercicio(ejercicio.id)}>
                             <h2 className="nombreEjercicio">{ejercicio.nombre}</h2>
-                            <p className="descripcionEjercicio">{ejercicio.descripcion}</p>
-                            <p className="tipoEjercicio">Tipo: {ejercicio.type}</p>
                             <img src={ejercicio.imagen} alt={ejercicio.nombre} className="imagenEjercicio"/>
                         </button>
                     </li>
