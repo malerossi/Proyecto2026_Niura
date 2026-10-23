@@ -78,14 +78,14 @@ function App() {
               <Route path="/crearEjercicio" element={<CrearEjercicio />} />
               <Route path="/asignarEjercicio" element={<AsignarEjercicio />} />
               <Route path='/quieresAsignar' element={<QuieresAsignarlo />} />
-              <Route path="/video/:id" element={<Video />} />
-              <Route path="/seleccionarArchivo/:id" element={<SeleccionarArchivo />} />
+              <Route path="/paciente/video/:id" element={<Video />} />
+              <Route path="/paciente/seleccionarArchivo/:id" element={<SeleccionarArchivo />} />
               <Route path="/paciente/perfil" element={<PerfilPaciente />} />
               <Route path="/paciente/ejercitar" element={<Ejercitar />} />
               <Route path="/paciente/eleccionEjercicio" element={<EleccionEjercicio />} />
               <Route path="/paciente/seleccionDeEjercicios/:type" element={<SeleccionDeEjercicios />} />
               <Route path="/paciente/ejercicio/:id" element={<ConfirmarSeleccionEjercicio />} />
-              <Route path="/accionEjercitar/:id" element={<AccionEjercitar />} />
+              <Route path="/paciente/accionEjercitar/:id" element={<AccionEjercitar />} />
               <Route path="/cuidador/perfil" element={<PerfilCuidador />} />
 
               

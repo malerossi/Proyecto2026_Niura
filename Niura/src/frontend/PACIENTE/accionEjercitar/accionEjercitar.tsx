@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import flecha from '../EleccionEjercicio/flecha.png';
+import './accionEjercitar.css';	
+import subir
 
 export default function AccionEjercitar() {
     const { id } = useParams<{ id: string }>();
@@ -15,15 +18,20 @@ export default function AccionEjercitar() {
     }, [id]);
 
     const handleNavigateSubir = () => {
-        navigate(`/video/${id}`);
+        navigate(`/paciente/video/${id}`);
     };
 
     const handleNavigateSeleccionarArchivo = () => {
-        navigate(`/seleccionarArchivo/${id}`);
+        navigate(`/paciente/seleccionarArchivo/${id}`);
     };
 
+    const handleNavigateBack = () => {
+        navigate(-1);
+    }
+
     return (
-        <div>
+        <div className="contenedor-central">
+            <img src={flecha} alt="flecha" onClick={handleNavigateBack}/>
             <div className="subir">
                 <button className="btnSubir" onClick={handleNavigateSubir}>
                     <img src="" alt="imgSubir" className="imgSubir"/>

@@ -13,12 +13,12 @@ export default function ConfirmarSeleccionEjercicio() {
     useEffect  (() => {
         fetch(`https://mocki.io/v1/3fc5e5f3-1a7f-4eee-9a36-7409f15e255c`)
         .then((res) => res.json())
-        .then((data) => setEjercicio(data))
+        .then((data) => setEjercicio(data.find(ej => String(ej.id) === String(id))))
         .catch((err) => console.error(`Error fetching ejercicio: ${err}`))
     }, [id]);
 
     const handleNavigate = () => {
-        navigate(`/accionEjercitar/${id}`);
+        navigate(`/paciente/accionEjercitar/${id}`);
     }
 
     const handleNavigateBack = () => {
