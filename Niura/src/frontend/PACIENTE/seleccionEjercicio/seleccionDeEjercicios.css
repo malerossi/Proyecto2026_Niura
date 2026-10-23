@@ -1,0 +1,464 @@
+@font-face {
+    font-family: 'Atkinson Hyperlegible';
+    src: url('atkinsonHiperlegible.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* =====================================
+   CONFIGURACIÓN GENERAL
+===================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    min-height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    background: linear-gradient(
+        to bottom,
+        #9bcfda 0%,
+        #cbdff0 100%
+    );
+    color: #080808;
+}
+
+button {
+    font-family: inherit;
+}
+
+
+/* =====================================
+   PANEL PRINCIPAL
+===================================== */
+
+.contenedor-seleccion {
+    position: relative;
+    width: min(77.31%, 1056px);
+    min-height: 490px;
+    margin: 74px auto 40px;
+    padding: 25px 30px 45px;
+
+    background: rgba(220, 237, 255, 0.88);
+    border-radius: 11px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =====================================
+   TÍTULO
+===================================== */
+
+.texto {
+    margin: 0 0 52px;
+    padding: 0;
+
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.3;
+    text-align: center;
+    color: #050505;
+}
+
+
+/* =====================================
+   BOTÓN PARA VOLVER
+   img.arrowback
+===================================== */
+
+.contenedor-seleccion > img.arrowback {
+    position: absolute;
+    top: 28px;
+    left: 40px;
+
+    width: 43px;
+    height: 43px;
+    object-fit: contain;
+
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.contenedor-seleccion > img.arrowback:hover {
+    transform: scale(1.06);
+}
+
+
+/* =====================================
+   FLECHA ANTERIOR
+   img[alt="flechaAnterior"]
+===================================== */
+
+.contenedor-seleccion > img[alt="flechaAnterior"] {
+    position: absolute;
+    z-index: 3;
+
+    top: 55%;
+    left: 48px;
+
+    width: 55px;
+    height: 55px;
+
+    object-fit: contain;
+    transform: translateY(-50%);
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+}
+
+.contenedor-seleccion > img[alt="flechaAnterior"]:hover {
+    transform: translateY(-50%) scale(1.06);
+}
+
+
+/* =====================================
+   FLECHA SIGUIENTE
+   img[alt="flechaSiguiente"]
+===================================== */
+
+.contenedor-seleccion > img[alt="flechaSiguiente"] {
+    position: absolute;
+    z-index: 3;
+
+    top: 55%;
+    right: 48px;
+
+    width: 55px;
+    height: 55px;
+
+    object-fit: contain;
+    transform: translateY(-50%) rotate(180deg);
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+}
+
+.contenedor-seleccion > img[alt="flechaSiguiente"]:hover {
+    transform: translateY(-50%) rotate(180deg) scale(1.06);
+}
+
+
+/* =====================================
+   LISTA DE EJERCICIOS
+===================================== */
+
+.contenedor-seleccion ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 45px;
+
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.contenedor-seleccion li {
+    flex: 0 0 222px;
+    width: 222px;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =====================================
+   TARJETA
+===================================== */
+
+.CardEjercicio {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    position: relative;
+    width: 222px;
+    height: 294px;
+
+    margin: 0;
+    padding: 12px 23px 16px;
+
+    overflow: hidden;
+    border: none;
+    border-radius: 11px;
+
+    background: linear-gradient(
+        to bottom,
+        #76bce4 0%,
+        #5c9ff8 100%
+    );
+
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.25);
+
+    color: #f2f4ff;
+    text-align: left;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.CardEjercicio:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 9px rgba(0, 0, 0, 0.22);
+}
+
+.CardEjercicio:focus-visible {
+    outline: 3px solid #173d72;
+    outline-offset: 3px;
+}
+
+
+/* =====================================
+   ETIQUETA AUDIO
+   Se crea visualmente porque no está
+   escrita en el return actual.
+===================================== */
+
+.CardEjercicio::before {
+    content: "🎙 AUDIO";
+
+    display: flex;
+    align-items: center;
+    flex: 0 0 27px;
+
+    width: 100%;
+    height: 27px;
+
+    color: #eaf3ff;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* =====================================
+   NOMBRE DEL EJERCICIO
+===================================== */
+
+.nombreEjercicio {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
+    width: 100%;
+    min-height: 50px;
+    margin: 18px 0 8px;
+    padding: 0;
+
+    overflow: hidden;
+    overflow-wrap: anywhere;
+
+    color: #f2f4ff;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.25;
+
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+/* =====================================
+   DESCRIPCIÓN
+===================================== */
+
+.descripcionEjercicio {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
+    max-height: 30px;
+    margin: 0 0 5px;
+    padding: 0;
+
+    overflow: hidden;
+
+    color: #ffffff;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 15px;
+    text-align: left;
+}
+
+
+/* =====================================
+   TIPO DE EJERCICIO
+===================================== */
+
+.tipoEjercicio {
+    display: block;
+    flex-shrink: 0;
+
+    margin: 0 0 7px;
+    padding: 0;
+
+    color: #edf4ff;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+}
+
+
+/* =====================================
+   IMAGEN
+===================================== */
+
+.imagenEjercicio {
+    display: block;
+    flex: 0 0 90px;
+
+    width: 100%;
+    height: 90px;
+    margin-top: auto;
+    padding: 0;
+
+    object-fit: cover;
+    object-position: center;
+
+    background-color: #d8d8d8;
+    border: none;
+}
+
+
+/* =====================================
+   TABLETS
+===================================== */
+
+@media (max-width: 1000px) {
+    .contenedor-seleccion {
+        width: 90%;
+        padding-right: 25px;
+        padding-left: 25px;
+    }
+
+    .contenedor-seleccion ul {
+        gap: 20px;
+    }
+
+    .contenedor-seleccion li {
+        flex: 1 1 0;
+        width: auto;
+    }
+
+    .CardEjercicio {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .nombreEjercicio {
+        font-size: 17px;
+    }
+
+    .contenedor-seleccion > img[alt="flechaAnterior"] {
+        left: 8px;
+        width: 42px;
+        height: 42px;
+    }
+
+    .contenedor-seleccion > img[alt="flechaSiguiente"] {
+        right: 8px;
+        width: 42px;
+        height: 42px;
+    }
+}
+
+
+/* =====================================
+   CELULARES
+===================================== */
+
+@media (max-width: 600px) {
+    .contenedor-seleccion {
+        width: 94%;
+        min-height: 440px;
+        margin: 30px auto;
+        padding: 75px 15px 30px;
+    }
+
+    .texto {
+        margin-bottom: 30px;
+        font-size: 27px;
+    }
+
+    .contenedor-seleccion > img.arrowback {
+        top: 18px;
+        left: 18px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .contenedor-seleccion ul {
+        gap: 10px;
+    }
+
+    .contenedor-seleccion li {
+        flex: 1 1 0;
+        width: auto;
+    }
+
+    .CardEjercicio {
+        width: 100%;
+        height: 260px;
+        padding: 10px;
+    }
+
+    .CardEjercicio::before {
+        font-size: 10px;
+        flex-basis: 22px;
+        height: 22px;
+    }
+
+    .nombreEjercicio {
+        min-height: 40px;
+        margin: 12px 0 6px;
+        font-size: 12px;
+    }
+
+    .descripcionEjercicio {
+        font-size: 10px;
+        line-height: 13px;
+        max-height: 26px;
+    }
+
+    .tipoEjercicio {
+        font-size: 10px;
+        line-height: 13px;
+    }
+
+    .imagenEjercicio {
+        height: 75px;
+        flex-basis: 75px;
+    }
+
+    .contenedor-seleccion > img[alt="flechaAnterior"] {
+        left: 2px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .contenedor-seleccion > img[alt="flechaSiguiente"] {
+        right: 2px;
+        width: 30px;
+        height: 30px;
+    }
+}

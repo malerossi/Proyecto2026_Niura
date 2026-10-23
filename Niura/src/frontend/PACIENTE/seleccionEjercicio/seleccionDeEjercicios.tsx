@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import arrowback from './arrowback.png';
+import './seleccionDeEjercicios.css';
+import flecha from '../EleccionEjercicio/flecha.png'
 
 export type Ejercicios = {
     id: number | string;
@@ -14,11 +16,13 @@ export default function SeleccionDeEjercicios() {
     const { type } = useParams<{ type: string }>();
     const [ejercicios, setEjercicios] = useState<Ejercicios[]>([]);
     const navigate = useNavigate();
+    const [indiceActual, setIndiceActual] = useState(0); 
+    const cantidadAMostrar = 3;
 
     useEffect(() => {
         if (!type) return;
 
-        fetch(`https://mocki.io/v1/01d2461f-9555-4d5c-8684-6b085253be95/${type}`)
+        fetch(`https://mocki.io/v1/3fc5e5f3-1a7f-4eee-9a36-7409f15e255c`)
             .then(response => response.json())
             .then(data => {
                 const filtrados = data.filter((ejercicio: Ejercicios) => ejercicio.type === type);
@@ -35,13 +39,29 @@ export default function SeleccionDeEjercicios() {
     const handleNavigateBack = () => {
         navigate(-1);
     }
+    
+    const irAnterior = () => {
+        if (indiceActual > 0) {
+            setIndiceActual(indiceActual - 1);
+        }
+    }
+
+    const irSiguiente = () => {
+        if (indiceActual < ejercicios.length - cantidadAMostrar) {
+            setIndiceActual(indiceActual + 1);
+        }
+    }
 
     return (
-        <div>
-            <h1>Tu selección de hoy</h1>
-            <img src={arrowback} alt="arrowback" className="arrowback" onClick={handleNavigateBack}/>
+        <div className="contenedor-seleccion">
+            <h1 className="texto">Tu selección de hoy</h1>
+            <img src={arrowback} alt="flechaAnterior" onClick={irAnterior}/>
+            <img src={arrowback} alt="flechaSiguiente" onClick={irSiguiente}/>
+            <img src={flecha} alt="arrowback" className="arrowback" onClick={handleNavigateBack}/>
             <ul>
-                {ejercicios.map((ejercicio) => (
+            {ejercicios
+                .slice(indiceActual, indiceActual + cantidadAMostrar)
+                .map((ejercicio) => (
                     <li key={ejercicio.id}>
                         <button 
                             className="CardEjercicio" 
