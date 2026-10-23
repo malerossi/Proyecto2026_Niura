@@ -92,8 +92,8 @@ export default function Header() {
           <NavItem
             src={inicioImg}
             alt="Inicio"
-            activo={rutaActual === '/pendientespaciente' || rutaActual === '/'}
-            onClick={() => navigate('/pendientespaciente')}
+            activo={rutaActual === '/paciente/ejercitar' }
+            onClick={() => navigate('/paciente/ejercitar')}
           />
 
           <NavItem
