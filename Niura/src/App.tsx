@@ -80,7 +80,7 @@ function App() {
               <Route path="/paciente/ejercitar" element={<Ejercitar />} />
               <Route path="/paciente/eleccionEjercicio" element={<EleccionEjercicio />} />
               <Route path="/paciente/seleccionDeEjercicios/:type" element={<SeleccionDeEjercicios />} />
-              <Route path="/ejercicio/:id" element={<ConfirmarSeleccionEjercicio />} />
+              <Route path="/paciente/ejercicio/:id" element={<ConfirmarSeleccionEjercicio />} />
               <Route path="/accionEjercitar/:id" element={<AccionEjercitar />} />
               <Route path="/cuidador/perfil" element={<PerfilCuidador />} />
 
