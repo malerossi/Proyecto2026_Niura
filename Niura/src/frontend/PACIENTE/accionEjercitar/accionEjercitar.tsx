@@ -21,7 +21,7 @@ export default function AccionEjercitar() {
     }, [id]);
 
     const handleNavigateSubir = () => {
-        navigate(`/paciente/${type}/${id}`);
+        navigate(`/paciente/video/${type}/${id}`);
     };
 
     const handleNavigateSeleccionarArchivo = () => {
