@@ -82,8 +82,8 @@ button {
     top: 28px;
     left: 40px;
 
-    width: 43px;
-    height: 43px;
+    width: 55px;
+    height: 55px;
     object-fit: contain;
 
     cursor: pointer;
@@ -251,7 +251,7 @@ button {
    NOMBRE DEL EJERCICIO
 ===================================== */
 
-.nombreEjercicio {
+.nombreDelEjercicio {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
