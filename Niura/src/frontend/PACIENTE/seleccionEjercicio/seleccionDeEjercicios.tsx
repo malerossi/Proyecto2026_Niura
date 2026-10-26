@@ -22,7 +22,7 @@ export default function SeleccionDeEjercicios() {
     useEffect(() => {
         if (!type) return;
 
-        fetch(`https://mocki.io/v1/3fc5e5f3-1a7f-4eee-9a36-7409f15e255c`)
+        fetch(`https://mocki.io/v1/0fe34082-199b-4a44-9737-e8a029271401`)
             .then(response => response.json())
             .then(data => {
                 const filtrados = data.filter((ejercicio: Ejercicios) => ejercicio.type === type);
