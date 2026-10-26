@@ -23,7 +23,7 @@ export default function AccionEjercitar() {
     };
 
     const handleNavigateSeleccionarArchivo = () => {
-        navigate(`/paciente/seleccionarArchivo${type}/${id}`);
+        navigate(`/paciente/seleccionarArchivo/${type}/${id}`);
     };
 
     const handleNavigateBack = () => {

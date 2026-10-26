@@ -80,7 +80,7 @@ function App() {
               <Route path="/asignarEjercicio" element={<AsignarEjercicio />} />
               <Route path='/quieresAsignar' element={<QuieresAsignarlo />} />
               <Route path="/paciente/video/:id" element={<Video />} />
-              <Route path="/paciente/seleccionarArchivo/:id" element={<SeleccionarArchivo />} />
+              <Route path="/paciente/seleccionarArchivo/:type/:id" element={<SeleccionarArchivo />} />
               <Route path="/paciente/perfil" element={<PerfilPaciente />} />
               <Route path="/paciente/ejercitar" element={<Ejercitar />} />
               <Route path="/paciente/eleccionEjercicio" element={<EleccionEjercicio />} />

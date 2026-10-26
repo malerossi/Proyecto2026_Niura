@@ -1,0 +1,129 @@
+.pantalla-subida-contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    background: transparent;
+}
+
+.card-confirmacion {
+    position: relative;
+    background-color: #dbeaf6;
+    width: 600px;
+    max-width: 90%;
+    padding: 60px 40px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.card-error {
+    background-color: #c9bbc0;
+}
+
+.atras {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: transparent;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo-confirmacion {
+    font-size: 28px;
+    font-weight: normal;
+    color: #000;
+    margin-bottom: 40px;
+}
+
+.etiqueta-nombre-archivo {
+    display: inline-block;
+    border: 3px solid #000;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #000;
+    cursor: pointer;
+    margin-bottom: 40px;
+    background-color: transparent;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.input-oculto {
+    display: none;
+}
+
+.video-preview {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+/* Iconos gigantes de TIC y CRUZ */
+.icono-estado {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 40px;
+    object-fit: contain;
+}
+
+/* Botón Azul */
+.boton-principal {
+    background-color: #0056d2;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 86, 210, 0.4);
+    transition: background-color 0.2s;
+    width: 220px;
+    margin-bottom: 15px;
+}
+
+.boton-principal:hover {
+    background-color: #0044a8;
+}
+
+/* Botón Gris Claro (Error) */
+.boton-secundario {
+    background-color: #e0e5ec;
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.2s;
+    width: 220px;
+}
+
+.boton-secundario:hover {
+    background-color: #d1d8e0;
+}
+
+/* Contenedor apilado para los dos botones en la vista de error */
+.contenedor-botones-error {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
