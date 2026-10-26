@@ -22,7 +22,8 @@ import EleccionEjercicio from './frontend/PACIENTE/EleccionEjercicio/EleccionEje
 import SeleccionDeEjercicios from './frontend/PACIENTE/seleccionEjercicio/seleccionDeEjercicios';
 import ConfirmarSeleccionEjercicio from './frontend/PACIENTE/confirmarSeleccionEjercicio/confirmar';
 import Video from './frontend/PACIENTE/seleccionVIDEO/subirVideo';
-import SeleccionarArchivo from './frontend/PACIENTE/seleccionVIDEO/seleccionarArchivo';
+import SeleccionarArchivoVideo from './frontend/PACIENTE/seleccionVIDEO/seleccionarArchivo';
+import SeleccionarArchivoAudio from './frontend/PACIENTE/seleccionAUDIO/seleccionarArchivoAudio';
 import SeleccionAudio from './frontend/PACIENTE/seleccionAUDIO/audio';
 import SeleccionVideo from './frontend/PACIENTE/seleccionVIDEO/video';
 import PerfilPaciente from './frontend/pages/usuario_paciente/usuario_paciente';
@@ -33,6 +34,8 @@ import DetallePaciente from './frontend/pages/DetallePaciente';
 import Elegirinicio from './frontend/pages/eleccion_de_usuario/elegirinicio';
 import NoticiasPaciente from './frontend/pages/notificaciones/notificaciones';
 import AccionEjercitar from './frontend/PACIENTE/accionEjercitar/accionEjercitar';
+import GrabarVideo from './frontend/PACIENTE/seleccionVIDEO/subirVideo';
+import GrabarAudio from './frontend/PACIENTE/seleccionAUDIO/audio';
 
 // PROVIDERS
 import { PacienteProvider } from './frontend/Contexts/contextPaciente';
@@ -53,8 +56,8 @@ function App() {
           {/* Rutas de la aplicación */}
           <main className="flex-1 flex items-center justify-center p-4">
             <Routes>
-            <Route path="/medico/pacient" element={<Pacientes />} />
-            <Route path="/medico/pacient/:id" element={<DetallePaciente />} />
+              <Route path="/medico/pacient" element={<Pacientes />} />
+              <Route path="/medico/pacient/:id" element={<DetallePaciente />} />
               <Route path="/cuidador/noticias" element={<Noticias />} />
               <Route path="/elegirinicio" element={<Elegirinicio/>} />
               <Route path="/medico/noticias" element={<Noticias />} />
@@ -65,7 +68,7 @@ function App() {
               <Route path="/seleccionAudio/:type" element={<SeleccionAudio />} />
               <Route path="/seleccionVideo/:type" element={<SeleccionVideo />} />
               <Route path="/paciente/racha" element={<ListaRacha />} />
-              <Route path="/subirvideo" element={<Video />} />
+              <Route path="/video" element={<Video />} />
               <Route path="/registroMedico" element={<RegistroMedico />} />
               <Route path="/registroCuidador" element={<RegistroCuidador />} />
               <Route path="/inicioSesionCuidador" element={<InicioSesionCuidador />} />
@@ -80,7 +83,8 @@ function App() {
               <Route path="/asignarEjercicio" element={<AsignarEjercicio />} />
               <Route path='/quieresAsignar' element={<QuieresAsignarlo />} />
               <Route path="/paciente/video/:type/:id" element={<Video />} />
-              <Route path="/paciente/seleccionarArchivo/:type/:id" element={<SeleccionarArchivo />} />
+              <Route path="/paciente/seleccionVIDEO/seleccionarArchivo/:type/:id" element={<SeleccionarArchivoVideo />} />
+              <Route path="/paciente/seleccionAUDIO/seleccionarArchivo/:type/:id" element={<SeleccionarArchivoAudio />} />
               <Route path="/paciente/perfil" element={<PerfilPaciente />} />
               <Route path="/paciente/ejercitar" element={<Ejercitar />} />
               <Route path="/paciente/eleccionEjercicio" element={<EleccionEjercicio />} />
@@ -88,7 +92,8 @@ function App() {
               <Route path="/paciente/ejercicio/:type/:id" element={<ConfirmarSeleccionEjercicio />} />
               <Route path="/paciente/accionEjercitar/:type/:id" element={<AccionEjercitar />} />
               <Route path="/cuidador/perfil" element={<PerfilCuidador />} />
-
+              <Route path="/paciente/seleccionVIDEO/grabarVideo/:type/:id" element={<GrabarVideo />} />
+              <Route path="/paciente/seleccionAUDIO/grabarAudio/:type/:id" element={<GrabarAudio />} />
               
             </Routes>
           </main>

@@ -9,12 +9,12 @@ export default function EleccionEjercicio() {
 
     const handleNavigateAudio = () => {
         // CORREGIDO: Redirige a /seleccionAudio/:type (coincide con tu App.js)
-        navigate(`/paciente/seleccionDeEjercicios/cognitiva`);
+        navigate(`/paciente/seleccionDeEjercicios/audio`);
     }
 
     const handleNavigateVideo = () => {
         // CORREGIDO: Redirige a /seleccionVideo/:type (coincide con tu App.js)
-        navigate(`/paciente/seleccionDeEjercicios/motriz`);
+        navigate(`/paciente/seleccionDeEjercicios/video`);
     }
 
     const handleNavigateBack = () => {

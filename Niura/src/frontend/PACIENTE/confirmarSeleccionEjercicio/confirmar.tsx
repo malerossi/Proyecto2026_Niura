@@ -12,7 +12,7 @@ export default function ConfirmarSeleccionEjercicio() {
     const navigate = useNavigate();
 
     useEffect  (() => {
-        fetch(`https://mocki.io/v1/3fc5e5f3-1a7f-4eee-9a36-7409f15e255c`)
+        fetch(`https://mocki.io/v1/0fe34082-199b-4a44-9737-e8a029271401`)
         .then((res) => res.json())
         .then((data) => setEjercicio(data.find((ej: any) => String(ej.id) === String(id))))
         .catch((err) => console.error(`Error fetching ejercicio: ${err}`))

@@ -20,12 +20,20 @@ export default function AccionEjercitar() {
             .catch((err) => console.error(`Error fetching ejercicio: ${err}`));
     }, [id]);
 
-    const handleNavigateSubir = () => {
-        navigate(`/paciente/video/${type}/${id}`);
+    const handleNavigateGrabar = () => {
+        if (type === 'video') {
+            navigate(`/paciente/seleccionVIDEO/grabarVideo/${type}/${id}`);
+        } else {
+            navigate(`/paciente/seleccionAUDIO/grabarAudio/${type}/${id}`);
+        }
     };
 
     const handleNavigateSeleccionarArchivo = () => {
-        navigate(`/paciente/seleccionarArchivo/${type}/${id}`);
+        if (type === 'video') {
+            navigate(`/paciente/seleccionVIDEO/seleccionarArchivo/${type}/${id}`);
+        } else {
+            navigate(`/paciente/seleccionAUDIO/seleccionarArchivo/${type}/${id}`);
+        }
     };
 
     const handleNavigateBack = () => {
@@ -36,7 +44,7 @@ export default function AccionEjercitar() {
         <div className="contenedor-central">
             <img src={flecha} alt="flecha" onClick={handleNavigateBack} className="arrowback"/>
             <div className="grabar">
-                <button className="btnGrabar" onClick={handleNavigateSubir}>
+                <button className="btnGrabar" onClick={handleNavigateGrabar}>
                     <img src={grabar} alt='grabar' className="imgGrabar"/>
                 </button>
             </div>
