@@ -21,6 +21,7 @@ export default function SeleccionarArchivo () {
             {videoPrevisualizado && (
                 <video controls src={videoPrevisualizado} />
             )}
+            <button></button>
         </div>
     )
 }

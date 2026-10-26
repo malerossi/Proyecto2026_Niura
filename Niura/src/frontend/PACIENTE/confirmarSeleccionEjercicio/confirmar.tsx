@@ -6,19 +6,19 @@ import flecha from '../EleccionEjercicio/flecha.png';
 import './confirmar.css';
 
 export default function ConfirmarSeleccionEjercicio() {
-    const { id } = useParams<{ id: string }>();
+    const { id, type } = useParams<{ id: string; type: string }>();
     const [ ejercicio, setEjercicio ] = useState<Ejercicios | null>(null);
     const navigate = useNavigate();
 
     useEffect  (() => {
         fetch(`https://mocki.io/v1/3fc5e5f3-1a7f-4eee-9a36-7409f15e255c`)
         .then((res) => res.json())
-        .then((data) => setEjercicio(data.find(ej => String(ej.id) === String(id))))
+        .then((data) => setEjercicio(data.find((ej: any) => String(ej.id) === String(id))))
         .catch((err) => console.error(`Error fetching ejercicio: ${err}`))
     }, [id]);
 
     const handleNavigate = () => {
-        navigate(`/paciente/accionEjercitar/${id}`);
+    navigate(`/paciente/accionEjercitar/${type}/${id}`);
     }
 
     const handleNavigateBack = () => {

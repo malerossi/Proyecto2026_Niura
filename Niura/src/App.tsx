@@ -21,7 +21,6 @@ import Ejercitar from './frontend/PACIENTE/Ejercitar/ejercitarInicio';
 import EleccionEjercicio from './frontend/PACIENTE/EleccionEjercicio/EleccionEjercicio';
 import SeleccionDeEjercicios from './frontend/PACIENTE/seleccionEjercicio/seleccionDeEjercicios';
 import ConfirmarSeleccionEjercicio from './frontend/PACIENTE/confirmarSeleccionEjercicio/confirmar';
-import AccionEjercitar from './frontend/PACIENTE/accionEjercitar/accionEjercitar';
 import Video from './frontend/PACIENTE/seleccionVIDEO/subirVideo';
 import SeleccionarArchivo from './frontend/PACIENTE/seleccionVIDEO/seleccionarArchivo';
 import SeleccionAudio from './frontend/PACIENTE/seleccionAUDIO/audio';
@@ -33,6 +32,8 @@ import Pacientes from './frontend/pages/Pacientes';
 import DetallePaciente from './frontend/pages/DetallePaciente';
 import Elegirinicio from './frontend/pages/eleccion_de_usuario/elegirinicio';
 import NoticiasPaciente from './frontend/pages/notificaciones/notificaciones';
+import AccionEjercitar from './frontend/PACIENTE/accionEjercitar/accionEjercitar';
+
 // PROVIDERS
 import { PacienteProvider } from './frontend/Contexts/contextPaciente';
 import { MedicoProvider } from './frontend/Contexts/contextoMedico';
@@ -84,8 +85,8 @@ function App() {
               <Route path="/paciente/ejercitar" element={<Ejercitar />} />
               <Route path="/paciente/eleccionEjercicio" element={<EleccionEjercicio />} />
               <Route path="/paciente/seleccionDeEjercicios/:type" element={<SeleccionDeEjercicios />} />
-              <Route path="/paciente/ejercicio/:id" element={<ConfirmarSeleccionEjercicio />} />
-              <Route path="/paciente/accionEjercitar/:id" element={<AccionEjercitar />} />
+              <Route path="/paciente/ejercicio/:type/:id" element={<ConfirmarSeleccionEjercicio />} />
+              <Route path="/paciente/accionEjercitar/:type/:id" element={<AccionEjercitar />} />
               <Route path="/cuidador/perfil" element={<PerfilCuidador />} />
 
               

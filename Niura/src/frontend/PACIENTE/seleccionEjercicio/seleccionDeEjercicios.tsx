@@ -33,7 +33,7 @@ export default function SeleccionDeEjercicios() {
     }, [type]);
 
     const handleNavigateEjercicio = (ejercicioId: number | string) => {
-        navigate(`/paciente/ejercicio/${ejercicioId}`);
+        navigate(`/paciente/ejercicio/${type}/${ejercicioId}`);
     }
 
     const handleNavigateBack = () => {
