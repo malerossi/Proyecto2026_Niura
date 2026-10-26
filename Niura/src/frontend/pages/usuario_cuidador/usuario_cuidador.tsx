@@ -11,10 +11,7 @@ const URL_CAMBIAR_CORREO = "https://mocki.io/v1/d42ede49-cf64-42f1-8da6-d7f40d72
 const URL_ELIMINAR_PACIENTE = "https://mocki.io/v1/d42ede49-cf64-42f1-8da6-d7f40d7236b5";
 // Mocki no recibe archivos: con mocki esto va a fallar. Con el back real funciona.
 const URL_SUBIR_FOTO = "https://mocki.io/v1/d42ede49-cf64-42f1-8da6-d7f40d7236b5";
-// Mocki solo acepta GET, así que mandamos los datos en la URL.
-// Con el back real: pasar a POST con los datos en el body.
-// Mocki solo acepta GET, así que mandamos los datos en la URL.
-// Con el back real: pasar a POST con los datos en el body.
+
 async function pedir(url: string, datos: Record<string, string>) {
   const respuesta = await fetch(`${url}?${new URLSearchParams(datos)}`);
   if (!respuesta.ok) throw new Error(`El servidor respondió ${respuesta.status}`);

@@ -8,7 +8,13 @@ interface ConversacionConFecha extends Conversacion {
   updatedAt: number;
 }
 
-export default function ChatSimplificadomiopaciente() {
+// 1. Definimos la interfaz para las props del componente
+interface ChatSimplificadoProps {
+  usuario_id: number;
+}
+
+// 2. Desestructuramos las props en la firma del componente
+export default function ChatSimplificadomiopaciente({ usuario_id }: ChatSimplificadoProps) {
   const [contactos, setContactos] = useState<ConversacionConFecha[]>(() => {
     const tiempoBase = Date.now();
     return (contactosMock as Conversacion[]).map((c, index) => ({
@@ -56,12 +62,10 @@ export default function ChatSimplificadomiopaciente() {
     const nuevoMensaje: Mensaje = {
       id_mensaje: `msg_${ahora}`,
       id_conversacion: contactoActivo.id_conversacion,
-      id_emisor: 999,
+      id_emisor: usuario_id,
       id_receptor: contactoActivo.id_contacto,
-      tipo: 'texto',
       contenido: texto,
       estado_entrega: 'enviando',
-      eliminado: false,
       fecha_envio: new Date().toISOString(),
     };
 
@@ -85,7 +89,7 @@ export default function ChatSimplificadomiopaciente() {
       style={{ fontFamily: 'Helvetica, "Helvetica Neue", Arial, sans-serif' }}
       className="flex w-[84.11vw] h-[62.89vh] min-w-[340px] min-h-[420px] max-w-[1600px] border-[12px] border-[#18243A] rounded-[10px] overflow-hidden bg-[#182232] shadow-2xl transition-all duration-200 my-auto"
     >
-      {/* COLUMNA LATERAL DE CONTACTOS (#009490) */}
+      {/* COLUMNA LATERAL DE CONTACTOS */}
       <div className="w-1/3 min-w-[260px] max-w-[360px] bg-[#009490] p-3 flex flex-col gap-3 border-r-2 border-black shrink-0">
         <div className="w-full">
           <input
@@ -118,9 +122,8 @@ export default function ChatSimplificadomiopaciente() {
         </div>
       </div>
 
-      {/* ÁREA PRINCIPAL DEL CHAT (#182232) */}
+      {/* ÁREA PRINCIPAL DEL CHAT */}
       <div className="flex-1 flex flex-col justify-between bg-[#182232] min-w-0">
-        
         {/* Cabecera del chat */}
         <div className="bg-[#D3E2F3] px-5 py-2.5 flex items-center gap-3 border-b-2 border-black shrink-0">
           <div className="w-9 h-9 rounded-full bg-[#D9D9D9] border-2 border-black flex items-center justify-center shrink-0 overflow-hidden">
@@ -143,7 +146,8 @@ export default function ChatSimplificadomiopaciente() {
         <div className="flex-1 overflow-y-auto flex flex-col gap-3 p-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           {mensajes && mensajes.length > 0 ? (
             mensajes.map((msg) => {
-              const esMio = msg.id_emisor === 999;
+              // Comparación lógica corregida para determinar si el mensaje es propio
+              const esMio = msg.id_emisor === usuario_id;
               return (
                 <div
                   key={msg.id_mensaje}
@@ -205,7 +209,6 @@ export default function ChatSimplificadomiopaciente() {
             </svg>
           </button>
         </div>
-
       </div>
     </div>
   );

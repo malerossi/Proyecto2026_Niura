@@ -1,5 +1,5 @@
 import { useEffect, useId, useState } from "react";
-import type { CSSProperties, FormEvent, ReactNode } from "react";
+import type { CSSProperties, ChangeEvent, FormEvent, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 // Ajustá la ruta según dónde guardes este archivo
 import { usePaciente } from "../../Contexts/contextPaciente";
@@ -22,27 +22,23 @@ const URL_PERFIL = "https://mocki.io/v1/fd125f8b-20ed-4509-8051-f34005b873d8";
 const URL_CAMBIAR_CORREO =
   "http://localhost:3000/paciente/cambiarCorreo"; // Cambialo por tu back real
 
-/* SOLO PRUEBAS: mocki no acepta POST, así que usamos GET.
-   Pasalo a false cuando tengas el back real. */
-const USAR_GET_PRUEBA = true;
+/* Endpoint para subir la foto */
+const URL_SUBIR_FOTO = "https://mocki.io/v1/d42ede49-cf64-42f1-8da6-d7f40d7236b5";
 
 /* Validación simple de formato; la validación real la hace el back. */
 const REGEX_CORREO = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-/* ---------- Usuario de prueba ----------
-   Si no hay sesión iniciada, en desarrollo entramos con este usuario para
-   poder probar la pantalla sin pasar por el login.
-   import.meta.env.DEV es true con `npm run dev` y false en el build de
-   producción, así que no hay que acordarse de apagarlo. */
-const PERMITIR_USUARIO_PRUEBA = import.meta.env.DEV;
-const NOMBRE_PRUEBA = "Usuario de prueba";
-const PERFIL_PRUEBA = {
-  correo: "usuario.prueba@niura.com",
-  imagen: null as string | null, // null = círculo gris
-};
-
 type EstadoPerfil = "cargando" | "listo" | "error";
 type EstadoEnvio = "reposo" | "enviando" | "exito" | "error";
+
+// Sube la foto como archivo (multipart/form-data)
+async function subirFoto(usuario: string, archivo: File) {
+  const datos = new FormData();
+  datos.append("usuario", usuario);
+  datos.append("imagen", archivo);
+  const respuesta = await fetch(URL_SUBIR_FOTO, { method: "POST", body: datos });
+  if (!respuesta.ok) throw new Error(`El servidor respondió ${respuesta.status}`);
+}
 
 function IconoCambiar(): ReactNode {
   return (
@@ -75,12 +71,7 @@ const CLASE_TARJETA =
 
 export default function PerfilPaciente() {
   const navigate = useNavigate();
-  const { nombre: nombreSesion } = usePaciente();
-
-  // Si no hay sesión y estamos en desarrollo, usamos el usuario de prueba.
-  // `esPrueba` sirve para avisar en pantalla que NO es una persona real.
-  const esPrueba = !nombreSesion && PERMITIR_USUARIO_PRUEBA;
-  const nombre = nombreSesion || (esPrueba ? NOMBRE_PRUEBA : "");
+  const { nombre } = usePaciente();
 
   const idInput = useId();
   const idMensaje = useId();
@@ -89,7 +80,7 @@ export default function PerfilPaciente() {
   const [correoActual, setCorreoActual] = useState("");
   const [fotoUrl, setFotoUrl] = useState<string | null>(null);
   const [estadoPerfil, setEstadoPerfil] = useState<EstadoPerfil>("cargando");
-  const [intento, setIntento] = useState(0); // cambiarlo vuelve a disparar la carga
+  const [intento, setIntento] = useState(0);
 
   // Edición de correo
   const [editando, setEditando] = useState(false);
@@ -101,11 +92,8 @@ export default function PerfilPaciente() {
 
   /* ---------- Cargar perfil (correo + imagen) al entrar ---------- */
   useEffect(() => {
-    if (!nombre) return; // sin usuario no hay nada que pedir
+    if (!nombre) return;
 
-    // AbortController: si la persona se va de la página (o cambia el nombre)
-    // antes de que responda el back, cancelamos y no actualizamos estado
-    // de un componente que ya no existe.
     const controlador = new AbortController();
     setEstadoPerfil("cargando");
 
@@ -123,7 +111,6 @@ export default function PerfilPaciente() {
           imagen?: unknown;
         };
 
-        // Si el back no mandó un correo válido, lo tratamos como error
         if (typeof correo !== "string" || !correo) {
           throw new Error("Respuesta sin correo");
         }
@@ -132,22 +119,29 @@ export default function PerfilPaciente() {
         setFotoUrl(typeof imagen === "string" && imagen ? imagen : null);
         setEstadoPerfil("listo");
       } catch {
-        if (controlador.signal.aborted) return; // cancelado a propósito, no es error
-
-        // El back no conoce al usuario de prueba, así que si falla usamos
-        // sus datos locales en vez de mostrar un error.
-        if (esPrueba) {
-          setCorreoActual(PERFIL_PRUEBA.correo);
-          setFotoUrl(PERFIL_PRUEBA.imagen);
-          setEstadoPerfil("listo");
-          return;
-        }
+        if (controlador.signal.aborted) return;
         setEstadoPerfil("error");
       }
     })();
 
     return () => controlador.abort();
-  }, [nombre, esPrueba, intento]);
+  }, [nombre, intento]);
+
+  /* ---------- Subir / Cambiar Foto ---------- */
+  function cambiarFoto(e: ChangeEvent<HTMLInputElement>) {
+    const archivo = e.target.files?.[0];
+    e.target.value = ""; // Permite volver a seleccionar el mismo archivo si es necesario
+    if (!archivo) return;
+
+    // Validación de tipo de archivo y tamaño (máx 5MB)
+    if (!archivo.type.startsWith("image/") || archivo.size > 5 * 1024 * 1024) return;
+
+    // Muestra la vista previa local inmediatamente
+    setFotoUrl(URL.createObjectURL(archivo));
+
+    // Envía la imagen al servidor
+    subirFoto(nombre, archivo).catch(console.error);
+  }
 
   /* ---------- Cambio de correo ---------- */
   function abrirEdicion() {
@@ -166,11 +160,10 @@ export default function PerfilPaciente() {
 
   async function guardarCorreo(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (enviando) return; // evita doble envío
+    if (enviando) return;
 
     const correoLimpio = nuevoCorreo.trim();
 
-    // Validamos ANTES de pegarle al back: ahorra una request inútil
     if (!REGEX_CORREO.test(correoLimpio)) {
       setEstadoEnvio("error");
       setMensaje("Ingresá un correo válido, por ejemplo nombre@dominio.com.");
@@ -186,39 +179,32 @@ export default function PerfilPaciente() {
     setMensaje("");
 
     try {
-      const respuesta =  // Back real: POST con los datos en el body
-          await fetch(URL_CAMBIAR_CORREO, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({nuevoCorreo: correoLimpio }),
-          });
+      const respuesta = await fetch(URL_CAMBIAR_CORREO, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nuevoCorreo: correoLimpio }),
+      });
 
       if (!respuesta.ok) {
         throw new Error(`El servidor respondió ${respuesta.status}`);
       }
 
-      // ---- SOLO PARA PRUEBAS: borrar este bloque cuando esté el back real ----
-      // El mocki responde {"data":"ok"}; si no viene eso, lo tratamos como error.
       const cuerpo: unknown = await respuesta.json();
       if ((cuerpo as { data?: unknown } | null)?.data !== "ok") {
         throw new Error("Respuesta inesperada del servidor");
       }
-      // ---- FIN BLOQUE DE PRUEBAS ----
 
-      // Solo si el back confirmó, actualizamos lo que ve la persona
       setCorreoActual(correoLimpio);
       setEditando(false);
       setEstadoEnvio("exito");
       setMensaje("Correo actualizado.");
     } catch (error) {
-      console.error("Error al cambiar el correo:", error); // mirá la consola (F12)
+      console.error("Error al cambiar el correo:", error);
       setEstadoEnvio("error");
       setMensaje("No se pudo cambiar el correo. Probá de nuevo en un momento.");
     }
   }
 
-  /* ---------- Sin usuario en el contexto ----------
-     Pasa, por ejemplo, al recargar la página: el estado de React se pierde. */
   if (!nombre) {
     return (
       <section
@@ -243,25 +229,15 @@ export default function PerfilPaciente() {
     );
   }
 
-  /* ---------- Perfil ---------- */
   return (
     <section
       style={estiloEscala}
       className="mx-auto w-[calc(var(--u)*1026)] max-w-full font-[Helvetica,Arial,sans-serif]"
       aria-label="Perfil de paciente"
     >
-      {esPrueba && (
-        <p
-          role="note"
-          className="mb-[calc(var(--u)*12)] rounded-lg bg-[#f7e8bb] px-[calc(var(--u)*16)] py-[calc(var(--u)*8)] text-center text-[length:calc(var(--u)*18)] text-[#5c4a1e]"
-        >
-          Modo prueba: no hay sesión iniciada, estás viendo un usuario de prueba.
-        </p>
-      )}
       <div className={CLASE_TARJETA}>
         {/* ---------- Datos ---------- */}
         <div className="order-2 flex w-full flex-col items-center md:order-1 md:w-auto md:items-start">
-          {/* Nombre y rol centrados entre sí, como en el diseño */}
           <div className="text-center md:w-[calc(var(--u)*246)]">
             <h1 className="text-[length:calc(var(--u)*36)] font-bold leading-tight text-[#dbe7fb]">
               {nombre}
@@ -271,7 +247,6 @@ export default function PerfilPaciente() {
             </p>
           </div>
 
-          {/* Correo: cargando / error / listo */}
           {estadoPerfil === "cargando" && (
             <p
               role="status"
@@ -305,7 +280,6 @@ export default function PerfilPaciente() {
                 <strong>Correo</strong>: {correoActual}
               </p>
 
-              {/* Modo lectura / modo edición */}
               {editando ? (
                 <form
                   onSubmit={guardarCorreo}
@@ -358,7 +332,6 @@ export default function PerfilPaciente() {
                 </button>
               )}
 
-              {/* role="status"/"alert": los lectores de pantalla lo anuncian */}
               {mensaje && (
                 <p
                   id={idMensaje}
@@ -374,17 +347,33 @@ export default function PerfilPaciente() {
           )}
         </div>
 
-        {/* ---------- Foto ---------- */}
-        <div className="order-1 h-[calc(var(--u)*200)] w-[calc(var(--u)*200)] min-h-[100px] min-w-[100px] shrink-0 overflow-hidden rounded-full border border-black bg-[#d9d9d9] md:order-2">
-          {fotoUrl && (
+        {/* ---------- Foto (Interactiva para cargar / cambiar) ---------- */}
+        <label
+          title={fotoUrl ? "Cambiar foto" : "Agregar foto"}
+          className="order-1 flex h-[calc(var(--u)*200)] w-[calc(var(--u)*200)] min-h-[100px] min-w-[100px] shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-black bg-[#d9d9d9] focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-white md:order-2"
+        >
+          {fotoUrl ? (
             <img
               src={fotoUrl}
               alt={`Foto de ${nombre}`}
-              onError={() => setFotoUrl(null)} // si la URL está rota, vuelve al círculo gris
+              onError={() => setFotoUrl(null)}
               className="h-full w-full object-cover"
             />
+          ) : (
+            estadoPerfil !== "cargando" && (
+              <span aria-hidden="true" className="text-[length:calc(var(--u)*90)] font-light leading-none text-[#4b5c78]">
+                +
+              </span>
+            )
           )}
-        </div>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={cambiarFoto}
+            aria-label={fotoUrl ? "Cambiar foto de perfil" : "Agregar foto de perfil"}
+            className="sr-only"
+          />
+        </label>
       </div>
     </section>
   );
