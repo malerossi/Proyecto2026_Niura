@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import flecha from '../EleccionEjercicio/flecha.png';
 import './accionEjercitar.css';
+import subir from './subirMedia.png';
+import grabar from './grabar.png'
 
 export default function AccionEjercitar() {
     const { type, id } = useParams<{ type: string; id: string }>();
@@ -33,14 +35,14 @@ export default function AccionEjercitar() {
     return (
         <div className="contenedor-central">
             <img src={flecha} alt="flecha" onClick={handleNavigateBack} className="arrowback"/>
-            <div className="subir">
-                <button className="btnSubir" onClick={handleNavigateSubir}>
-                    <img src="" alt={`Grabar ${type}`} className="imgSubir"/>
+            <div className="grabar">
+                <button className="btnGrabar" onClick={handleNavigateSubir}>
+                    <img src={grabar} alt='grabar' className="imgGrabar"/>
                 </button>
             </div>
             <div className="seleccionarArchivo">
                 <button className="btnSeleccionarArchivo" onClick={handleNavigateSeleccionarArchivo}>
-                    <img src="" alt={`Subir archivo de ${type}`} className="imgSeleccionarArchivo"/>
+                    <img src={subir} alt='seleccionar' className="imgSeleccionarArchivo"/>
                 </button>
             </div>
         </div>

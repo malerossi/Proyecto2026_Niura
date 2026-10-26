@@ -1,0 +1,60 @@
+/* Contenedor principal celeste claro */
+.contenedor-central {
+    position: relative;
+    background-color: #e3eff7; /* Color de fondo exacto del diseño */
+    width: 848px;
+    max-width: 90%;
+    height: 446px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; /* Espacio exacto entre ambos botones */
+}
+
+/* Flecha de retroceso */
+.arrowback {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.arrowback:hover {
+    opacity: 0.7;
+}
+
+/* Contenedores de botones (limpieza de estilos por defecto) */
+.grabar, .seleccionarArchivo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Botones transparentes (la imagen hace de botón) */
+.btnGrabar, .btnSeleccionarArchivo {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btnGrabar:hover, .btnSeleccionarArchivo:hover {
+    transform: translateY(-4px); /* Pequeño salto al pasar el mouse */
+}
+
+/* Imágenes (Los cuadrados azules) */
+.imgGrabar, .imgSeleccionarArchivo {
+    width: 280px; /* Tamaño exacto cuadrado */
+    height: 280px; /* Tamaño exacto cuadrado */
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Sombra inferior como en el diseño */
+    object-fit: cover;
+    display: block;
+}
