@@ -17,6 +17,7 @@ import CrearEjercicio from './frontend/MEDICO/asignarEjercicio/tsx/crearEjercici
 import QuieresAsignarlo from './frontend/MEDICO/asignarEjercicio/tsx/quieresAsignarlo';
 import Pacientes from './frontend/pages/Pacientes';
 import DetallePaciente from './frontend/pages/DetallePaciente';
+import Historial from './frontend/pages/historial/historial';
 
 // IMPORTS - PACIENTE
 import Ejercitar from './frontend/PACIENTE/Ejercitar/ejercitarInicio';
@@ -75,13 +76,14 @@ function App() {
                   {/* Rutas de Médico */}
                   <Route path="/medico/pacient" element={<Pacientes />} />
                   <Route path="/medico/pacient/:id" element={<DetallePaciente />} />
+                  <Route path="/medico/pacient/:id/historial" element={<Historial />} />
                   <Route path="/medico/noticias" element={<Noticias />} />
                   <Route path="/medico/reddecontactosmia" element={<ChatSimplificadomiopaciente usuario_id={2} />} />
                   <Route path="/pendientesmedico" element={<AsignarEjercicio />} />
                   <Route path="/crearEjercicio" element={<CrearEjercicio />} />
                   <Route path="/asignarEjercicio" element={<AsignarEjercicio />} />
                   <Route path="/quieresAsignar" element={<QuieresAsignarlo />} />
-
+                  <Route path="/medico/perfil" element={<PerfilCuidador />} />
                   {/* Rutas de Paciente */}
                   <Route path="/paciente/perfil" element={<PerfilPaciente />} />
                   <Route path="/paciente/noticias" element={<BotonNotificacion />} />
@@ -106,8 +108,6 @@ function App() {
                   <Route path="/cuidador/noticias" element={<Noticias />} />
                   <Route path="/cuidador/reddecontactosmia" element={<ChatSimplificadomiopaciente usuario_id={2} />} />
 
-                  {/* Social / Red */}
-                  <Route path="/reddecontactos" element={<ChatSimplificado />} />
                 </Routes>
               </main>
             </div>
