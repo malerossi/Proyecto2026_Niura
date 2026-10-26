@@ -137,7 +137,7 @@ export default function Header() {
     );
   }
 
-  if (rutaActual.includes('medico')) {
+  if (rutaActual.includes('/medico')) {
     return (
       <header
         style={estiloEscala}
@@ -185,8 +185,8 @@ export default function Header() {
           <NavItemMedico
             icono="mdi:home"
             label="inicio"
-            activo={rutaActual === '/medico/pendientesmedico'}
-            onClick={() => navigate('/medico/pendientesmedico')}
+            activo={rutaActual === '/cuidador/pendientesmedico'}
+            onClick={() => navigate('/cuidador/pendientesmedico')}
           />
 
           <NavItemMedico
@@ -199,15 +199,15 @@ export default function Header() {
           <NavItemMedico
             icono="mdi:bell"
             label="notificaciones"
-            activo={rutaActual === '/medico/notificaciones'}
-            onClick={() => navigate('/medico/notificaciones')}
+            activo={rutaActual === '/cuidador/notificaciones'}
+            onClick={() => navigate('/cuidador/notificaciones')}
           />
 
           <NavItemMedico
             icono="mdi:share-variant-outline"
             label="red de contactos"
             activo={rutaActual.includes('reddecontactos')}
-            onClick={() => navigate('/medico/reddecontactosmia')}
+            onClick={() => navigate('/cuidador/reddecontactosmia')}
           />
         </nav>
       </header>
