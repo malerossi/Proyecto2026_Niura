@@ -2,6 +2,7 @@ import { useState } from "react";
 import arrowback from './flecha.png'; 
 import iconoExito from './exito.png';
 import iconoError from './error.png';
+import confirmar from '../confirmarSeleccionEjercicio/btn-confirmar.png';
 import './seleccionarArchivo.css'; 
 import { useNavigate } from "react-router-dom";
 
@@ -69,7 +70,7 @@ export default function SubirArchivo() {
                         {videoPrevisualizado && (
                             <video className="video-preview" controls src={videoPrevisualizado} />
                         )}
-                        <button className="boton-principal" onClick={handleConfirmar}>Confirmar</button>
+                        <img src={confirmar} className="confirmar" onClick={handleConfirmar}></img>
                     </>
                 )}
 

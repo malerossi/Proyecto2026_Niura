@@ -66,7 +66,7 @@ export default function SeleccionDeEjercicios() {
                         <button 
                             className="CardEjercicio" 
                             onClick={() => handleNavigateEjercicio(ejercicio.id)}>
-                            <h2 className="nombreEjercicio">{ejercicio.nombre}</h2>
+                            <h2 className="nombreDelEjercicio">{ejercicio.nombre}</h2>
                             <img src={ejercicio.imagen} alt={ejercicio.nombre} className="imagenEjercicio"/>
                         </button>
                     </li>
