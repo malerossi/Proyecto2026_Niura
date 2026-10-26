@@ -2,11 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import flecha from '../EleccionEjercicio/flecha.png';
 import './accionEjercitar.css';	
-import subir
 
 export default function AccionEjercitar() {
     const { id } = useParams<{ id: string }>();
-    
     const [ejercicio, setEjercicio] = useState<any>(null);
     const navigate = useNavigate();
 
