@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* =====================================
+   CONTENEDOR PRINCIPAL
+===================================== */
+.contenedor-central {
+    background-color: #e4eef6; 
+    width: 90%;
+    max-width: 450px;
+    height: 550px;
+    margin: 50px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    box-sizing: border-box;
+}
+
+.arrowback {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    width: 43px;
+    height: 43px;
+    object-fit: contain;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.arrowback:hover {
+    transform: scale(1.06);
+}
+
+/* =====================================
+   TARJETA
+===================================== */
+.cardEjercicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    
+    /* Dimensiones ajustadas a la nueva imagen */
+    width: 280px; 
+    height: 380px;
+    margin: 0;
+    padding: 25px; /* Margen interno parejo para que la imagen no toque los bordes */
+
+    overflow: visible; /* Vital para que el botón no se corte */
+    border: none;
+    border-radius: 12px;
+
+    /* Fondo azul sólido exacto de la referencia */
+    background-color: #6ba7ec; 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    
+    color: #ffffff;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+
+/* =====================================
+   ETIQUETA AUDIO INYECTADA
+===================================== */
+.cardEjercicio::before {
+    content: "🎙 AUDIO";
+    align-self: flex-start; /* Alinear a la izquierda */
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 25px; /* Separación con el título */
+    letter-spacing: 0.5px;
+}
+
+/* =====================================
+   NOMBRE DEL EJERCICIO
+===================================== */
+.nombreEjercicio {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    width: 100%;
+    margin: 0 0 25px 0;
+    padding: 0;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* =====================================
+   IMAGEN
+===================================== */
+.imgEjercicio {
+    display: block;
+    width: 100%;
+    height: 190px; /* Ocupa un área rectangular grande */
+    margin-top: auto; /* Empuja la imagen al fondo, respetando el padding de la tarjeta */
+    padding: 0;
+    object-fit: cover;
+    object-position: center;
+    
+    background-color: #d9d9d9;
+    border: none;
+    border-radius: 0; /* Bordes rectos como en la imagen */
+}
+
+/* =====================================
+   BOTÓN CONFIRMAR (Por fuera)
+===================================== */
+.btnConfirmar {
+    position: absolute;
+    bottom: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #0056d2;
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 40px;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btnConfirmar:hover {
+    background-color: #0044a8;
+}
+
+.btnConfirmar:active {
+    transform: translateX(-50%) scale(0.95);
+}
+
+.loadingEjercicio {
+    font-size: 18px;
+    color: #555;
+    font-weight: 700;
+}
