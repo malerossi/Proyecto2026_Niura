@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 
-import rachaImg from "..images/racha_icono.png";
-import tuRedImg from ".././images/reddecontactos_icono.png";
+import rachaImg from "../../images/racha_icono.png";
+import tuRedImg from "../../images/reddecontactos_icono.png";
 
 const URL_NOTIFICACIONES =
   "https://mocki.io/v1/8c7eab71-c0cb-499a-a291-590838e46faf";
