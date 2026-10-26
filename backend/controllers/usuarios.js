@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {JWT_SECRET, JWT_EXPIRES_IN} = require('../config/jwt.js')
-const { query } = require('../db.js');
+const { query, withTransaction } = require('../db.js');
 
 // 0: Paciente 1: Acompañante 2: Doctor
 
@@ -208,41 +208,41 @@ async function crearTarea(req, res) {
     }
 }
 
-async function completarTarea(req, res) {
-    const { tareaID, idPaciente } = req.body;
+async function marcarTareaCompletada(idPaciente, tareaID) {
+    const result = await query(
+        `UPDATE "Tarea" SET "estado" = 1
+         WHERE "id" = $1 AND "idPaciente" = $2 AND "estado" = 0
+         RETURNING *`,
+        [tareaID, idPaciente]
+    )
+    if (result.rows.length === 0) return null
 
-    if (!tareaID || !idPaciente) {
-        return res.status(400).json({ message: 'Se requieren el ID de la tarea y el ID del paciente' });
+    const racha = await actualizarRachaPaciente(idPaciente)
+    return { tarea: result.rows[0], racha }
+}
+
+async function completarTarea(req, res) {
+    const { tareaID } = req.body
+
+    if (!tareaID) {
+        return res.status(400).json({ message: 'Se requiere el ID de la tarea' })
     }
 
     try {
-        const result = await query(
-            `UPDATE "Tarea" 
-             SET "estado" = 1 
-             WHERE "id" = $1 AND "idPaciente" = $2 AND "estado" = 0
-             RETURNING *`,
-            [tareaID, idPaciente]
-        );
-
-        if (result.rows.length === 0) {
-            return res.status(404).json({
-                message: 'No se encontró la tarea pendiente o no pertenece al paciente indicado'
-            });
+        const resultado = await marcarTareaCompletada(req.user.id, tareaID)
+        if (!resultado) {
+            return res.status(404).json({ message: 'No se encontró una tarea pendiente con ese ID' })
         }
-
-    const estadoRacha = await actualizarRachaPaciente(req.user.id);
-
         return res.status(200).json({
             message: 'Tarea completada con éxito',
-            tarea: result.rows[0],
-            racha: estadoRacha
-        });
-
+            tarea: resultado.tarea,
+            racha: resultado.racha
+        })
     } catch (e) {
-        console.error(e);
-        return res.status(500).json({ message: 'Error interno del servidor', error: e.message });
+        console.error(e)
+        return res.status(500).json({ message: 'Error interno del servidor' })
     }
-}
+}s
 
 async function actualizarRachaPaciente(patientId) {
     const today = new Date();
@@ -466,5 +466,5 @@ module.exports = {
     agregarObjetos, crearTarea, completarTarea,
     enviarInvitacionAcompañante, verInvitacionesAcompañante, aceptarInvitacionAcompañante,
     enviarInvitacionDoctor, verInvitacionesDoctor, aceptarInvitacionDoctor,
-    verTareas, verRacha, verDatosPaciente, cambiarCorreo
+    verTareas, verRacha, verDatosPaciente, cambiarCorreo, marcarTareaCompletada
 }
