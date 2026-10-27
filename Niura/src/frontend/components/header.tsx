@@ -199,8 +199,8 @@ export default function Header() {
           <NavItemMedico
             icono="mdi:bell"
             label="notificaciones"
-            activo={rutaActual === '/cuidador/notificaciones'}
-            onClick={() => navigate('/cuidador/notificaciones')}
+            activo={rutaActual === '/cuidador/noticias'}
+            onClick={() => navigate('/cuidador/noticias')}
           />
 
           <NavItemMedico
