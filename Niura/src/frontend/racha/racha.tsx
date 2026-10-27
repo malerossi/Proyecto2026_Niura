@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useRacha } from "../Contexts/contextracha";
 
-export const ListaRacha = () => {
+export default function ListaRacha (){
   // Consumimos los datos del contexto de la racha
   const { rachaActual, historial } = useRacha();
 
