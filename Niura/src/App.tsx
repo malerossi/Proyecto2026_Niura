@@ -2,6 +2,10 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 
 // IMPORTS - AUTENTICACIÓN Y REGISTRO
+import Header from './frontend/components/header';
+import PaginaGeneral from './frontend/pages/paginageneral/paginageneral';
+import BotonNotificacion from './frontend/pages/notificaciones/notificaciones';
+import ListaRacha from './frontend/racha/racha';
 import RegistroPaciente from './frontend/PACIENTE/registroPaciente/registroPaciente';
 import RegistroMedico from './frontend/MEDICO/registroMedico/registroMedico';
 import RegistroCuidador from './frontend/CUIDADOR/registroCuidador/registroCuidador';
@@ -34,11 +38,7 @@ import PerfilPaciente from './frontend/pages/usuario_paciente/usuario_paciente';
 // IMPORTS - CUIDADOR Y GENERAL
 import PerfilCuidador from './frontend/pages/usuario_cuidador/usuario_cuidador';
 import Noticias from './frontend/pages/notificaciones/notificaciones_cuidador';
-import Pacientes from './frontend/pages/Pacientes';
-import DetallePaciente from './frontend/pages/DetallePaciente';
-import Elegirinicio from './frontend/pages/eleccion_de_usuario/elegirinicio';
 import NoticiasPaciente from './frontend/pages/notificaciones/notificaciones';
-import AccionEjercitar from './frontend/PACIENTE/accionEjercitar/accionEjercitar';
 import GrabarVideo from './frontend/PACIENTE/seleccionVIDEO/subirVideo';
 import GrabarAudio from './frontend/PACIENTE/seleccionAUDIO/audio';
 
@@ -80,10 +80,6 @@ function App() {
               <Route path="/inicioSesionPaciente" element={<InicioSesionPaciente />} />
               <Route path="/inicioSesionMedico" element={<InicioSesionMedico />} />
               <Route path="/paciente/notificaciones" element={<BotonNotificacion />} />
-              <Route path="/pendientesmedico" element={<PendientesMedico />} />
-              <Route path="/reddecontactos" element={<ChatSimplificado />} />
-              <Route path="/paciente/reddecontactosmia" element={<ChatSimplificadomiopaciente />} />
-              <Route path="/medico/reddecontactosmia" element={<ChatSimplificado />} />
               <Route path="/crearEjercicio" element={<CrearEjercicio />} />
               <Route path="/asignarEjercicio" element={<AsignarEjercicio />} />
               <Route path='/quieresAsignar' element={<QuieresAsignarlo />} />
