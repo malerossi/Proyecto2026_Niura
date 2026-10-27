@@ -57,7 +57,7 @@ const CAMPO =
 
 type Panel = "agregar" | "eliminar" | "correo" | null;
 
-export default function PerfilCuidador() {
+export default function PerfilCuidador( ) {
   const { nombre: nombreSesion } = useCuidador();
 
   // Sin sesión, en desarrollo entramos con un cuidador de prueba
