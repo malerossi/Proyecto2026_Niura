@@ -28,19 +28,16 @@ import EleccionEjercicio from './frontend/PACIENTE/EleccionEjercicio/EleccionEje
 import SeleccionDeEjercicios from './frontend/PACIENTE/seleccionEjercicio/seleccionDeEjercicios';
 import ConfirmarSeleccionEjercicio from './frontend/PACIENTE/confirmarSeleccionEjercicio/confirmar';
 import AccionEjercitar from './frontend/PACIENTE/accionEjercitar/accionEjercitar';
-import Video from './frontend/PACIENTE/seleccionVIDEO/subirVideo';
+import GrabarVideo from './frontend/PACIENTE/seleccionVIDEO/subirVideo';
 import SeleccionarArchivoVideo from './frontend/PACIENTE/seleccionVIDEO/seleccionarArchivo';
 import SeleccionarArchivoAudio from './frontend/PACIENTE/seleccionAUDIO/seleccionarArchivoAudio';
-import SeleccionAudio from './frontend/PACIENTE/seleccionAUDIO/audio';
-import SeleccionVideo from './frontend/PACIENTE/seleccionVIDEO/video';
+import GrabarAudio from './frontend/PACIENTE/seleccionAUDIO/audio';
 import PerfilPaciente from './frontend/pages/usuario_paciente/usuario_paciente';
 
 // IMPORTS - CUIDADOR Y GENERAL
 import PerfilCuidador from './frontend/pages/usuario_cuidador/usuario_cuidador';
 import Noticias from './frontend/pages/notificaciones/notificaciones_cuidador';
 import NoticiasPaciente from './frontend/pages/notificaciones/notificaciones';
-import GrabarVideo from './frontend/PACIENTE/seleccionVIDEO/subirVideo';
-import GrabarAudio from './frontend/PACIENTE/seleccionAUDIO/audio';
 
 // PROVIDERS
 import { PacienteProvider } from './frontend/Contexts/contextPaciente';
@@ -70,10 +67,7 @@ function App() {
               <Route path="/" element={<PaginaGeneral />} />
               <Route path="/elegirusuario" element ={<Elegirusuario/>} />
               <Route path="/registroPaciente" element={<RegistroPaciente />} />
-              <Route path="/seleccionAudio/:type" element={<SeleccionAudio />} />
-              <Route path="/seleccionVideo/:type" element={<SeleccionVideo />} />
               <Route path="/paciente/racha" element={<ListaRacha />} />
-              <Route path="/video" element={<Video />} />
               <Route path="/registroMedico" element={<RegistroMedico />} />
               <Route path="/registroCuidador" element={<RegistroCuidador />} />
               <Route path="/inicioSesionCuidador" element={<InicioSesionCuidador />} />
@@ -83,7 +77,6 @@ function App() {
               <Route path="/crearEjercicio" element={<CrearEjercicio />} />
               <Route path="/asignarEjercicio" element={<AsignarEjercicio />} />
               <Route path='/quieresAsignar' element={<QuieresAsignarlo />} />
-              <Route path="/paciente/video/:type/:id" element={<Video />} />
               <Route path="/paciente/seleccionVIDEO/seleccionarArchivo/:type/:id" element={<SeleccionarArchivoVideo />} />
               <Route path="/paciente/seleccionAUDIO/seleccionarArchivo/:type/:id" element={<SeleccionarArchivoAudio />} />
               <Route path="/paciente/perfil" element={<PerfilPaciente />} />

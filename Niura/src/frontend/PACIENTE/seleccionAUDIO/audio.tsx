@@ -1,10 +1,14 @@
 import { useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import confirmar from '../confirmarSeleccionEjercicio/btn-confirmar.png';
+import './audio.css';
 
 export default function SeleccionAudio() {
-  const { type } = useParams();
+  const { type, id } = useParams();
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
+
+  const navigate = useNavigate();
   
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
@@ -55,28 +59,29 @@ export default function SeleccionAudio() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+
+    navigate(`/paciente/seleccionAUDIO/seleccionarArchivo/${type}/${id}`);
   };
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'system-ui, sans-serif' }}>
-      <h2>Grabadora de Audio - Tipo: {type}</h2>
-
-      <div>
-        {!isRecording ? (
-          <button onClick={startRecording}>🎙️ Comenzar a Grabar</button>
-        ) : (
-          <button onClick={stopRecording}>⏹️ Detener Grabación</button>
-        )}
-      </div>
-
+    <div className="grabadora-container">
+      <h2 className="grabadora-title">Grabadora de Audio - Tipo: {type}</h2>
+  
+      {!audioUrl && (
+        <button 
+          className="btn-grabar" 
+          onClick={isRecording ? stopRecording : startRecording}
+        >
+          {isRecording ? '⏹️ Detener Grabación' : '🎙️ Comenzar a Grabar'}
+        </button>
+      )}
+  
       {audioUrl && (
-        <div style={{ marginTop: '20px' }}>
-          <h3>Audio grabado:</h3>
-          <audio src={audioUrl} controls />
-          <br />
-          <button onClick={saveAudioFile} style={{ marginTop: '10px' }}>
-            💾 Guardar Archivo
-          </button>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+          
+          <audio src={audioUrl} controls style={{ marginBottom: '30px', width: '300px' }} />
+          
+          <img src={confirmar} className="btn-confirmar" onClick={saveAudioFile}>Confirmar</img>
         </div>
       )}
     </div>
