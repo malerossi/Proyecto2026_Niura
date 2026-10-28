@@ -141,7 +141,7 @@ export default function Header() {
     return (
       <header
         style={estiloEscala}
-        className="w-full min-h-[calc(var(--u)*97)] bg-[#a1cfdb]/[0.52] px-4 py-2 flex items-center justify-center shrink-0 select-none font-[Helvetica,Arial,sans-serif] text-[#18243a]"
+        className="w-full min-h-[calc(var(--u)*97)] bg-[#a1cfdb]/[0.52] px-4 py-2 flex items-center justify-center shrink-0 select-none font-[Helvetica,Arial,sans-serif] text-[#18243a] shadow-[0px_4px_4px_0px_#00000040]"
       >
         <nav className="flex flex-wrap items-center justify-center gap-x-[calc(var(--u)*150)] gap-y-2 w-full">
           <NavItemMedico
@@ -179,7 +179,7 @@ export default function Header() {
     return (
       <header
         style={estiloEscala}
-        className="w-full min-h-[calc(var(--u)*97)] bg-[#a1cfdb]/[0.52] px-4 py-2 flex items-center justify-center shrink-0 select-none font-[Helvetica,Arial,sans-serif] text-[#18243a]"
+        className="w-full min-h-[calc(var(--u)*97)] bg-[#a1cfdb]/[0.52] px-4 py-2 flex items-center justify-center shrink-0 select-none font-[Helvetica,Arial,sans-serif] text-[#18243a] shadow-[0px_4px_4px_0px_#00000040]"
       >
         <nav className="flex flex-wrap items-center justify-center gap-x-[calc(var(--u)*150)] gap-y-2 w-full">
           <NavItemMedico
