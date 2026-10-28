@@ -18,6 +18,7 @@ import QuieresAsignarlo from './frontend/MEDICO/asignarEjercicio/tsx/quieresAsig
 import Pacientes from './frontend/pages/Pacientes';
 import DetallePaciente from './frontend/pages/DetallePaciente';
 import Historial from './frontend/pages/historial/historial';
+import Progresopaciente from './frontend/pages/progreso';
 
 // IMPORTS - PACIENTE
 import Ejercitar from './frontend/PACIENTE/Ejercitar/ejercitarInicio';
@@ -83,6 +84,7 @@ function App() {
                   <Route path="/medico/pacient" element={<Pacientes />} />
                   <Route path="/medico/pacient/:id" element={<DetallePaciente />} />
                   <Route path="/medico/pacient/:id/historial" element={<Historial />} />
+                  <Route path="/medico/pacient/:id/progreso" element={<Progresopaciente />} />
                   <Route path="/medico/noticias" element={<Noticias />} />
                   <Route path="/medico/perfil" element={<PerfilCuidador />} />
                   <Route path="/medico/reddecontactosmia" element={<ChatSimplificadomiopaciente usuario_id={2} />} />

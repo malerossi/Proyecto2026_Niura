@@ -129,7 +129,7 @@ export default function Pacientes() {
                         type="text"
                         value={busqueda}
                         onChange={(e) => cambiarBusqueda(e.target.value)}
-                        placeholder="ingresa el nombre o rol"
+                        placeholder="ingresa el nombre del paciente"
                         aria-label="Buscar paciente"
                         className="min-w-0 flex-1 bg-transparent text-[14px] text-gray-700 outline-none placeholder:text-[#a9adb3] placeholder:underline"
                     />
