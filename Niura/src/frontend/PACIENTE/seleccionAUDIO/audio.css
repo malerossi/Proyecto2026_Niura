@@ -1,0 +1,64 @@
+/* Importar la fuente Atkinson Hyperlegible */
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap');
+
+.grabadora-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 80px); 
+    width: 100%; /* Asegura que ocupe toda la pantalla de lado a lado */
+    background-color: transparent; /* Quita el color duro para usar el fondo global de tu app */
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+/* Título */
+.grabadora-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 30px;
+}
+
+/* Botón de Grabar / Detener (Texto) */
+.btn-grabar {
+  background-color: transparent;
+  color: #000;
+  border: none;
+  font-size: 1.2rem;
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  transition: opacity 0.2s ease;
+}
+
+.btn-grabar:hover {
+  opacity: 0.6;
+}
+
+/* Imagen del Botón Confirmar */
+.btn-confirmar {
+  cursor: pointer;
+  width: 180px; /* Ajusta este ancho según el tamaño real de tu imagen */
+  height: auto;
+  margin-top: 10px;
+  transition: transform 0.1s ease, filter 0.2s ease;
+  user-select: none;
+}
+
+/* Efecto al pasar el mouse por encima de la imagen */
+.btn-confirmar:hover {
+  filter: brightness(1.1); /* Lo hace un poco más brillante */
+}
+
+/* Efecto al hacer clic en la imagen */
+.btn-confirmar:active {
+  transform: translateY(2px); /* Lo empuja un poco hacia abajo */
+}
