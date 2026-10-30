@@ -8,11 +8,12 @@
     width: 100%;
     min-height: 100vh;
     font-family: 'Atkinson Hyperlegible', sans-serif !important;
+    background-color:#70c0c7;
 }
 
 /* La tarjeta verde/celeste del formulario */
 .DatosInicioPaciente {
-    background-color: #38b2ac; /* Color de la tarjeta de la imagen */
+    background-color: #049794; /* Color de la tarjeta de la imagen */
     padding: 40px 50px;
     border-radius: 8px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
@@ -37,8 +38,8 @@
 
 .flecha-volver {
     position: absolute;
-    left: 0;
-    width: 24px;
+    left: -20px;
+    width: 55px;
     cursor: pointer;
 }
 

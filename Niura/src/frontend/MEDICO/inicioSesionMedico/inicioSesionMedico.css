@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* Contenedor exterior para centrar la tarjeta */
+.contenedor-pantalla-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Atkinson Hyperlegible', sans-serif !important;
+    background-color: D3E2F3;
+}
+
+/* La tarjeta verde/celeste del formulario */
+.DatosInicioPaciente {
+    background-color: #38b2ac; /* Color de la tarjeta de la imagen */
+    padding: 40px 50px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+    font-family: 'Atkinson Hyperlegible', sans-serif !important;
+}
+
+/* Fila del título y la flecha */
+.cabecera-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 5px;
+    position: relative;
+    justify-content: center;
+}
+
+.flecha-volver {
+    position: absolute;
+    left: -20px;
+    width: 55px;
+    cursor: pointer;
+}
+
+.titulo-login {
+    font-size: 32px;
+    font-weight: 700;
+    color: #4a5568;
+    margin: 0;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
+}
+
+/* Texto de registro */
+.texto-registro {
+    font-size: 16px;
+    color: #2d3748;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+
+.link-registro {
+    color: #1e78ff; /* Azul brillante */
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Campos de texto idénticos a la imagen */
+.input-campo {
+    width: 100%;
+    background-color: #eaf0f8;
+    border: 2px solid #000000; /* Borde negro definido */
+    border-radius: 6px;
+    padding: 14px 15px;
+    margin-bottom: 20px;
+    font-family: 'Atkinson Hyperlegible', sans-serif !important;
+    font-size: 18px;
+    color: #333;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.input-campo::placeholder {
+    color: #4a5568;
+}
+
+/* Contenedor transparente para que la imagen actúe como botón de submit */
+.btn-submit-invisible {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* La imagen de tu botón confirmar */
+.img-confirmar-login {
+    width: 180px; /* Ajusta este tamaño según lo necesites */
+    transition: transform 0.2s ease;
+}
+
+.img-confirmar-login:hover {
+    transform: scale(1.03);
+}
