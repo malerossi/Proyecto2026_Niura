@@ -65,14 +65,14 @@ export default function SeleccionAudio() {
 
   return (
     <div className="grabadora-container">
-      <h2 className="grabadora-title">Grabadora de Audio - Tipo: {type}</h2>
+      <h2 className="grabadora-title">Graba el audio ahora!</h2>
   
       {!audioUrl && (
         <button 
           className="btn-grabar" 
           onClick={isRecording ? stopRecording : startRecording}
         >
-          {isRecording ? '⏹️ Detener Grabación' : '🎙️ Comenzar a Grabar'}
+          {isRecording ? 'Detener Grabación' : 'Comenzar a Grabar'}
         </button>
       )}
   
@@ -81,7 +81,7 @@ export default function SeleccionAudio() {
           
           <audio src={audioUrl} controls style={{ marginBottom: '30px', width: '300px' }} />
           
-          <img src={confirmar} className="btn-confirmar" onClick={saveAudioFile}>Confirmar</img>
+          <img src={confirmar} className="btn-confirmar" onClick={saveAudioFile} alt="Confirmar" />        
         </div>
       )}
     </div>

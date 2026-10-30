@@ -1,24 +1,27 @@
-import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
-import arrowback from './flecha.png';
-import confirmar from '../confirmarSeleccionEjercicio/btn-confirmar.png';
+import { useState } from "react";
+import arrowback from './flecha.png'; 
 import iconoExito from './exito.png';
 import iconoError from './error.png';
-import './seleccionarArchivoAudio.css';
+import confirmar from '../confirmarSeleccionEjercicio/btn-confirmar.png';
+import './seleccionarArchivoAudio.css'; 
+import { useNavigate } from "react-router-dom";
+
 type EstadoPantalla = 'seleccion' | 'exito' | 'error';
 
-export default function SeleccionarArchivo () {
+export default function SubirArchivo() {
     const [nombreArchivo, setNombreArchivo] = useState<string>("Seleccionar archivo...");
-    const [ videoPrevisualizado, setAudioPrevisualizado] = useState<string>('');
+    const [videoPrevisualizado, setVideoPrevisualizado] = useState<string | null>(null);
+    const [archivo, setArchivo] = useState<File | null>(null);
     const [estado, setEstado] = useState<EstadoPantalla>('seleccion');
     const navigate = useNavigate();
-    
+
     const handleSeleccionarArchivo = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
+            setArchivo(file);
             setNombreArchivo(file.name); 
             const videoUrl = URL.createObjectURL(file);
-            setAudioPrevisualizado(videoUrl);
+            setVideoPrevisualizado(videoUrl);
         }
     };
 
@@ -27,7 +30,7 @@ export default function SeleccionarArchivo () {
     };
 
     const handleVolverInicio = () => {
-        navigate('/'); 
+        navigate('../paciente/ejercitar'); 
     };
 
     const handleReintentar = () => {
@@ -35,8 +38,13 @@ export default function SeleccionarArchivo () {
     };
 
     const handleConfirmar = () => {
+        if (!archivo) {
+            alert("Por favor, selecciona un video primero.");
+            return;
+        }
+
         setTimeout(() => {
-            const subidaExitosa = Math.random() > 0.5; // 50% de probabilidad
+            const subidaExitosa = Math.random() > 0.5;
             if (subidaExitosa) {
                 setEstado('exito');
             } else {
@@ -44,7 +52,6 @@ export default function SeleccionarArchivo () {
             }
         }, 1000);
     };
-
 
     return (
         <div className="pantalla-subida-contenedor">
@@ -70,15 +77,22 @@ export default function SeleccionarArchivo () {
                         {videoPrevisualizado && (
                             <video className="video-preview" controls src={videoPrevisualizado} />
                         )}
-                        <img src={confirmar} className="confirmar" onClick={handleConfirmar}></img>
+                        <img 
+                            src={confirmar} 
+                            alt="Confirmar" 
+                            className="confirmar" 
+                            onClick={handleConfirmar} 
+                        />
                     </>
                 )}
 
-                {estado === 'exito' && !videoPrevisualizado && !nombreArchivo && (
+                {estado === 'exito' && (
                     <>
                         <h2 className="titulo-confirmacion">Video subido con éxito</h2>
                         <img src={iconoExito} alt="Éxito" className="icono-estado" />
-                        <button className="boton-principal" onClick={handleVolverInicio}>Volver al inicio</button>
+                        <button className="boton-principal" onClick={handleVolverInicio}>
+                            Volver al inicio
+                        </button>
                     </>
                 )}
 
@@ -87,8 +101,12 @@ export default function SeleccionarArchivo () {
                         <h2 className="titulo-confirmacion">Hubo un error</h2>
                         <img src={iconoError} alt="Error" className="icono-estado" />
                         <div className="contenedor-botones-error">
-                            <button className="boton-principal" onClick={handleReintentar}>Reintentar</button>
-                            <button className="boton-secundario" onClick={handleVolverInicio}>Volver al inicio</button>
+                            <button className="boton-principal" onClick={handleReintentar}>
+                                Reintentar
+                            </button>
+                            <button className="boton-secundario" onClick={handleVolverInicio}>
+                                Volver al inicio
+                            </button>
                         </div>
                     </>
                 )}
