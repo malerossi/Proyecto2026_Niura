@@ -30,7 +30,6 @@ import Video from './frontend/PACIENTE/seleccionVIDEO/subirVideo';
 import SeleccionarArchivoVideo from './frontend/PACIENTE/seleccionVIDEO/seleccionarArchivo';
 import SeleccionarArchivoAudio from './frontend/PACIENTE/seleccionAUDIO/seleccionarArchivoAudio';
 import SeleccionAudio from './frontend/PACIENTE/seleccionAUDIO/audio';
-import SeleccionVideo from './frontend/PACIENTE/seleccionVIDEO/video';
 import PerfilPaciente from './frontend/pages/usuario_paciente/usuario_paciente';
 import GrabarVideo from './frontend/PACIENTE/seleccionVIDEO/subirVideo';
 import GrabarAudio from './frontend/PACIENTE/seleccionAUDIO/audio';
@@ -118,8 +117,6 @@ function App() {
                   <Route path="/cuidador/noticias" element={<Noticias />} />
                   <Route path="/cuidador/reddecontactosmia" element={<ChatSimplificadomiopaciente usuario_id={2} />} />
                   {/* Multimedia / General */}
-                  <Route path="/seleccionAudio/:type" element={<SeleccionAudio />} />
-                  <Route path="/seleccionVideo/:type" element={<SeleccionVideo />} />
                   <Route path="/video" element={<Video />} />
                   <Route path="/subirvideo" element={<Video />} />
 

@@ -1,9 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import confirmar from '../confirmarSeleccionEjercicio/btn-confirmar.png'
+import type {Ejercicios} from '../seleccionEjercicio/seleccionDeEjercicios'
+import './subirVideo.css'
 
 export default function Video() {
-    const [grabando, setGrabando] = useState<boolean>(false);
-    const [videoPrevisualizado, setVideoPrevisualizado] = useState<string>('');
-    const [videoArchivo, setVideoArchivo] = useState<File | null>(null);
+    const { type, id } = useParams<{ type: string; id: string }>();
+    const [ grabando, setGrabando ] = useState<boolean>(false);
+    const [ videoPrevisualizado, setVideoPrevisualizado ] = useState<string>('');
+    const [ videoArchivo, setVideoArchivo ] = useState<File | null>(null);
+    const [ ejercicio, setEjercicio ] = useState<Ejercicios | null>(null);
+    const navigate = useNavigate();
 
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const streamRef = useRef<MediaStream | null>(null);
@@ -42,7 +49,7 @@ export default function Video() {
                 const recorder = new MediaRecorder(stream);
                 recorderRef.current = recorder;
 
-                recorder.ondataavailable = (e: BlobEvent) => {
+                recorder.ondataavailable = (e) => {
                     if (e.data.size > 0) {
                         partesRef.current.push(e.data);
                     }
@@ -55,15 +62,11 @@ export default function Video() {
                     const nombreArchivo = `grabacion_${Date.now()}.webm`;
                     const file = new File([videoBlob], nombreArchivo, { type: "video/webm" });
 
+                    // Guardamos el archivo y la URL para la previsualización
                     setVideoArchivo(file);
                     setVideoPrevisualizado(url);
-
-                    const a = document.createElement("a");
-                    a.href = url;
-                    a.download = nombreArchivo;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
+                    
+                    // ELIMINÉ EL CÓDIGO QUE CREABA EL "a.download" AQUÍ
                 };
 
                 recorder.start();
@@ -90,34 +93,53 @@ export default function Video() {
         }
     };
 
-    const handleEnviarVideo = async () => {
-        if (!videoArchivo) return;
-
-        const formData = new FormData();
-        formData.append('video', videoArchivo);
-
-        try {
-            console.log("Enviando archivo:", videoArchivo.name);
-            alert("Video listo para subir al servidor.");
-        } catch (error) {
-            console.error("Error al subir el video:", error);
-        }
+    const handleConfirmar = () => {
+        if (!videoPrevisualizado) return;
+    
+        const a = document.createElement("a");
+        a.href = videoPrevisualizado;
+        
+        a.download = videoArchivo ? videoArchivo.name : `grabacion_${Date.now()}.webm`;
+        
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    
+        navigate (`/paciente/seleccionVIDEO/seleccionarArchivo/${type}/${id}`)
     };
 
     return (
-        <div>
-            <video ref={videoRef} autoPlay muted style={{ width: '100%', maxWidth: '600px' }} />
-            <div>
-                <button onClick={handleGrabacion}>
-                    {grabando ? "Detener Grabación" : "Iniciar Grabación"}
-                </button>
-                {videoPrevisualizado && (
-                    <>
-                        <video controls src={videoPrevisualizado} style={{ width: '100%', maxWidth: '600px' }} />
-                        <button onClick={handleEnviarVideo}>Enviar Video</button>
-                    </>
-                )}
-            </div>
+        <div className='cuadroVideo'>
+            
+            {!videoPrevisualizado && (
+                <div className="estado-grabacion">
+                    <video ref={videoRef} autoPlay muted className="video-vivo" />
+                    <button onClick={handleGrabacion} className="btn-iniciar">
+                        {grabando ? "Detener Grabación" : "Iniciar Grabación"}
+                    </button>
+                </div>
+            )}
+    
+            {videoPrevisualizado && (
+                <div className="estado-previsualizacion">
+                    <div className="tarjeta-celeste">
+                        <span className="titulo-seccion">video</span>
+                        <video 
+                            controls 
+                            src={videoPrevisualizado} 
+                            className="video-reproductor" 
+                        />
+                        
+                        <img 
+                            onClick={handleConfirmar} 
+                            src={confirmar} 
+                            alt="Confirmar" 
+                            className="btn-confirmar-img" 
+                        />
+                    </div>
+                </div>
+            )}
+    
         </div>
     )
 }

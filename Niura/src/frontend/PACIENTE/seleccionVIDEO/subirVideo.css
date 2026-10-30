@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* =========================================
+   1. CONTENEDOR GENERAL Y ESTADO GRABACIÓN 
+   (Esto era lo que faltaba)
+========================================== */
+.cuadroVideo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.estado-grabacion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    gap: 20px;
+}
+
+.video-vivo {
+    width: 100%;
+    background-color: #000;
+    border-radius: 12px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+.btn-iniciar {
+    background-color: #005ac8;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+/* =========================================
+   2. ESTADO PREVISUALIZACIÓN 
+   (Esto es lo que ya tenías bien)
+========================================== */
+.estado-previsualizacion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 480px; 
+}
+
+.tarjeta-celeste {
+    background-color: #72b2ef; 
+    width: 100%;
+    border-radius: 16px; 
+    padding: 30px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* Agregué también los estilos de los títulos que faltaban en tu snippet */
+.titulo-seccion {
+    color: white;
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.titulo-ejercicio {
+    color: white;
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.video-reproductor {
+    width: 100%;
+    background-color: #e5e9f0;
+    border-radius: 8px;
+}
+
+.btn-confirmar-img {
+    width: 180px; 
+    margin-top: 25px; 
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn-confirmar-img:hover {
+    transform: scale(1.03); 
+}
