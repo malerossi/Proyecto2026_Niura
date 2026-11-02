@@ -1,11 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 /* Contenedor principal (Fondo general de la pantalla) */
 .contenedor-pantalla-login-cuidador {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+    font-family: 'Atkinson Hyperlegible', sans-serif !important;
     background-color: #E8DAB2; /* Color crema del fondo general */
-    font-family: Arial, sans-serif;
 }
 
 /* Tarjeta del formulario */
@@ -34,8 +43,8 @@
 .flecha-volver {
     position: absolute;
     left: 0;
-    width: 32px;
-    height: 32px;
+    width: 55px;
+    height: 55px;
     cursor: pointer;
     transition: transform 0.2s ease;
 }

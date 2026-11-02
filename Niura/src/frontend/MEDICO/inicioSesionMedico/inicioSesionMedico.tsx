@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import confirmar from '../confirmarSeleccionEjercicio/btn-confirmar.png';
-import flecha from '../EleccionEjercicio/flecha.png'; 
+import confirmar from '../../PACIENTE/confirmarSeleccionEjercicio/btn-confirmar.png';
+import flecha from '../../PACIENTE/EleccionEjercicio/flecha.png'; 
 import './inicioSesionMedico.css'
 
 export default function InicioSesionMedico () {
@@ -29,8 +29,8 @@ export default function InicioSesionMedico () {
         }
 
     return (
-        <div className="contenedor-pantalla-login">
-            <form className='DatosInicioPaciente' onSubmit={handleSubmit}>
+        <div className="contenedor-pantalla-login-medico">
+            <form className='DatosInicioMedico' onSubmit={handleSubmit}>
                 
                 <div className="cabecera-form">
                     <img src={flecha} alt="Volver" className="flecha-volver" onClick={handleNavigateBack}/>

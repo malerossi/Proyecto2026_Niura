@@ -7,7 +7,7 @@ import RegistroMedico from './frontend/MEDICO/registroMedico/registroMedico';
 import RegistroCuidador from './frontend/CUIDADOR/registroCuidador/registroCuidador';
 import InicioSesionMedico from './frontend/MEDICO/inicioSesionMedico/inicioSesionMedico';
 import InicioSesionPaciente from './frontend/PACIENTE/inicioSesionPaciente/inicioSesionPaciente';
-import InicioSesionCuidador from './frontend/pages/inicioSesionCuidador/inicioSesionCuidador';
+import InicioSesionCuidador from './frontend/CUIDADOR/inicioSesionCuidador/inicioSesionCuidador';
 import Elegirusuario from './frontend/pages/eleccion_de_usuario/elccion_de_usuario';
 import Elegirinicio from './frontend/pages/eleccion_de_usuario/elegirinicio';
 

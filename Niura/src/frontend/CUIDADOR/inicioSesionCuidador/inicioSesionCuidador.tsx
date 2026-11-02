@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './inicioSesionCuidador.css';
-import confirmar from '../confirmarSeleccionEjercicio/btn-confirmar.png';
-import flecha from '../EleccionEjercicio/flecha.png';
+import confirmar from '../../PACIENTE/confirmarSeleccionEjercicio/btn-confirmar.png';
+import flecha from '../../PACIENTE/EleccionEjercicio/flecha.png';
 
 
 export default function InicioSesionCuidador () {

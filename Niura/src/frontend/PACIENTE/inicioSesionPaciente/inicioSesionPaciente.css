@@ -1,8 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
+/* 1. CORREGIDO: Era * en lugar de - */
+* {
+    box-sizing: border-box;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+
 /* Contenedor exterior para centrar la tarjeta */
 .contenedor-pantalla-login {
-    background-color: #70c0c7;
     position: fixed;
     top: 0;
     left: 0;
@@ -14,14 +19,13 @@
     margin: 0;
     padding: 0;
     z-index: 1000;
-    font-family: 'Atkinson Hyperlegible', sans-serif !important;
-    background-color:#70c0c7;
+    background-color: #7AC5C3; /* Celeste claro del fondo ajustado */
 }
 
-/* La tarjeta verde/celeste del formulario */
+/* La tarjeta verde del formulario */
 .DatosInicioPaciente {
-    background-color: #049794; /* Color de la tarjeta de la imagen */
-    padding: 40px 50px;
+    background-color: #00938F; /* Verde oscuro de la tarjeta ajustado */
+    padding: 40px 60px;
     border-radius: 8px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     display: flex;
@@ -29,82 +33,95 @@
     align-items: center;
     width: 100%;
     max-width: 450px;
-    box-sizing: border-box;
-    font-family: 'Atkinson Hyperlegible', sans-serif !important;
 }
 
 /* Fila del título y la flecha */
 .cabecera-form {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100%;
     margin-bottom: 5px;
     position: relative;
-    justify-content: center;
 }
 
 .flecha-volver {
     position: absolute;
-    left: -20px;
-    width: 55px;
+    left: 0; /* Pegado a la izquierda del contenedor interno */
+    width: 40px;
     cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.flecha-volver:hover {
+    transform: scale(1.1);
 }
 
 .titulo-login {
     font-size: 32px;
     font-weight: 700;
-    color: #4a5568;
+    color: #929292; /* Gris del título alineado con la imagen */
     margin: 0;
     text-decoration: underline;
-    text-decoration-thickness: 3px;
+    text-decoration-color: #929292;
+    text-decoration-thickness: 2px;
     text-underline-offset: 4px;
 }
 
 /* Texto de registro */
 .texto-registro {
-    font-size: 16px;
-    color: #2d3748;
+    font-size: 15px;
+    color: #333;
     margin-top: 5px;
-    margin-bottom: 25px;
+    margin-bottom: 30px; /* Más espacio antes de los inputs */
 }
 
 .link-registro {
-    color: #1e78ff; 
+    color: #0066FF; /* Azul brillante */
     font-weight: 700;
     cursor: pointer;
 }
 
+.link-registro:hover {
+    text-decoration: underline;
+}
+
+/* 2. CORREGIDO: Inputs sin borde negro y con margen inferior */
 .input-campo {
     width: 100%;
-    background-color: #eaf0f8;
-    border: 2px solid #000000; /* Borde negro definido */
+    padding: 12px 16px;
     border-radius: 6px;
-    padding: 14px 15px;
-    margin-bottom: 20px;
-    font-family: 'Atkinson Hyperlegible', sans-serif !important;
-    font-size: 18px;
-    color: #333;
-    box-sizing: border-box;
+    border: 2px solid #000;
+    background-color: #e4effe;
+    font-size: 1.05rem;
+    color: #222;
     outline: none;
 }
 
 .input-campo::placeholder {
-    color: #4a5568;
+    color: #6C7A89;
 }
 
+.input-campo:focus {
+    box-shadow: 0 0 0 2px #0066FF;
+}
+
+/* Botón (Imagen) */
 .btn-submit-invisible {
     background: transparent;
     border: none;
     padding: 0;
     margin-top: 10px;
+    display: flex;
+    justify-content: center;
     cursor: pointer;
 }
 
 .img-confirmar-login {
-    width: 180px;
+    width: 160px;
     transition: transform 0.2s ease;
 }
 
 .img-confirmar-login:hover {
-    transform: scale(1.03);
+    transform: scale(1.05);
 }
