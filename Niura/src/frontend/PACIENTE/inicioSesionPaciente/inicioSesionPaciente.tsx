@@ -36,7 +36,7 @@ return (
             
             <div className="cabecera-form">
                 <img src={flecha} alt="Volver" className="flecha-volver" onClick={handleNavigateBack}/>
-                <h2 className="titulo-login">Inicia sesión</h2>
+                <h2 className="titulo-login-paciente">Inicia sesión</h2>
             </div>
             
             <p className="texto-registro">
@@ -45,7 +45,7 @@ return (
 
             <input 
                 type="text" 
-                className='input-campo' 
+                className='input-campo-paciente' 
                 id='nombre' 
                 value={nombre} 
                 onChange={(e) => setNombre(e.target.value)} 
@@ -55,7 +55,7 @@ return (
 
             <input 
                 type="text" 
-                className='input-campo' 
+                className='input-campo-paciente' 
                 id='apellido' 
                 value={apellido} 
                 onChange={(e) => setApellido(e.target.value)} 
@@ -65,7 +65,7 @@ return (
             
             <input 
                 type="password" 
-                className='input-campo' 
+                className='input-campo-paciente' 
                 id='contraseña' 
                 value={contraseña} 
                 onChange={(e) => setContraseña(e.target.value)} 

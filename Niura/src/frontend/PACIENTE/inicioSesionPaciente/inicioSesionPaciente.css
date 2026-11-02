@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-/* 1. CORREGIDO: Era * en lugar de - */
 * {
     box-sizing: border-box;
     font-family: 'Atkinson Hyperlegible', sans-serif;
 }
 
-/* Contenedor exterior para centrar la tarjeta */
+/* Contenedor principal */
 .contenedor-pantalla-login {
     position: fixed;
     top: 0;
@@ -19,15 +18,15 @@
     margin: 0;
     padding: 0;
     z-index: 1000;
-    background-color: #7AC5C3; /* Celeste claro del fondo ajustado */
+    background-color: #7AC5C3 !important; /* Color paciente */
 }
 
-/* La tarjeta verde del formulario */
+/* Tarjeta del formulario */
 .DatosInicioPaciente {
-    background-color: #00938F; /* Verde oscuro de la tarjeta ajustado */
-    padding: 40px 60px;
-    border-radius: 8px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    background-color: #00938F !important; /* Color paciente */
+    padding: 40px 60px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,7 +34,7 @@
     max-width: 450px;
 }
 
-/* Fila del título y la flecha */
+/* Cabecera (Flecha y Título) */
 .cabecera-form {
     display: flex;
     align-items: center;
@@ -47,7 +46,7 @@
 
 .flecha-volver {
     position: absolute;
-    left: 0; /* Pegado a la izquierda del contenedor interno */
+    left: 0;
     width: 40px;
     cursor: pointer;
     transition: transform 0.2s ease;
@@ -57,68 +56,69 @@
     transform: scale(1.1);
 }
 
-.titulo-login {
-    font-size: 32px;
-    font-weight: 700;
-    color: #929292; /* Gris del título alineado con la imagen */
-    margin: 0;
-    text-decoration: underline;
-    text-decoration-color: #929292;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 4px;
+.titulo-login-paciente {
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    color: #18243A !important; 
+    margin: 0 !important;
+    text-decoration: underline !important;
+    text-decoration-color: #18243A !important;
+    text-decoration-thickness: 2px !important;
+    text-underline-offset: 4px !important;
 }
 
 /* Texto de registro */
 .texto-registro {
-    font-size: 15px;
-    color: #333;
-    margin-top: 5px;
-    margin-bottom: 30px; /* Más espacio antes de los inputs */
+    font-size: 15px !important;
+    color: #333 !important;
+    margin-top: 5px !important;
+    margin-bottom: 30px !important; 
 }
 
 .link-registro {
-    color: #0066FF; /* Azul brillante */
-    font-weight: 700;
+    color: #0066FF !important; 
+    font-weight: 700 !important;
     cursor: pointer;
 }
 
 .link-registro:hover {
-    text-decoration: underline;
+    text-decoration: underline !important;
 }
 
-/* 2. CORREGIDO: Inputs sin borde negro y con margen inferior */
-.input-campo {
-    width: 100%;
-    padding: 12px 16px;
-    border-radius: 6px;
-    border: 2px solid #000;
-    background-color: #e4effe;
-    font-size: 1.05rem;
-    color: #222;
-    outline: none;
+/* INPUTS CON BORDE NEGRO (Solo en Paciente) */
+.input-campo-paciente {
+    width: 100% !important;
+    background-color: #eaf0f8 !important;
+    border: 2px solid #000 !important; /* Borde forzado */
+    border-radius: 6px !important;
+    padding: 14px 15px !important;
+    margin-bottom: 20px !important; 
+    font-size: 18px !important;
+    color: #333 !important;
+    outline: none !important;
 }
 
 .input-campo::placeholder {
-    color: #6C7A89;
+    color: #6C7A89 !important;
 }
 
 .input-campo:focus {
-    box-shadow: 0 0 0 2px #0066FF;
+    box-shadow: 0 0 0 2px #0066FF !important;
 }
 
 /* Botón (Imagen) */
 .btn-submit-invisible {
-    background: transparent;
-    border: none;
-    padding: 0;
-    margin-top: 10px;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-top: 10px !important;
     display: flex;
     justify-content: center;
     cursor: pointer;
 }
 
 .img-confirmar-login {
-    width: 160px;
+    width: 160px !important;
     transition: transform 0.2s ease;
 }
 

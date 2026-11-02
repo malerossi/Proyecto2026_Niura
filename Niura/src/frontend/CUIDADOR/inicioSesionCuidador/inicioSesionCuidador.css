@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-/* Contenedor principal (Fondo general de la pantalla) */
+* {
+    box-sizing: border-box;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+
+/* Contenedor principal */
 .contenedor-pantalla-login-cuidador {
     position: fixed;
     top: 0;
@@ -13,21 +18,20 @@
     margin: 0;
     padding: 0;
     z-index: 1000;
-    font-family: 'Atkinson Hyperlegible', sans-serif !important;
-    background-color: #E8DAB2; /* Color crema del fondo general */
+    background-color: #E8DAB2 !important; /* Color cuidador */
 }
 
 /* Tarjeta del formulario */
 .DatosInicioCuidador {
-    background-color: #EEDFA9; /* Color crema ligeramente más saturado para la tarjeta */
-    padding: 40px 60px;
-    border-radius: 4px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 450px;
+    background-color: #EEDFA9 !important; /* Color cuidador */
+    padding: 40px 60px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    max-width: 450px;
 }
 
 /* Cabecera (Flecha y Título) */
@@ -36,15 +40,14 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    position: relative;
     margin-bottom: 5px;
+    position: relative;
 }
 
 .flecha-volver {
     position: absolute;
     left: 0;
-    width: 55px;
-    height: 55px;
+    width: 40px;
     cursor: pointer;
     transition: transform 0.2s ease;
 }
@@ -54,75 +57,71 @@
 }
 
 .titulo-login {
-    color: #929292;
-    font-size: 32px;
-    font-weight: bold;
-    text-decoration: underline;
-    text-decoration-color: #929292;
-    margin: 0;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    color: #18243A !important; 
+    margin: 0 !important;
+    text-decoration: underline !important;
+    text-decoration-color: #18243A !important;
+    text-decoration-thickness: 2px !important;
+    text-underline-offset: 4px !important;
 }
 
 /* Texto de registro */
 .texto-registro {
-    color: #333;
-    font-size: 16px;
-    margin-bottom: 30px;
+    font-size: 15px !important;
+    color: #333 !important;
+    margin-top: 5px !important;
+    margin-bottom: 30px !important; 
 }
 
 .link-registro {
-    color: #0066FF;
-    font-weight: bold;
+    color: #0066FF !important; 
+    font-weight: 700 !important;
     cursor: pointer;
 }
 
 .link-registro:hover {
-    text-decoration: underline;
+    text-decoration: underline !important;
 }
 
-/* Contenedor e inputs */
-.contenedor-inputs {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
+/* INPUTS SIN BORDE NEGRO (Cuidador) */
 .input-campo {
-    background-color: #D6E8FF; /* Celeste claro */
-    border: none;
-    border-radius: 8px;
-    padding: 15px 20px;
-    font-size: 18px;
-    color: #4A4A4A;
-    width: 100%;
-    box-sizing: border-box;
-    outline: none;
+    width: 100% !important;
+    background-color: #eaf0f8 !important;
+    border: none !important; /* Sin borde */
+    border-radius: 6px !important;
+    padding: 14px 15px !important;
+    margin-bottom: 20px !important; 
+    font-size: 18px !important;
+    color: #333 !important;
+    outline: none !important;
 }
 
 .input-campo::placeholder {
-    color: #6C7A89;
+    color: #6C7A89 !important;
 }
 
 .input-campo:focus {
-    box-shadow: 0 0 0 2px #0066FF;
+    box-shadow: 0 0 0 2px #0066FF !important;
 }
 
-/* Botón de imagen */
+/* Botón (Imagen) */
 .btn-submit-invisible {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-top: 10px !important;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 .img-confirmar-login {
-    width: 160px; /* Ajusta este valor según el tamaño real de tu imagen btn-confirmar.png */
+    width: 160px !important;
     transition: transform 0.2s ease;
 }
 
-.btn-submit-invisible:hover .img-confirmar-login {
+.img-confirmar-login:hover {
     transform: scale(1.05);
 }

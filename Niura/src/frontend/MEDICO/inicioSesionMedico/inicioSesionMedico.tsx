@@ -34,7 +34,7 @@ export default function InicioSesionMedico () {
                 
                 <div className="cabecera-form">
                     <img src={flecha} alt="Volver" className="flecha-volver" onClick={handleNavigateBack}/>
-                    <h2 className="titulo-login">Inicia sesión</h2>
+                    <h2 className="titulo-login-medico">Inicia sesión</h2>
                 </div>
                 
                 <p className="texto-registro">
