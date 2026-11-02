@@ -38,11 +38,6 @@ export default function SubirArchivo() {
     };
 
     const handleConfirmar = () => {
-        if (!archivo) {
-            alert("Por favor, selecciona un video primero.");
-            return;
-        }
-
         setTimeout(() => {
             const subidaExitosa = Math.random() > 0.5;
             if (subidaExitosa) {

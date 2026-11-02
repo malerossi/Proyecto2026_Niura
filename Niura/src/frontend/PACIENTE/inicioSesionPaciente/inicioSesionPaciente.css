@@ -2,11 +2,18 @@
 
 /* Contenedor exterior para centrar la tarjeta */
 .contenedor-pantalla-login {
+    background-color: #70c0c7;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
     font-family: 'Atkinson Hyperlegible', sans-serif !important;
 }
 
@@ -61,12 +68,11 @@
 }
 
 .link-registro {
-    color: #1e78ff; /* Azul brillante */
+    color: #1e78ff; 
     font-weight: 700;
     cursor: pointer;
 }
 
-/* Campos de texto idénticos a la imagen */
 .input-campo {
     width: 100%;
     background-color: #eaf0f8;
@@ -85,7 +91,6 @@
     color: #4a5568;
 }
 
-/* Contenedor transparente para que la imagen actúe como botón de submit */
 .btn-submit-invisible {
     background: transparent;
     border: none;
@@ -94,9 +99,8 @@
     cursor: pointer;
 }
 
-/* La imagen de tu botón confirmar */
 .img-confirmar-login {
-    width: 180px; /* Ajusta este tamaño según lo necesites */
+    width: 180px;
     transition: transform 0.2s ease;
 }
 
