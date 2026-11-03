@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import confirmar from '../../PACIENTE/confirmarSeleccionEjercicio/btn-confirmar.png';
 import flecha from '../../PACIENTE/EleccionEjercicio/flecha.png'; 
 import './inicioSesionMedico.css'
+import logo from '../../PACIENTE/registroPaciente/logo.png';
 
 export default function InicioSesionMedico () {
     const [ nombre, setNombre ] = useState<string> ('');
@@ -27,9 +28,12 @@ export default function InicioSesionMedico () {
         const handleNavigateRegistro = () => {
             navigate('/registroMedico');
         }
-
+ 
     return (
         <div className="contenedor-pantalla-login-medico">
+            <div className="logo-pantalla">
+                <img src={logo} alt="niura" />
+            </div>
             <form className='DatosInicioMedico' onSubmit={handleSubmit}>
                 
                 <div className="cabecera-form">

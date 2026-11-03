@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './inicioSesionPaciente.css';
 import confirmar from '../confirmarSeleccionEjercicio/btn-confirmar.png';
 import flecha from '../EleccionEjercicio/flecha.png'; 
-
+import logo from '../../PACIENTE/registroPaciente/logo.png';
 
 export default function InicioSesionPaciente () {
     const [ nombre, setNombre ] = useState<string> ('');
@@ -32,6 +32,9 @@ export default function InicioSesionPaciente () {
 
 return (
     <div className="contenedor-pantalla-login">
+        <div className="logo-pantalla">
+                <img src={logo} alt="niura" />
+            </div>
         <form className='DatosInicioPaciente' onSubmit={handleSubmit}>
             
             <div className="cabecera-form">

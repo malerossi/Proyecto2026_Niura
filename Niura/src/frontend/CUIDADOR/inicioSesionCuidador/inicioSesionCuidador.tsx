@@ -5,7 +5,7 @@ import confirmar from '../../PACIENTE/confirmarSeleccionEjercicio/btn-confirmar.
 import flecha from '../../PACIENTE/EleccionEjercicio/flecha.png';
 import logo from '../../PACIENTE/registroPaciente/logo.png';
 
-
+ 
 export default function InicioSesionCuidador () {
     const [ nombre, setNombre ] = useState<string> ('');
     const [ apellido, setApellido ] = useState<string> ('');
@@ -33,6 +33,9 @@ export default function InicioSesionCuidador () {
 
     return (
         <div className="contenedor-pantalla-login-cuidador">
+            <div className="logo-pantalla">
+                <img src={logo} alt="niura" />
+            </div>
             <form className="DatosInicioCuidador" onSubmit={handleSubmit}>
                 
                 <div className="cabecera-form">

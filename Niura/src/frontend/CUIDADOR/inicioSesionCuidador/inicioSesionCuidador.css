@@ -140,3 +140,15 @@
 .img-confirmar-login:hover {
     transform: scale(1.05);
 }
+
+.logo-pantalla {
+    position: absolute;
+    top: 35px;
+    left: 45px;
+}
+
+.logo-pantalla img {
+    width: 60px;
+    height: auto;
+    display: block;
+}
