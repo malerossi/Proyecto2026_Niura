@@ -6,7 +6,7 @@ import flechaSiguiente from '../../../PACIENTE/seleccionEjercicio/arrowback.png'
 import lupa from '../img/boxicons_search-alt.png';
 import '../css/asignarEjercicio.css';
 
-export default function PendientesMedico() {
+export default function AsignarEjercicio() {
     const [ejercicios, setEjercicios] = useState<Ejercicios[]>([]);
     const [busqueda, setBusqueda] = useState('');
     const [paginaActual, setPaginaActual] = useState(0);
