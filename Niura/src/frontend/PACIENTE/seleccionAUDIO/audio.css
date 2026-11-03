@@ -1,64 +1,100 @@
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-/* Contenedor principal estilo tarjeta celeste */
+* {
+    box-sizing: border-box;
+    font-family: 'Atkinson Hyperlegible', sans-serif !important;
+}
+
 .grabadora-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    min-height: 70vh;
     width: 100%;
-    max-width: 480px;
-    margin: 40px auto; 
-    background-color: #72b2ef; 
-    border-radius: 16px;
-    padding: 40px 30px;
-    box-sizing: border-box;
-    font-family: 'Atkinson Hyperlegible', sans-serif;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.grabadora-title {
-    color: white;
-    font-size: 20px;
-    font-weight: 900;
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    line-height: 1.2;
+/* Indicador Superior */
+.indicador-grabacion {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: #18243A;
+    margin-bottom: 50px;
 }
 
-/* Botón de grabar/detener */
-.btn-grabar {
-    background-color: #005ac8;
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    padding: 14px 32px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+.punto-rojo {
+    width: 14px;
+    height: 14px;
+    background-color: #FF0000;
+    border-radius: 50%;
+    margin-right: 12px;
 }
 
-.btn-grabar:hover {
-    background-color: #00469b;
-    transform: scale(1.02);
+.parpadeando {
+    animation: parpadeo 1.2s infinite alternate;
 }
 
-/* Botón de confirmar imagen */
-.btn-confirmar {
-    width: 180px; 
+/* Interfaz con Micrófono y Onda */
+.interfaz-audio-activa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.elementos-centro-audio {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 60px; /* Separación entre micrófono y onda */
+    margin-bottom: 50px;
+}
+
+/* Micrófono gigante */
+.icono-microfono-gigante {
+    width: 235px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Espacio reservado para el Video de la Onda */
+.video-onda-placeholder {
+    width: 450px; /* Ancho estimado de tu video de onda */
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Solo para que lo ubiques por ahora, se quita luego: */
+    /* border: 2px dashed #00938F; */
+    /* border-radius: 8px; */
+}
+
+/* Cuando pongas el <video> real de la onda, usará esta clase: */
+.video-onda-real {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Botón de Play/Pausar abajo */
+.btn-accion-imagen-audio {
+    width: 130px; 
     cursor: pointer;
     transition: transform 0.2s ease;
 }
 
-.btn-confirmar:hover {
-    transform: scale(1.03); 
+.btn-accion-imagen-audio:hover {
+    transform: scale(1.05);
 }
 
-/* Estilo para integrar mejor el reproductor de audio nativo */
-audio {
-    border-radius: 25px;
-    outline: none;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+.btn-confirmar-img {
+    width: 160px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-confirmar-img:hover {
+    transform: scale(1.05);
 }
