@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './inicioSesionCuidador.css';
 import confirmar from '../../PACIENTE/confirmarSeleccionEjercicio/btn-confirmar.png';
 import flecha from '../../PACIENTE/EleccionEjercicio/flecha.png';
+import logo from '../../PACIENTE/registroPaciente/logo.png';
 
 
 export default function InicioSesionCuidador () {

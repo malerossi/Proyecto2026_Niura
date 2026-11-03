@@ -5,7 +5,7 @@
     font-family: 'Atkinson Hyperlegible', sans-serif;
 }
 
-/* Contenedor principal */
+/* Fondo general */
 .contenedor-pantalla-login-cuidador {
     position: fixed;
     top: 0;
@@ -18,12 +18,25 @@
     margin: 0;
     padding: 0;
     z-index: 1000;
-    background-color: #E8DAB2 !important; /* Color cuidador */
+    background-color: #E8DAB2 !important; 
+}
+
+/* Logo esquina superior izquierda */
+.logo-pantalla {
+    position: absolute;
+    top: 35px;
+    left: 45px;
+}
+
+.logo-pantalla img {
+    width: 60px;
+    height: auto;
+    display: block;
 }
 
 /* Tarjeta del formulario */
 .DatosInicioCuidador {
-    background-color: #EEDFA9 !important; /* Color cuidador */
+    background-color: #EEDFA9 !important; 
     padding: 40px 60px !important;
     border-radius: 8px !important;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
@@ -44,10 +57,12 @@
     position: relative;
 }
 
+/* Flecha de volver ajustada a 55x55px */
 .flecha-volver {
     position: absolute;
     left: 0;
-    width: 40px;
+    width: 55px !important;
+    height: 55px !important;
     cursor: pointer;
     transition: transform 0.2s ease;
 }
@@ -57,17 +72,17 @@
 }
 
 .titulo-login {
-    font-size: 32px !important;
+    font-size: 35px !important;
     font-weight: 700 !important;
-    color: #18243A !important; 
+    color: #929292 !important; 
     margin: 0 !important;
     text-decoration: underline !important;
-    text-decoration-color: #18243A !important;
+    text-decoration-color: #929292 !important;
     text-decoration-thickness: 2px !important;
     text-underline-offset: 4px !important;
 }
 
-/* Texto de registro */
+/* Texto de registro (Solo en Inicio de Sesión) */
 .texto-registro {
     font-size: 15px !important;
     color: #333 !important;
@@ -85,15 +100,15 @@
     text-decoration: underline !important;
 }
 
-/* INPUTS SIN BORDE NEGRO (Cuidador) */
+/* INPUTS SIN BORDE */
 .input-campo {
     width: 100% !important;
     background-color: #eaf0f8 !important;
-    border: none !important; /* Sin borde */
+    border: none !important; 
     border-radius: 6px !important;
     padding: 14px 15px !important;
-    margin-bottom: 20px !important; 
-    font-size: 18px !important;
+    margin-bottom: 18px !important; 
+    font-size: 16px !important;
     color: #333 !important;
     outline: none !important;
 }
