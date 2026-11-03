@@ -19,7 +19,7 @@ export default function InicioSesionCuidador () {
             alert('Porfavor, llenar sus datos.');
         }
         else {
-            navigate ('/inicioSesionCuidador');
+            navigate ('/cuidador/paginagralcuidador');
         }
     }
 
@@ -88,7 +88,7 @@ export default function InicioSesionCuidador () {
                 </div>
                 
                 <button type="submit" className="btn-submit-invisible">
-                    <img src={confirmar} alt="Confirmar" className="img-confirmar-login" />
+                    <img src={confirmar} alt="Confirmar" className="img-confirmar-login"/>
                 </button>
                 
             </form>

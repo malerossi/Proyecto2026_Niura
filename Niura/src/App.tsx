@@ -39,9 +39,13 @@ import PerfilCuidador from './frontend/pages/usuario_cuidador/usuario_cuidador';
 import Noticias from './frontend/pages/notificaciones/notificaciones_cuidador';
 import NoticiasPaciente from './frontend/pages/notificaciones/notificaciones';
 import BotonNotificacion from './frontend/pages/notificaciones/notificaciones';
-import  ListaRacha  from './frontend/racha/racha';
+import ListaRacha  from './frontend/racha/racha';
 import Header from './frontend/components/header';
 import PaginaGeneral from './frontend/pages/paginageneral/paginageneral';
+import PaginaGralCuidador from './frontend/CUIDADOR/paginagralCuidador/paginagralCuidador';
+import Guia from './frontend/CUIDADOR/guia/guia';
+import HabilitarEjercicios from './frontend/CUIDADOR/habilitarEjercicios/habilitarEjercicios';
+import Tutoriales from './frontend/CUIDADOR/tutoriales/tutoriales';
 
 // IMPORTS - RED DE CONTACTOS Y CHAT
 import ChatSimplificado from './frontend/reddecontactos/reddecontactos';
@@ -116,6 +120,11 @@ function App() {
                   <Route path="/cuidador/noticias" element={<Noticias />} />
                   <Route path="/cuidador/noticias" element={<Noticias />} />
                   <Route path="/cuidador/reddecontactosmia" element={<ChatSimplificadomiopaciente usuario_id={2} />} />
+                  <Route path="/cuidador/paginagralcuidador" element={<PaginaGralCuidador />} />
+                  <Route path="/cuidador/guia" element={<Guia />} />
+                  <Route path="/cuidador/habilitar-ejercicios" element={<HabilitarEjercicios />} />
+                  <Route path="/cuidador/tutoriales" element={<Tutoriales />} />
+
                   {/* Multimedia / General */}
                   <Route path="/video" element={<Video />} />
                   <Route path="/subirvideo" element={<Video />} />

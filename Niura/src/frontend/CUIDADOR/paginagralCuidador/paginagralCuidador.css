@@ -1,0 +1,34 @@
+/* Contenedor principal que centra todo en la pantalla */
+.contenedor-opciones-cuidador {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px; /* Separación amplia entre los 3 botones, tal como en el diseño */
+    min-height: 80vh; /* Para que queden bien centrados verticalmente debajo de la barra de navegación */
+    width: 100%;
+    padding: 20px;
+}
+
+/* Estilo unificado para los tres botones de imagen */
+.btn-opcion-cuidador {
+    width: 280px; /* Ancho estimado para que queden cuadrados y proporcionados */
+    height: auto;
+    object-fit: contain;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 12px; 
+}
+
+/* Efecto de hover (coherente con el resto de la app) */
+.btn-opcion-cuidador:hover {
+    transform: scale(1.05);
+}
+
+/* Responsividad básica por si se ve en pantallas más chicas */
+@media (max-width: 900px) {
+    .contenedor-opciones-cuidador {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
