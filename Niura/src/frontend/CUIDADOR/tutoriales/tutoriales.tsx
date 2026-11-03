@@ -1,4 +1,8 @@
+import { useState } from 'react';
+
 export default function Tutoriales() {
+    const [tutoriales, setTutoriales] = useState([]);
+
     return (
         <div>
             <div>
