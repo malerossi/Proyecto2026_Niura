@@ -1,0 +1,21 @@
+.boton-principal {
+    padding: 12px 40px;
+    cursor: pointer;
+    width: 300px;
+    margin-bottom: 15px;
+}
+
+.boton-principal:hover {
+    transform: scale(1.05);
+}
+
+/* Botón Gris Claro (Error) */
+.boton-secundario {
+    padding: 12px 40px;
+    cursor: pointer;
+    width: 300px;
+}
+
+.boton-secundario:hover {
+    transform: scale(1.05);
+}

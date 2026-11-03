@@ -1,103 +1,117 @@
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-/* =========================================
-   1. CONTENEDOR GENERAL Y ESTADO GRABACIÓN 
-   (Esto era lo que faltaba)
-========================================== */
+* {
+    box-sizing: border-box;
+    font-family: 'Atkinson Hyperlegible', sans-serif !important;
+}
+
 .cuadroVideo {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 80vh; 
     width: 100%;
-    padding: 40px 20px;
-    box-sizing: border-box;
 }
 
+/* Indicador con el punto rojo */
+.indicador-grabacion {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: #18243A;
+    margin-bottom: 25px;
+}
+
+.punto-rojo {
+    width: 14px;
+    height: 14px;
+    background-color: #FF0000;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.parpadeando {
+    animation: parpadeo 1.2s infinite alternate;
+}
+
+@keyframes parpadeo {
+    0% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+/* Contenedor del video en vivo */
 .estado-grabacion {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
     width: 100%;
-    max-width: 500px;
-    gap: 20px;
 }
 
-.video-vivo {
-    width: 100%;
-    background-color: #000;
-    border-radius: 12px;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-}
-
-.btn-iniciar {
-    background-color: #005ac8;
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    padding: 12px 30px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-}
-
-/* =========================================
-   2. ESTADO PREVISUALIZACIÓN 
-   (Esto es lo que ya tenías bien)
-========================================== */
-.estado-previsualizacion {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 480px; 
-}
-
-.tarjeta-celeste {
-    background-color: #72b2ef; 
-    width: 100%;
-    border-radius: 16px; 
-    padding: 30px; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-}
-
-/* Agregué también los estilos de los títulos que faltaban en tu snippet */
-.titulo-seccion {
-    color: white;
-    font-size: 14px;
-    font-weight: 800;
-    margin-bottom: 8px;
-    text-align: center;
-}
-
-.titulo-ejercicio {
-    color: white;
-    font-size: 20px;
-    font-weight: 900;
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    line-height: 1.2;
-}
-
-.video-reproductor {
-    width: 100%;
-    background-color: #e5e9f0;
-    border-radius: 8px;
-}
-
-.btn-confirmar-img {
-    width: 180px; 
-    margin-top: 25px; 
+/* Botón de play/pausa flotando abajo en el centro */
+.btn-accion-imagen {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px; 
     cursor: pointer;
     transition: transform 0.2s ease;
 }
 
+.btn-accion-imagen:hover {
+    transform: translateX(-50%) scale(1.05);
+}
+
+/* Estilos de la previsualización */
+.estado-previsualizacion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tarjeta-celeste {
+    background-color: #00938F;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn-confirmar-img {
+    width: 160px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
 .btn-confirmar-img:hover {
-    transform: scale(1.03); 
+    transform: scale(1.05);
+}
+
+/* Contenedor del video en vivo (Antes y Durante la grabación) */
+.video-wrapper {
+    position: relative;
+    width: 895px; /* Ancho exacto solicitado */
+    height: 421px; /* Alto exacto solicitado */
+    border-radius: 12px;
+    border: 3px solid #000;
+    overflow: hidden;
+    background-color: #000;
+}
+
+/* El video de la cámara */
+.video-vivo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que llene el espacio sin deformar la cara */
+    display: block;
+}
+
+/* El video de la previsualización (Después de grabar) */
+.video-reproductor {
+    width: 895px; /* Ancho exacto solicitado */
+    height: 421px; /* Alto exacto solicitado */
+    object-fit: cover; /* Mantiene la misma proporción que el video en vivo */
+    border-radius: 8px;
 }
