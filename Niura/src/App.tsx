@@ -46,6 +46,7 @@ import PaginaGralCuidador from './frontend/CUIDADOR/paginagralCuidador/paginagra
 import Guia from './frontend/CUIDADOR/guia/guia';
 import HabilitarEjercicios from './frontend/CUIDADOR/habilitarEjercicios/habilitarEjercicios';
 import Tutoriales from './frontend/CUIDADOR/tutoriales/tutoriales';
+import PaginaTutoriales from './frontend/CUIDADOR/paginaTutorial/paginaTutorial';
 
 // IMPORTS - RED DE CONTACTOS Y CHAT
 import ChatSimplificado from './frontend/reddecontactos/reddecontactos';
@@ -124,6 +125,7 @@ function App() {
                   <Route path="/cuidador/guia" element={<Guia />} />
                   <Route path="/cuidador/habilitar-ejercicios" element={<HabilitarEjercicios />} />
                   <Route path="/cuidador/tutoriales" element={<Tutoriales />} />
+                  <Route path="/cuidador/tutorial/:id" element={<PaginaTutoriales />} />
 
                   {/* Multimedia / General */}
                   <Route path="/video" element={<Video />} />
