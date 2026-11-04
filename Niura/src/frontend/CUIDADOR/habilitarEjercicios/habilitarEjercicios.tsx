@@ -73,7 +73,6 @@ export default function HabilitarEjercicios() {
                         {elementosPaginados.map((item) => (
                             <div key={item.id} className="tutorial-card">
                                 <h2>{item.nombre}</h2>
-                                {/* CORRECCIÓN: Ahora le pasamos el ID del item al hacer clic */}
                                 <img 
                                     src={loTengo} 
                                     alt="Navegar" 
@@ -84,7 +83,6 @@ export default function HabilitarEjercicios() {
                         ))}
                     </div>
 
-                    {/* CORRECCIÓN: Arreglado el salto de línea y el guion */}
                     <img 
                         src={flechaSiguiente} 
                         alt="Siguiente" 
