@@ -1,6 +1,9 @@
 import { useState, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import confirmar from '../confirmarSeleccionEjercicio/btn-confirmar.png';
+import microfono from './microfono.png';
+import botonPausa from './pausarSeguir.png';
+import videoOnda from './download (3).mp4'
 import './audio.css';
 
 export default function SeleccionAudio() {
@@ -65,23 +68,40 @@ export default function SeleccionAudio() {
 
   return (
     <div className="grabadora-container">
-      <h2 className="grabadora-title">Grabadora de Audio - Tipo: {type}</h2>
+      
+      {/* Título unificado */}
+      <div className="indicador-grabacion">
+          <span className={`punto-rojo ${isRecording ? 'parpadeando' : ''}`}></span>
+          {isRecording ? 'Grabando el ejercicio' : 'Iniciar ejercicio'}
+      </div>
   
       {!audioUrl && (
-        <button 
-          className="btn-grabar" 
-          onClick={isRecording ? stopRecording : startRecording}
-        >
-          {isRecording ? '⏹️ Detener Grabación' : '🎙️ Comenzar a Grabar'}
-        </button>
+        <div className="interfaz-audio-activa">
+            
+            {/* Contenedor central: Micrófono + Onda(Video) */}
+            <div className="elementos-centro-audio">
+                <img src={microfono} alt="Micrófono" className="icono-microfono-gigante" />
+                
+                {/* Espacio reservado para el video de la onda de sonido */}
+                <div className="video-onda-placeholder">
+                     <video src={videoOnda} autoPlay loop muted className="video-onda-real" />
+                </div>
+            </div>
+
+            {/* Botón de Grabar/Pausar abajo */}
+            <img 
+                src={botonPausa} 
+                className="btn-accion-imagen-audio" 
+                onClick={isRecording ? stopRecording : startRecording}
+                alt="Grabar/Pausar"
+            />
+        </div>
       )}
   
       {audioUrl && (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-          
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '30px' }}>
           <audio src={audioUrl} controls style={{ marginBottom: '30px', width: '300px' }} />
-          
-          <img src={confirmar} className="btn-confirmar" onClick={saveAudioFile}>Confirmar</img>
+          <img src={confirmar} className="btn-confirmar-img" onClick={saveAudioFile} alt="Confirmar" />        
         </div>
       )}
     </div>

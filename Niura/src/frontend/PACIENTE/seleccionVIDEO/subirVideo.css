@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Atkinson Hyperlegible', sans-serif !important;
+}
+
+.cuadroVideo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh; 
+    width: 100%;
+}
+
+/* Indicador con el punto rojo */
+.indicador-grabacion {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: #18243A;
+    margin-bottom: 25px;
+}
+
+.punto-rojo {
+    width: 14px;
+    height: 14px;
+    background-color: #FF0000;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.parpadeando {
+    animation: parpadeo 1.2s infinite alternate;
+}
+
+@keyframes parpadeo {
+    0% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+/* Contenedor del video en vivo */
+.estado-grabacion {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Botón de play/pausa flotando abajo en el centro */
+.btn-accion-imagen {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px; 
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn-accion-imagen:hover {
+    transform: translateX(-50%) scale(1.05);
+}
+
+/* Estilos de la previsualización */
+.estado-previsualizacion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tarjeta-celeste {
+    background-color: #00938F;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn-confirmar-img {
+    width: 160px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-confirmar-img:hover {
+    transform: scale(1.05);
+}
+
+/* Contenedor del video en vivo (Antes y Durante la grabación) */
+.video-wrapper {
+    position: relative;
+    width: 895px; /* Ancho exacto solicitado */
+    height: 421px; /* Alto exacto solicitado */
+    border-radius: 12px;
+    border: 3px solid #000;
+    overflow: hidden;
+    background-color: #000;
+}
+
+/* El video de la cámara */
+.video-vivo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que llene el espacio sin deformar la cara */
+    display: block;
+}
+
+/* El video de la previsualización (Después de grabar) */
+.video-reproductor {
+    width: 895px; /* Ancho exacto solicitado */
+    height: 421px; /* Alto exacto solicitado */
+    object-fit: cover; /* Mantiene la misma proporción que el video en vivo */
+    border-radius: 8px;
+}

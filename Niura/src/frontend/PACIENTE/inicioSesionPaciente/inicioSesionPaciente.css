@@ -1,74 +1,154 @@
-/* Contenedor centrado en la pantalla (opcional, si querés centrar todo el form) */
-body {
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+
+/* Fondo general (Color Paciente) */
+.contenedor-pantalla-login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
-    background-color: #f1f5f9;
-    font-family: system-ui, -apple-system, sans-serif;
-  }
-  
-  /* Formulario principal */
-  .DatosInicioPaciente {
-    max-width: 400px;
-    margin: 60px auto;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    padding: 0;
+    z-index: 1000;
+    background-color: #7AC5C3 !important; 
+}
+
+/* Logo esquina superior izquierda */
+.logo-pantalla {
+    position: absolute;
+    top: 35px;
+    left: 45px;
+}
+
+.logo-pantalla img {
+    width: 60px;
+    height: auto;
+    display: block;
+}
+
+/* Tarjeta del formulario (Color Paciente) */
+.DatosInicioPaciente {
+    background-color: #00938F !important; 
+    padding: 40px 60px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-  }
-  
-  /* Título o etiquetas si decides agregarlas (opcional) */
-  .DatosInicioPaciente::before {
-    content: "Inicio de Sesión";
-    font-size: 24px;
-    font-weight: 700;
-    color: #0f172a;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  
-  /* Todos los inputs (nombre, dni, contraseña) */
-  .DatosInicioPaciente input {
-    width: 100px; /* Evita que desborde el padding */
-    box-sizing: border-box;
-    padding: 12px 16px;
-    font-size: 16px;
-    border: 1.5px solid #cbd5e1;
-    border-radius: 8px;
-    color: #334155;
-    background-color: #f8fafc;
-    transition: all 0.2s ease;
-  }
-  
-  /* Efecto cuando el usuario hace clic en un input */
-  .DatosInicioPaciente input:focus {
-    outline: none;
-    border-color: #3b82f6;
-    background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-  }
-  
-  /* Estilo del botón Enviar */
-  .DatosInicioPaciente .enviar {
+    align-items: center;
     width: 100%;
-    padding: 14px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #ffffff;
-    background-color: #2563eb;
-    border: none;
-    border-radius: 8px;
+    max-width: 450px;
+}
+
+/* Cabecera (Flecha y Título) */
+.cabecera-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+/* Flecha de volver ajustada a 55x55px */
+.flecha-volver {
+    position: absolute;
+    left: 0;
+    width: 55px !important;
+    height: 55px !important;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-  }
-  
-  /* Efectos del botón */
-  .DatosInicioPaciente .enviar:hover {
-    background-color: #1d4ed8;
-  }
-  
-  .DatosInicioPaciente .enviar:active {
-    transform: scale(0.98);
-  }
-  
+    transition: transform 0.2s ease;
+}
+
+.flecha-volver:hover {
+    transform: scale(1.1);
+}
+
+.titulo-login-paciente {
+    font-size: 35px !important;
+    font-weight: 700 !important;
+    color: #929292 !important; 
+    margin: 0 !important;
+    text-decoration: underline !important;
+    text-decoration-color: #929292 !important;
+    text-decoration-thickness: 2px !important;
+    text-underline-offset: 4px !important;
+}
+
+/* Texto de registro */
+.texto-registro {
+    font-size: 15px !important;
+    color: #333 !important;
+    margin-top: 5px !important;
+    margin-bottom: 30px !important; 
+}
+
+.link-registro {
+    color: #0066FF !important; 
+    font-weight: 700 !important;
+    cursor: pointer;
+}
+
+.link-registro:hover {
+    text-decoration: underline !important;
+}
+
+/* INPUTS SIN BORDE NEGRO */
+.input-campo-paciente {
+    width: 100% !important;
+    background-color: #eaf0f8 !important;
+    border: none !important; /* Borde eliminado */
+    border-radius: 6px !important;
+    padding: 14px 15px !important;
+    margin-bottom: 18px !important; 
+    font-size: 16px !important;
+    color: #333 !important;
+    outline: none !important;
+}
+
+.input-campo-paciente::placeholder {
+    color: #6C7A89 !important;
+}
+
+.input-campo-paciente:focus {
+    box-shadow: 0 0 0 2px #0066FF !important;
+}
+
+/* Botón (Imagen) */
+.btn-submit-invisible {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-top: 10px !important;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.img-confirmar-login {
+    width: 160px !important;
+    transition: transform 0.2s ease;
+}
+
+.img-confirmar-login:hover {
+    transform: scale(1.05);
+}
+
+.logo-pantalla {
+    position: absolute;
+    top: 35px;
+    left: 45px;
+}
+
+.logo-pantalla img {
+    width: 60px;
+    height: auto;
+    display: block;
+}

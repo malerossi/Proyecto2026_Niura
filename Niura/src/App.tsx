@@ -7,7 +7,7 @@ import RegistroMedico from './frontend/MEDICO/registroMedico/registroMedico';
 import RegistroCuidador from './frontend/CUIDADOR/registroCuidador/registroCuidador';
 import InicioSesionMedico from './frontend/MEDICO/inicioSesionMedico/inicioSesionMedico';
 import InicioSesionPaciente from './frontend/PACIENTE/inicioSesionPaciente/inicioSesionPaciente';
-import InicioSesionCuidador from './frontend/pages/inicioSesionCuidador/inicioSesionCuidador';
+import InicioSesionCuidador from './frontend/CUIDADOR/inicioSesionCuidador/inicioSesionCuidador';
 import Elegirusuario from './frontend/pages/eleccion_de_usuario/elccion_de_usuario';
 import Elegirinicio from './frontend/pages/eleccion_de_usuario/elegirinicio';
 
@@ -30,7 +30,6 @@ import Video from './frontend/PACIENTE/seleccionVIDEO/subirVideo';
 import SeleccionarArchivoVideo from './frontend/PACIENTE/seleccionVIDEO/seleccionarArchivo';
 import SeleccionarArchivoAudio from './frontend/PACIENTE/seleccionAUDIO/seleccionarArchivoAudio';
 import SeleccionAudio from './frontend/PACIENTE/seleccionAUDIO/audio';
-import SeleccionVideo from './frontend/PACIENTE/seleccionVIDEO/video';
 import PerfilPaciente from './frontend/pages/usuario_paciente/usuario_paciente';
 import GrabarVideo from './frontend/PACIENTE/seleccionVIDEO/subirVideo';
 import GrabarAudio from './frontend/PACIENTE/seleccionAUDIO/audio';
@@ -40,9 +39,15 @@ import PerfilCuidador from './frontend/pages/usuario_cuidador/usuario_cuidador';
 import Noticias from './frontend/pages/notificaciones/notificaciones_cuidador';
 import NoticiasPaciente from './frontend/pages/notificaciones/notificaciones';
 import BotonNotificacion from './frontend/pages/notificaciones/notificaciones';
-import  ListaRacha  from './frontend/racha/racha';
+import ListaRacha  from './frontend/racha/racha';
 import Header from './frontend/components/header';
 import PaginaGeneral from './frontend/pages/paginageneral/paginageneral';
+import PaginaGralCuidador from './frontend/CUIDADOR/paginagralCuidador/paginagralCuidador';
+import Guia from './frontend/CUIDADOR/guia/guia';
+import HabilitarEjercicios from './frontend/CUIDADOR/habilitarEjercicios/habilitarEjercicios';
+import Tutoriales from './frontend/CUIDADOR/tutoriales/tutoriales';
+import PaginaTutoriales from './frontend/CUIDADOR/paginaTutorial/paginaTutorial';
+import SubirFotoElemento from './frontend/CUIDADOR/elemento/elemento';
 
 // IMPORTS - RED DE CONTACTOS Y CHAT
 import ChatSimplificado from './frontend/reddecontactos/reddecontactos';
@@ -117,9 +122,13 @@ function App() {
                   <Route path="/cuidador/noticias" element={<Noticias />} />
                   <Route path="/cuidador/noticias" element={<Noticias />} />
                   <Route path="/cuidador/reddecontactosmia" element={<ChatSimplificadomiopaciente usuario_id={2} />} />
+                  <Route path="/cuidador/paginagralcuidador" element={<PaginaGralCuidador />} />
+                  <Route path="/cuidador/guia" element={<Guia />} />
+                  <Route path="/cuidador/habilitar-ejercicios" element={<HabilitarEjercicios />} />
+                  <Route path="/cuidador/tutoriales" element={<Tutoriales />} />
+                  <Route path="/cuidador/tutorial/:id" element={<PaginaTutoriales />} />
+                  <Route path="/cuidador/elemento/:id" element={<SubirFotoElemento />} />
                   {/* Multimedia / General */}
-                  <Route path="/seleccionAudio/:type" element={<SeleccionAudio />} />
-                  <Route path="/seleccionVideo/:type" element={<SeleccionVideo />} />
                   <Route path="/video" element={<Video />} />
                   <Route path="/subirvideo" element={<Video />} />
 
