@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import type { Elemento } from '../../PACIENTE/seleccionEjercicio/seleccionDeEjercicios'
 import flecha from '../../PACIENTE/EleccionEjercicio/flecha.png'
 import flechaSiguiente from '../tutoriales/arrowforward.png'
@@ -7,7 +7,6 @@ import loTengo from './Frame 93.png'
 import './habilitarEjercicios.css'
 
 export default function HabilitarEjercicios() {
-    const { id } = useParams<{ id: string }>();
     const [elemento, setElemento] = useState<Elemento[]>([]);
     const navigate = useNavigate();
     const [paginaActual, setPaginaActual] = useState(0); 
@@ -47,7 +46,7 @@ export default function HabilitarEjercicios() {
         navigate(-1);
     }
 
-    const handleNavigateElemento = () => {
+    const handleNavigateElemento = (id: string) => {
         navigate(`/CUIDADOR/elemento/${id}`);
     };
 
@@ -74,11 +73,18 @@ export default function HabilitarEjercicios() {
                         {elementosPaginados.map((item) => (
                             <div key={item.id} className="tutorial-card">
                                 <h2>{item.nombre}</h2>
-                                <img src={loTengo} alt="Navegar" className="btn-elemento-img" onClick={handleNavigateElemento} />
+                                {/* CORRECCIÓN: Ahora le pasamos el ID del item al hacer clic */}
+                                <img 
+                                    src={loTengo} 
+                                    alt="Navegar" 
+                                    className="btn-elemento-img" 
+                                    onClick={() => handleNavigateElemento(String(item.id))} 
+                                />
                             </div>
                         ))}
                     </div>
 
+                    {/* CORRECCIÓN: Arreglado el salto de línea y el guion */}
                     <img 
                         src={flechaSiguiente} 
                         alt="Siguiente" 
