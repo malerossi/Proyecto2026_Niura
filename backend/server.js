@@ -13,6 +13,7 @@ const { verificarToken } = require('./middleware/verificarToken.js')
 const { requireRol } = require('./middleware/requireRol.js')
 const { initChat } = require('./sockets/chat.js')
 const mensajesRouter = require('./routes/mensajes.router.js')
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 const PORT = process.env.PORT || 3000
 
 const app = express()
