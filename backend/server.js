@@ -43,9 +43,10 @@ app.use(express.json())
 app.use('/usuarios', usuariosRouter)
 
 app.use('/paciente', verificarToken, requireRol(0), pacienteRouter)
-app.use('/doctor', verificarToken, requireRol(2), doctorRouter)
+app.use('/doctor', verificarToken, requireRol(2 ), doctorRouter)
 app.use('/acompañante', verificarToken, requireRol(1), acompananteRouter)
-app.use('/videos', verificarToken, requireRol(0), videoRouter)
+app.use('/acompanante', verificarToken, requireRol(1), acompananteRouter)
+app.use('/videos', verificarToken, videoRouter)
 app.use('/mensajes', verificarToken, mensajesRouter)
 initChat(io)
 

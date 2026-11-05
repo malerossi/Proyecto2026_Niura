@@ -1,7 +1,12 @@
-const express = require('express')
-const router = express.Router()
-const { historial } = require('../controllers/mensajes.js')
+const express = require('express');
+const router = express.Router();
+const { historial, listarContactos, enviarMensaje } = require('../controllers/mensajes.js');
+const { verificarToken } = require('../middleware/verificarToken.js'); // Tu middleware de sesión JWT
 
-router.get('/:idUsuario', historial)
+router.use(verificarToken);
 
-module.exports = router
+router.get('/contactos', listarContactos);
+router.get('/historial/:idUsuario', historial);
+router.post('/enviar', enviarMensaje);
+
+module.exports = router;

@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken')
 const { JWT_SECRET } = require('../config/jwt.js')
-const { query } = require('../db.js')
+const { withTransaction } = require('../db.js')
 const { puedenChatear } = require('../services/acceso.js')
+const { notificarMensajeAlProfesional } = require('../services/notificaciones.js')
 
 const MAX_LARGO = 2000
 const MAX_MENSAJES = 20     
@@ -50,12 +51,16 @@ function initChat(io) {
                 }
 
              
-                const r = await query(
-                    `INSERT INTO "Mensaje" ("contenido", "fecha", "remitente", "receptor")
-                     VALUES ($1, CURRENT_TIMESTAMP, $2, $3)
-                     RETURNING "id", "contenido", "fecha", "remitente", "receptor"`,
-                    [contenido, miId, receptorId]
-                )
+                const r = await withTransaction(async (client) => {
+                    const mensaje = await client.query(
+                        `INSERT INTO "Mensaje" ("contenido", "fecha", "remitente", "receptor")
+                         VALUES ($1, CURRENT_TIMESTAMP, $2, $3)
+                         RETURNING "id", "contenido", "fecha", "remitente", "receptor"`,
+                        [contenido, miId, receptorId]
+                    )
+                    await notificarMensajeAlProfesional(client, miId, receptorId)
+                    return mensaje
+                })
                 const mensaje = r.rows[0]
 
                 io.to(`user_${receptorId}`).to(`user_${miId}`).emit('recibir_mensaje_privado', mensaje)

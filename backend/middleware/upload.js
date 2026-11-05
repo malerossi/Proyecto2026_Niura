@@ -3,10 +3,14 @@ const multer = require('multer');
 const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype.startsWith('video/')) {
+    if (
+        file.mimetype.startsWith('video/')
+        || file.mimetype.startsWith('audio/')
+        || file.mimetype.startsWith('image/')
+    ) {
         cb(null, true);
     } else {
-        cb(new Error('El archivo subido no es un video válido'), false);
+        cb(new Error('El archivo debe ser una imagen, video o audio válido'), false);
     }
 };
 
