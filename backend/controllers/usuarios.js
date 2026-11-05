@@ -75,32 +75,46 @@ async function createDoctor(req, res) {
 }
 
 async function loginGeneral(req, res) {
-    const { email, password } = req.body;
+    const { email, nombre, apellido, password } = req.body;
 
-    if (!email || !password) {
-        return res.status(400).json({ message: 'Se requieren el email y la contraseña' });
+    // 1. Verificar que vengan los 4 campos
+    if (!nombre || !apellido || !email || !password) {
+        return res.status(400).json({ 
+            message: 'Se requieren nombre, apellido, email y contraseña para iniciar sesión' 
+        });
     }
 
     try {
-        const result = await query(`SELECT * FROM "Usuario" WHERE "email" = $1`, [email]);
+        // 2. Consulta SQL que exige coincidencia de Nombre, Apellido Y Email juntos
+        const result = await query(
+            `SELECT * FROM "Usuario" 
+             WHERE LOWER("nombre") = LOWER($1) 
+               AND LOWER("apellido") = LOWER($2) 
+               AND LOWER("email") = LOWER($3)`,
+            [nombre.trim(), apellido.trim(), email.trim()]
+        );
 
         if (result.rows.length === 0) {
-            return res.status(404).json({ message: 'Usuario no encontrado' });
+            return res.status(404).json({ 
+                message: 'Los datos ingresados (nombre, apellido o email) no coinciden con ninguna cuenta' 
+            });
         }
 
         const user = result.rows[0];
 
+        // 3. Verificar contraseña
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
             return res.status(401).json({ message: 'Contraseña incorrecta' });
         }
 
+        // 4. Generar y devolver el Token JWT
         const token = jwt.sign(
             { id: user.id, email: user.email, rol: user.rol },
             JWT_SECRET,
             { expiresIn: JWT_EXPIRES_IN }
-        )
+        );
 
         return res.status(200).json({ 
             message: 'Login exitoso',
@@ -119,7 +133,6 @@ async function loginGeneral(req, res) {
         return res.status(500).json({ message: 'Error interno del servidor', error: e.message });
     }
 }
-
 async function agregarObjetos(req, res) {
     const { idObjeto } = req.body;
 
@@ -158,9 +171,19 @@ async function agregarObjetos(req, res) {
 
 
 async function crearTarea(req, res) {
-    const { token, idPaciente, nombre, descripcion, puntaje, objetosRequeridos } = req.body;
+    if (!req.body) {
+        return res.status(400).json({ message: 'El cuerpo de la petición no puede estar vacío' });
+    }
+
+    const { idPaciente, nombre, descripcion, puntaje, objetosRequeridos } = req.body;
+    if (!idPaciente || !nombre || !descripcion) {
+        return res.status(400).json({ 
+            message: 'Faltan datos requeridos (idPaciente, nombre, descripcion)' 
+        });
+    }
 
     try {
+        // 1. Verificar si el paciente tiene los objetos requeridos
         const userObjectsResult = await query(
             `SELECT "idObjeto" FROM "Paciente_Objetos" WHERE "idPaciente" = $1`,
             [idPaciente]
@@ -178,15 +201,17 @@ async function crearTarea(req, res) {
             });
         }
 
+        // 2. Insertar en la tabla "Tarea" (estado 0 = pendiente)
         const tareaResult = await query(
-            `INSERT INTO "Tarea" ("nombre", "descripcion", "idPaciente", "puntaje") 
-             VALUES ($1, $2, $3, $4) 
+            `INSERT INTO "Tarea" ("nombre", "descripcion", "idPaciente", "puntaje", "estado") 
+             VALUES ($1, $2, $3, $4, 0) 
              RETURNING *`,
-            [nombre, descripcion, idPaciente, puntaje || 0]
+            [nombre.trim(), descripcion.trim(), idPaciente, puntaje || 0]
         );
 
         const nuevaTarea = tareaResult.rows[0];
 
+        // 3. Vincular objetos en "Objeto_Tarea" si existen
         if (objetosRequeridos && objetosRequeridos.length > 0) {
             for (const objetoId of objetosRequeridos) {
                 await query(
@@ -203,7 +228,7 @@ async function crearTarea(req, res) {
         });
 
     } catch (e) {
-        console.error(e);
+        console.error('Error al crear tarea:', e);
         return res.status(500).json({ message: 'Error interno del servidor', error: e.message });
     }
 }
@@ -420,11 +445,18 @@ const verInvitacionesAcompañante = verInvitaciones('acompanante')
 const aceptarInvitacionDoctor = aceptarInvitacion('doctor')
 const aceptarInvitacionAcompañante = aceptarInvitacion('acompanante')
 
-async function verTareas(req, res){
-const patientId = req.user.id
-const result = await query("SELECT * FROM 'Tarea' WHERE idPaciente = $1", [patientId])
-return (res.status(200).json({message: 'Tareas obtenidas con éxito', tareas: result.rows})
-)
+async function verTareas(req, res) {
+    try {
+        const patientId = req.query.idPaciente ; // Permite obtener tareas de otro paciente si se pasa idPaciente en la query
+        const result = await query(
+            `SELECT * FROM "Tarea" WHERE "idPaciente" = $1 ORDER BY "id" DESC`, 
+            [patientId]
+        );
+        return res.status(200).json({ message: 'Tareas obtenidas con éxito', tareas: result.rows });
+    } catch (e) {
+        console.error('Error en verTareas:', e);
+        return res.status(500).json({ message: 'Error interno del servidor' });
+    }
 }
 
 async function verRacha(req, res) {

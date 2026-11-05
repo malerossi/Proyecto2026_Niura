@@ -9,6 +9,6 @@ router.get("/verInvitacionesDoctor", verInvitacionesDoctor)
 router.put("/aceptarInvitacionAcompañante", aceptarInvitacionAcompañante)
 router.put("/aceptarInvitacionDoctor", aceptarInvitacionDoctor)
 router.put("/completarTarea", completarTarea)
-router.get("/verTareas", verTareas)
+
 
 module.exports = router
