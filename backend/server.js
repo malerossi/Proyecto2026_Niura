@@ -1,5 +1,5 @@
 require('dotenv').config()   // tiene que ir primero: db.js y cloudinary.js leen process.env al cargarse
-
+const cors = require('cors');
 const express = require('express')
 const http = require('http')
 const { Server } = require('socket.io')
@@ -13,12 +13,30 @@ const { verificarToken } = require('./middleware/verificarToken.js')
 const { requireRol } = require('./middleware/requireRol.js')
 const { initChat } = require('./sockets/chat.js')
 const mensajesRouter = require('./routes/mensajes.router.js')
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 const PORT = process.env.PORT || 3000
 
 const app = express()
+
+// 1. Definir los orígenes permitidos
+const allowedOrigins = process.env.FRONTEND_URL 
+  ? process.env.FRONTEND_URL.split(',').map(origin => origin.trim()) 
+  : false;
+
+// 2. Aplicar CORS al middleware de Express (FALTABA ESTO)
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
 const server = http.createServer(app)
+
+// 3. Pasar la misma lista de orígenes a Socket.io
 const io = new Server(server, {
-    cors: { origin: process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(',') : false }
+    cors: { 
+      origin: allowedOrigins,
+      credentials: true 
+    }
 })
 
 app.use(express.json())
@@ -26,9 +44,10 @@ app.use(express.json())
 app.use('/usuarios', usuariosRouter)
 
 app.use('/paciente', verificarToken, requireRol(0), pacienteRouter)
-app.use('/doctor', verificarToken, requireRol(2), doctorRouter)
+app.use('/doctor', verificarToken, requireRol(2 ), doctorRouter)
 app.use('/acompañante', verificarToken, requireRol(1), acompananteRouter)
-app.use('/videos', verificarToken, requireRol(0), videoRouter)
+app.use('/acompanante', verificarToken, requireRol(1), acompananteRouter)
+app.use('/videos', verificarToken, videoRouter)
 app.use('/mensajes', verificarToken, mensajesRouter)
 initChat(io)
 

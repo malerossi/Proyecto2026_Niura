@@ -6,20 +6,63 @@ const { puedeAccederAPaciente } = require('../services/acceso.js')
 
 const URL_EXPIRA_SEGUNDOS = 600 // 10 minutos
 
-function subirACloudinary(buffer) {
+function subirACloudinary(buffer, carpeta) {
     return new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream(
             {
                 resource_type: 'video',
-                type: 'authenticated',   // privado: sin URL pública
-                folder: 'pacientes_videos',
-                format: 'mp4'
+                type: 'authenticated',
+                folder: carpeta
             },
-            (error, result) => (result ? resolve(result) : reject(error))
+            (error, result) => {
+                if (error) return reject(error)
+                if (!result) return reject(new Error('Cloudinary no devolvió el archivo subido'))
+                resolve(result)
+            }
         )
         streamifier.createReadStream(buffer).pipe(stream)
     })
 }
+
+function subirImagenACloudinary(buffer) {
+    return new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+            {
+                resource_type: 'image',
+                folder: 'perfiles_fotos',
+                format: 'jpg'
+            },
+            (error, result) => (result ? resolve(result) : reject(error))
+        );
+        streamifier.createReadStream(buffer).pipe(stream);
+    });
+}
+
+async function subirFotoPerfil(req, res) {
+    if (!req.file) {
+        return res.status(400).json({ message: 'No se ha adjuntado ningún archivo de imagen' });
+    }
+
+    try {
+        const result = await subirImagenACloudinary(req.file.buffer);
+        const urlFoto = result.secure_url; // URL pública en Cloudinary
+
+        await query(
+            `UPDATE "Usuario" SET "foto" = $1 WHERE "id" = $2`,
+            [urlFoto, req.user.id]
+        );
+
+        return res.status(200).json({
+            message: 'Foto de perfil actualizada con éxito',
+            foto: urlFoto
+        });
+    } catch (error) {
+        console.error('Error al subir foto de perfil:', error);
+        return res.status(500).json({ message: 'Error al procesar la imagen de perfil' });
+    }
+}
+
+module.exports = { subirFotoPerfil };
 
 async function limpiar(publicId) {
     try {
@@ -37,6 +80,9 @@ async function subirVideoPaciente(req, res) {
     if (!req.file) {
         return res.status(400).json({ message: 'No se ha adjuntado ningún archivo de video' })
     }
+    if (!req.file.mimetype.startsWith('video/')) {
+        return res.status(400).json({ message: 'El archivo adjunto debe ser un video' })
+    }
     if (!tareaID) {
         return res.status(400).json({ message: 'Se requiere el ID de la tarea' })
     }
@@ -44,14 +90,16 @@ async function subirVideoPaciente(req, res) {
     let publicId = null
     try {
         const tarea = await query(
-            `SELECT "id" FROM "Tarea" WHERE "id" = $1 AND "idPaciente" = $2 AND "estado" = 0`,
+            `SELECT "id" FROM "Tarea"
+             WHERE "id" = $1 AND "idPaciente" = $2 AND "estado" = 0
+               AND COALESCE(NULLIF(LOWER(BTRIM("tipo")), ''), 'video') = 'video'`,
             [tareaID, idPaciente]
         )
         if (tarea.rows.length === 0) {
             return res.status(404).json({ message: 'No se encontró una tarea pendiente con ese ID' })
         }
 
-        const result = await subirACloudinary(req.file.buffer)
+        const result = await subirACloudinary(req.file.buffer, 'niura_videos')
         publicId = result.public_id
 
         const video = await query(
@@ -76,6 +124,77 @@ async function subirVideoPaciente(req, res) {
         if (publicId) await limpiar(publicId)
         console.error('Error al subir video:', error)
         return res.status(500).json({ message: 'Error al procesar la subida del video' })
+    }
+}
+
+async function limpiarAudio(publicId) {
+    try {
+        await query(`DELETE FROM "Audio" WHERE "publicId" = $1`, [publicId])
+    } catch (error) {
+        console.error('No se pudo borrar el registro de audio huérfano:', publicId, error)
+    }
+    try {
+        await cloudinary.uploader.destroy(publicId, {
+            resource_type: 'video',
+            type: 'authenticated'
+        })
+    } catch (error) {
+        console.error('No se pudo borrar el archivo de audio huérfano:', publicId, error)
+    }
+}
+
+async function subirAudioPaciente(req, res) {
+    const { tareaID } = req.body
+    const pacienteId = req.user.id
+    if (!req.file) {
+        return res.status(400).json({ message: 'No se ha adjuntado ningún archivo de audio' })
+    }
+    if (!req.file.mimetype.startsWith('audio/')) {
+        return res.status(400).json({ message: 'El archivo adjunto debe ser un audio' })
+    }
+    if (!tareaID) {
+        return res.status(400).json({ message: 'Se requiere el ID de la tarea' })
+    }
+
+    let publicId = null
+    try {
+        const tarea = await query(
+            `SELECT "id" FROM "Tarea"
+             WHERE "id" = $1 AND "idPaciente" = $2 AND "estado" = 0
+               AND LOWER(BTRIM("tipo")) = 'audio'`,
+            [tareaID, pacienteId]
+        )
+        if (tarea.rows.length === 0) {
+            return res.status(404).json({ message: 'No se encontró una tarea de audio pendiente con ese ID' })
+        }
+
+        const resultado = await subirACloudinary(req.file.buffer, 'niura_audios')
+        publicId = resultado.public_id
+        const audio = await query(
+            `INSERT INTO "Audio" ("idTarea", "idPaciente", "publicId", "duracion")
+             VALUES ($1, $2, $3, $4) RETURNING "id"`,
+            [tareaID, pacienteId, publicId, resultado.duration ?? null]
+        )
+
+        const completada = await marcarTareaCompletada(pacienteId, tareaID)
+        if (!completada) {
+            await limpiarAudio(publicId)
+            return res.status(409).json({ message: 'La tarea ya fue completada' })
+        }
+
+        return res.status(201).json({
+            message: 'Audio subido con éxito',
+            idAudio: audio.rows[0].id,
+            duracion: resultado.duration,
+            racha: completada.racha
+        })
+    } catch (error) {
+        if (publicId) await limpiarAudio(publicId)
+        if (error.code === '22P02') {
+            return res.status(400).json({ message: 'ID de tarea inválido' })
+        }
+        console.error('Error al subir audio:', error)
+        return res.status(500).json({ message: 'Error al procesar la subida del audio' })
     }
 }
 
@@ -126,4 +245,10 @@ async function obtenerUrlVideo(req, res) {
     }
 }
 
-module.exports = { subirVideoPaciente, listarVideosPaciente, obtenerUrlVideo }
+module.exports = {
+    subirVideoPaciente,
+    subirAudioPaciente,
+    listarVideosPaciente,
+    obtenerUrlVideo,
+    subirFotoPerfil
+}
