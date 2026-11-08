@@ -242,7 +242,7 @@ async function completarTarea(req, res) {
         console.error(e)
         return res.status(500).json({ message: 'Error interno del servidor' })
     }
-}s
+}
 
 async function actualizarRachaPaciente(patientId) {
     const today = new Date();
